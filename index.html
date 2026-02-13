@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Warbond Tracker</title>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Warbond Tracker</h1>
+            <div id="percentage"></div>
+        </header>
+
+        <main>
+            <div id="controls">
+                <label>
+                    <input type="checkbox" id="toggleTitle">Show Title
+                </label>
+
+                <label>Sort By:
+                    <select id="sortBy">
+                        <option value="title-asc">Title (A-Z)</option>
+                        <option value="title-desc">Title (Z-A)</option>
+                        <option value="type-asc">Type (Z-A)</option>
+                        <option value="type-desc">Type (Z-A)</option>
+                    </select>
+                </label>
+
+                <label>Type:
+                    <select id="typeFilter">
+                        <option value="all">All</option>
+                        <option value="standard">Standard</option>
+                        <option value="premium">Premium</option>
+                        <option value="legendary">Legendary</option>
+                    </select>
+                </label>
+
+                <label>Liberation:
+                    <select id="liberation">
+                        <option value="all">All</option>
+                        <option value="liberated">Liberated</option>
+                        <option value="unliberated">Unliberated</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="settings">
+                <button id="clearLiberation">Clear Liberation</button>
+                <button id="clearStorage">Clear Storage</button>
+            </div>
+
+            <div id="grid"></div>
+        </main>
+
+        <script src="./index.js"></script>
+    </body>
+
+    <footer>
+        <span>Warbond Tracker is not affiliated with Arrowhead Game Studios or Sony. Trademarks belong to their respective owners.</span>
+    </footer>
+</html>

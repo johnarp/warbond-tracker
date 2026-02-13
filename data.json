@@ -1,0 +1,107 @@
+[
+    {
+        "title": "Helldivers Mobilize!",
+        "type": "Standard",
+        "cover": "./assets/Helldivers_Mobilize_Warbond_Cover.png"
+    },
+    {
+        "title": "Steeled Veterans",
+        "type": "Premium",
+        "cover": "./assets/Steeled_Veterans_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Cutting Edge",
+        "type": "Premium",
+        "cover": "./assets/Cutting_Edge_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Democratic Detonation",
+        "type": "Premium",
+        "cover": "./assets/Democratic_Detonation_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Polar Patriots",
+        "type": "Premium",
+        "cover": "./assets/Polar_Patriots_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Viper Commandos",
+        "type": "Premium",
+        "cover": "./assets/Viper_Commandos_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Freedom's Flame",
+        "type": "Premium",
+        "cover": "./assets/Freedom's_Flame_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Chemical Agents",
+        "type": "Premium",
+        "cover": "./assets/Chemical_Agents_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Truth Enforcers",
+        "type": "Premium",
+        "cover": "./assets/Truth_Enforcers_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Urban Legends",
+        "type": "Premium",
+        "cover": "./assets/Urban_Legends_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Servants of Freedom",
+        "type": "Premium",
+        "cover": "./assets/Servants_of_Freedom_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Borderline Justice",
+        "type": "Premium",
+        "cover": "./assets/Borderline_Justice_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Masters of Ceremony",
+        "type": "Premium",
+        "cover": "./assets/Masters_of_Ceremony_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Force of Law",
+        "type": "Premium",
+        "cover": "./assets/Force_of_Law_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Control Group",
+        "type": "Premium",
+        "cover": "./assets/Control_Group_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Dust Devils",
+        "type": "Premium",
+        "cover": "./assets/Dust_Devils_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Python Commandos",
+        "type": "Premium",
+        "cover": "./assets/Python_Commandos_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Redacted Regiment",
+        "type": "Premium",
+        "cover": "./assets/Redacted_Regiment_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Siege Breakers",
+        "type": "Premium",
+        "cover": "./assets/Siege_Breakers_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Obedient Democracy Support Troopers",
+        "type": "Legendary",
+        "cover": "./assets/Halo_ODST_Legendary_Warbond_Cover.png"
+    },
+    {
+        "title": "Righteous Revenants",
+        "type": "Legendary",
+        "cover": "./assets/Righteous_Revenants_Legendary_Warbond_Cover.png"
+    }
+]

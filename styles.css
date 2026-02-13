@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+    --color-background: #000000;
+    --color-helldivers: #ffe710;
+    --color-text: #ffffff;
+}
+
+::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Chakra Petch";
+    padding: 1rem;
+}
+
+header {
+    color: var(--color-helldivers);
+    text-align: center;
+}
+
+#percentage {
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+}
+
+#controls {
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+    gap: 3rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#settings {
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: var(--color-text);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+}
+
+input {
+    cursor: pointer;
+}
+
+select {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.title {
+    color: var(--color-helldivers);
+    font-weight: 600;
+    margin-bottom: 0rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+}
+
+#grid img {
+    display: block;
+    width: 100%;
+}
+
+.card {
+    transition: filter 0.15s ease;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card.liberated img {
+    filter: brightness(0.5) grayscale(100%);
+}
+
+.card:not(.liberated):hover {
+    filter: brightness(1.25);
+}
+
+footer {
+    display: flex;
+    font-size: 0.75rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+
+
+
+
+
+
+.image-wrapper {
+    position: relative;
+}
+
+.image-wrapper img {
+    display: block;
+    width: 100%;
+}
+
+.stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ff1010; /* bright red */
+    border: 6px double #ff1010; /* classic stamp border */
+    padding: 0.5rem 2rem;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    letter-spacing: 4px;
+    text-shadow: none; /* remove glow */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    mix-blend-mode: normal; /* no blending */
+    filter: none; /* no filter */
+}
+
+/* Show when liberated */
+.card.liberated .stamp {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(1.05);
+}
+
