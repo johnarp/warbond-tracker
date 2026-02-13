@@ -32,18 +32,20 @@ header {
     align-items: center;
     display: flex;
     font-weight: 600;
-    gap: 3rem;
+    gap: 1rem;
     justify-content: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 #settings {
     align-items: center;
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
     justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 button {
@@ -77,7 +79,7 @@ select {
 #grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
 }
 
 #grid img {
@@ -128,24 +130,81 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-20deg);
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    color: #ff1010; /* bright red */
-    border: 6px double #ff1010; /* classic stamp border */
-    padding: 0.5rem 2rem;
+    color: #ff1010;
+    border: 4px double #ff1010;
+    padding: 0.25rem 1rem;
     text-align: center;
     pointer-events: none;
     opacity: 0;
-    letter-spacing: 4px;
-    text-shadow: none; /* remove glow */
+    letter-spacing: 2px;
+    text-shadow: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    mix-blend-mode: normal; /* no blending */
-    filter: none; /* no filter */
+    mix-blend-mode: normal;
+    filter: none;
 }
 
-/* Show when liberated */
 .card.liberated .stamp {
     opacity: 1;
     transform: translate(-50%, -50%) rotate(-20deg) scale(1.05);
 }
 
+
+
+
+
+
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    #controls {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    #settings {
+        gap: 0.75rem;
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    select {
+        font-size: 0.9rem;
+    }
+    
+    #grid {
+        gap: 0.75rem;
+    }
+    
+    .stamp {
+        border-width: 4px;
+        padding: 0.25rem 1rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #controls {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+    
+    #controls label {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

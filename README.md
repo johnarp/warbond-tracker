@@ -4,6 +4,8 @@
 
 Track completed Warbonds for Helldivers 2
 
+![Screenshot](./image.png)
+
 </div>
 
 ## 📋 Installation
