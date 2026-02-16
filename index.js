@@ -119,7 +119,7 @@ function updatePercentage() {
         total === 0 ? 0 : Math.round((liberatedCount / total) * 100);
 
     percentage.textContent =
-        `${liberatedCount}/${total} Liberated — ${percentValue}%`;
+        `${liberatedCount}/${total} — ${percentValue}%`;
 }
 
 /* ------------------------

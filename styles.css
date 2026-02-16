@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
-    --color-background: #000000;
+    --color-background: #080808;
     --color-helldivers: #ffe710;
-    --color-text: #ffffff;
+    --color-text: #f0f0f0;
 }
 
 ::-webkit-scrollbar { /* WebKit */
@@ -110,7 +110,9 @@ footer {
     margin-top: 1rem;
 }
 
-
+#percentage {
+    font-weight: 600;
+}
 
 
 
@@ -132,8 +134,10 @@ footer {
     transform: translate(-50%, -50%) rotate(-20deg);
     font-size: 1.5rem;
     font-weight: 900;
-    color: #ff1010;
-    border: 4px double #ff1010;
+    /* color: #ff1010; */
+    color: var(--color-helldivers);
+    /* border: 4px double #ff1010; */
+    border: 4px double var(--color-helldivers);
     padding: 0.25rem 1rem;
     text-align: center;
     pointer-events: none;
