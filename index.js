@@ -35,10 +35,13 @@ function render() {
        FILTER BY LIBERATION
     ------------------------ */
     if (liberation.value === "liberated") {
-        filtered = filtered.filter(w => liberationStatus[w.title]);
+        filtered = filtered.filter(w => liberationStatus[w.title] === "liberated");
     } 
     else if (liberation.value === "unliberated") {
-        filtered = filtered.filter(w => !liberationStatus[w.title]);
+        filtered = filtered.filter(w => !liberationStatus[w.title] || liberationStatus[w.title] === "unliberated");
+    }
+    else if (liberation.value === "liberating") {
+        filtered = filtered.filter(w => liberationStatus[w.title] === "liberating")
     }
 
     /* ------------------------
@@ -65,8 +68,14 @@ function render() {
         const card = document.createElement("div");
         card.classList.add("card");
 
-        if (liberationStatus[item.title]) {
+        const status = liberationStatus[item.title];
+        // if (liberationStatus[item.title]) {
+        //     card.classList.add("liberated");
+        // }
+        if (status === "liberated") {
             card.classList.add("liberated");
+        } else if (status === "liberating") {
+            card.classList.add("liberating");
         }
 
         // IMAGE WRAPPER (important)
@@ -92,14 +101,17 @@ function render() {
             title.style.display = "none";
         }
 
-        card.addEventListener("click", () => {
-            liberationStatus[item.title] = !liberationStatus[item.title];
-            localStorage.setItem(
-                "liberationStatus",
-                JSON.stringify(liberationStatus)
-            );
-            render();
-        });
+        // card.addEventListener("click", () => {
+        //     liberationStatus[item.title] = !liberationStatus[item.title];
+        //     localStorage.setItem(
+        //         "liberationStatus",
+        //         JSON.stringify(liberationStatus)
+        //     );
+        //     render();
+        // });
+        card.addEventListener("click", (e) => {
+            showStatusMenu(e, item.title, card);
+        })
 
         card.appendChild(imageWrapper);
         card.appendChild(title);
@@ -110,16 +122,85 @@ function render() {
 }
 
 /* ------------------------
+   STATUS MENU
+------------------------ */
+
+function showStatusMenu(event, itemTitle, cardElement) {
+    // remove any existing menus
+    const existingMenu = document.querySelector('.status-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
+
+    const menu = document.createElement("div");
+    menu.classList.add("status-menu");
+
+    const currentStatus = liberationStatus[itemTitle] || "unliberated";
+
+    const options = [
+        { value: "unliberated", label: "Unliberated" },
+        { value: "liberating", label: "Liberating" },
+        { value: "liberated", label: "Liberated" }
+    ];
+
+    options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option.label;
+        button.classList.add("status-option");
+
+        if (currentStatus === option.value) {
+            button.classList.add("active");
+        }
+
+        button.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            if (option.value === "unliberated") {
+                delete liberationStatus[itemTitle];
+            } else {
+                liberationStatus[itemTitle] = option.value;
+            }
+
+            localStorage.setItem("liberationStatus", JSON.stringify(liberationStatus));
+            menu.remove();
+            render();
+        });
+        menu.appendChild(button);
+    });
+
+    // position menu near card
+    const rect = cardElement.getBoundingClientRect();
+    menu.style.position = "fixed";
+    menu.style.left = `${rect.left + rect.width / 2}px`;
+    menu.style.top = `${rect.top + rect.height / 2}px`;
+    menu.style.transform = 'translate(-50%, -50%)';
+
+    document.body.appendChild(menu);
+
+    // close menu when click outside
+    setTimeout(() => {
+        document.addEventListener("click", function closeMenu(e) {
+            if (!menu.contains(e.target)) {
+                menu.remove();
+                document.removeEventListener("click", closeMenu);
+            }
+        });
+    }, 0);
+}
+
+
+/* ------------------------
    PERCENTAGE
 ------------------------ */
 function updatePercentage() {
     const total = warbonds.length;
-    const liberatedCount = Object.values(liberationStatus).filter(Boolean).length;
+    const liberatedCount = Object.values(liberationStatus).filter(status => status === "liberated").length;
+    const liberatingCount = Object.values(liberationStatus).filter(status => status === "liberating").length;
     const percentValue =
         total === 0 ? 0 : Math.round((liberatedCount / total) * 100);
 
     percentage.textContent =
-        `${liberatedCount}/${total} — ${percentValue}%`;
+        `${liberatedCount}/${total} Liberated — ${percentValue}% | ${liberatingCount} In Progress`;
 }
 
 /* ------------------------

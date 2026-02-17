@@ -2,7 +2,7 @@
 
 # Warbond Tracker
 
-Track completed Warbonds for Helldivers 2
+Track your Helldivers 2 Warbond completion.
 
 ![Screenshot](./image.png)
 
