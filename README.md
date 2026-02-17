@@ -4,7 +4,7 @@
 
 Track your Helldivers 2 Warbond completion.
 
-![Screenshot](./image.png)
+![Screenshot](./assets/README.png)
 
 </div>
 

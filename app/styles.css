@@ -282,9 +282,11 @@ footer {
     display: block;
     width: 100%;
     transition: all 0.3s ease;
+    /* aspect-ratio: 1920 / 976;    OLD WARBOND RATIO */
+    aspect-ratio: 2048 / 1024;
 }
 
-.stamp {
+/* .stamp {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -311,6 +313,35 @@ footer {
 .card.liberated .stamp {
     opacity: 1;
     transform: translate(-50%, -50%) rotate(-20deg) scale(1.05);
+} */
+
+.stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-helldivers);
+    border: 2px solid var(--color-helldivers);
+    padding: 0.4rem 1.25rem;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(255, 231, 16, 0.6);
+    box-shadow:
+        0 0 16px rgba(255, 231, 16, 0.25),
+        inset 0 0 16px rgba(255, 231, 16, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    width: 80%;
+}
+
+.card.liberated .stamp {
+    opacity: 1;
+    transform: translate(-50%, -50%);
 }
 
 /* ------------------------

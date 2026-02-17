@@ -3,9 +3,11 @@
 
     <head>
         <meta charset="UTF-8">
+        <meta name="theme-color" content="var(--color-helldivers)">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Warbond Tracker</title>
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="./app/styles.css">
+        <link rel="icon" href="./assets/icon.png" type="image/png">
     </head>
 
     <body>
@@ -26,6 +28,8 @@
                         <option value="title-desc">Title (Z-A)</option>
                         <option value="type-asc">Type (Z-A)</option>
                         <option value="type-desc">Type (Z-A)</option>
+                        <option value="release-desc">Newest First</option>
+                        <option value="release-asc">Oldest First</option>
                     </select>
                 </label>
 
@@ -56,7 +60,7 @@
             <div id="grid"></div>
         </main>
 
-        <script src="./index.js"></script>
+        <script src="./app/index.js"></script>
     </body>
 
     <footer>

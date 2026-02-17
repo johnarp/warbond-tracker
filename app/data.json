@@ -1,0 +1,128 @@
+[
+    {
+        "title": "Helldivers Mobilize!",
+        "type": "Standard",
+        "release": "2024/02/08",
+        "cover": "./assets/warbonds/Helldivers_Mobilize_Warbond_Cover.png"
+    },
+    {
+        "title": "Steeled Veterans",
+        "type": "Premium",
+        "release": "2024/02/08",
+        "cover": "./assets/warbonds/Steeled_Veterans_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Cutting Edge",
+        "type": "Premium",
+        "release": "2024/03/14",
+        "cover": "./assets/warbonds/Cutting_Edge_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Democratic Detonation",
+        "type": "Premium",
+        "release": "2024/04/11",
+        "cover": "./assets/warbonds/Democratic_Detonation_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Polar Patriots",
+        "type": "Premium",
+        "release": "2024/05/09",
+        "cover": "./assets/warbonds/Polar_Patriots_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Viper Commandos",
+        "type": "Premium",
+        "release": "2024/06/13",
+        "cover": "./assets/warbonds/Viper_Commandos_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Freedom's Flame",
+        "type": "Premium",
+        "release": "2024/08/08",
+        "cover": "./assets/warbonds/Freedom's_Flame_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Chemical Agents",
+        "type": "Premium",
+        "release": "2024/09/19",
+        "cover": "./assets/warbonds/Chemical_Agents_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Truth Enforcers",
+        "type": "Premium",
+        "release": "2024/10/31",
+        "cover": "./assets/warbonds/Truth_Enforcers_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Urban Legends",
+        "type": "Premium",
+        "release": "2024/12/13",
+        "cover": "./assets/warbonds/Urban_Legends_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Servants of Freedom",
+        "type": "Premium",
+        "release": "2025/02/06",
+        "cover": "./assets/warbonds/Servants_of_Freedom_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Borderline Justice",
+        "type": "Premium",
+        "release": "2025/03/20",
+        "cover": "./assets/warbonds/Borderline_Justice_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Masters of Ceremony",
+        "type": "Premium",
+        "release": "2025/05/15",
+        "cover": "./assets/warbonds/Masters_of_Ceremony_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Force of Law",
+        "type": "Premium",
+        "release": "2025/06/12",
+        "cover": "./assets/warbonds/Force_of_Law_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Control Group",
+        "type": "Premium",
+        "release": "2025/07/17",
+        "cover": "./assets/warbonds/Control_Group_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Dust Devils",
+        "type": "Premium",
+        "release": "2025/09/04",
+        "cover": "./assets/warbonds/Dust_Devils_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Python Commandos",
+        "type": "Premium",
+        "release": "2025/12/02",
+        "cover": "./assets/warbonds/Python_Commandos_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Redacted Regiment",
+        "type": "Premium",
+        "release": "2026/01/22",
+        "cover": "./assets/warbonds/Redacted_Regiment_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Siege Breakers",
+        "type": "Premium",
+        "release": "2026/02/03",
+        "cover": "./assets/warbonds/Siege_Breakers_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Obedient Democracy Support Troopers",
+        "type": "Legendary",
+        "release": "2025/08/26",
+        "cover": "./assets/warbonds/Halo_ODST_Legendary_Warbond_Cover.png"
+    },
+    {
+        "title": "Righteous Revenants",
+        "type": "Legendary",
+        "release": "2025/12/18",
+        "cover": "./assets/warbonds/Righteous_Revenants_Legendary_Warbond_Cover.png"
+    }
+]

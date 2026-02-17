@@ -10,7 +10,7 @@ const clearStorage = document.getElementById("clearStorage");
 let warbonds = [];
 let liberationStatus = JSON.parse(localStorage.getItem("liberationStatus")) || {};
 
-fetch("./data.json")
+fetch("./app/data.json")
     .then(response => response.json())
     .then(data => {
         warbonds = data;
@@ -53,11 +53,18 @@ function render() {
         let valueA = a[field];
         let valueB = b[field];
 
-        // normalize for type sorting (case safe)
-        valueA = valueA.toLowerCase();
-        valueB = valueB.toLowerCase();
+        // updated for release dates
+        let result;
+        if (field === "release") {
+            result = new Date(valueA) - new Date(valueB);
+        } else {
+            result = valueA.toLowerCase().localeCompare(valueB.toLowerCase());
+        }
 
-        let result = valueA.localeCompare(valueB);
+        // valueA = valueA.toLowerCase();
+        // valueB = valueB.toLowerCase();
+        // let result = valueA.localeCompare(valueB);
+
         return direction === "asc" ? result : -result;
     });
 
