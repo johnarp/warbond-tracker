@@ -207,7 +207,10 @@ function updatePercentage() {
         total === 0 ? 0 : Math.round((liberatedCount / total) * 100);
 
     percentage.textContent =
-        `${liberatedCount}/${total} Liberated — ${percentValue}% | ${liberatingCount} In Progress`;
+        // `${liberatedCount}/${total} Liberated — ${percentValue}% | ${liberatingCount} In Progress`;
+        // after the + is just logic so that ACTIVE FRONTS only shows if its >0
+        `${percentValue}% LIBERATED // ${liberatedCount} OF ${total} WARBONDS` + 
+        (liberatingCount > 0 ? ` // ${liberatingCount} ACTIVE ${liberatingCount === 1 ? "FRONT" : "FRONTS"}` : ``);
 }
 
 /* ------------------------
