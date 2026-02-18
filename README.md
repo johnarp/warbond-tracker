@@ -4,9 +4,9 @@
 
 Track your Helldivers 2 Warbond completion.
 
-<img src="./assets/README.png" width="98%" align="top">
-<img src="./assets/README_2.png" width="49%" align="top">
-<img src="./assets/README_3.png" width="49%" align="top">
+<img src="./assets/app/README.png" width="100%" align="top">
+<img src="./assets/app/README_2.png" width="49.56%" align="top">
+<img src="./assets/app/README_3.png" width="49.56%" align="top">
 
 </div>
 

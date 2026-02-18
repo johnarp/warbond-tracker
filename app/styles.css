@@ -50,7 +50,7 @@
 }
 
 [data-theme="super-earth"] body {
-    background: url('../assets/State_Flag_of_Super_Earth.webp') center center / cover fixed;
+    background: url('../assets/themes/State_Flag_of_Super_Earth.webp') center center / cover fixed;
 }
 
 [data-theme="super-earth"] body::before {
@@ -170,7 +170,7 @@
 }
 
 [data-theme="meridia"] body {
-    background: url('../assets/Meridian_Black_Hole.webp') center center / cover fixed;
+    background: url('../assets/themes/Meridian_Black_Hole.webp') center center / cover fixed;
 }
 
 [data-theme="meridia"] body::before {
@@ -587,8 +587,8 @@ select:focus {
 
 /* LIBERATING STATE */
 .card.liberating {
-    border-color: var(--color-helldivers);
     animation: liberatingPulse 2s ease-in-out infinite;
+    border-color: var(--color-helldivers);
     box-shadow: var(--shadow-sm), var(--glow-md), var(--glow-inset-sm);
 }
 
@@ -605,6 +605,34 @@ select:focus {
 
 .card.liberating img {
     filter: brightness(0.9) saturate(1.2);
+}
+
+.card.liberating .image-wrapper::before,
+.card.liberating .image-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--color-helldivers) 0px,
+        var(--color-helldivers) 10px,
+        rgba(0, 0, 0, 0.8)     10px,
+        rgba(0, 0, 0, 0.8)     20px
+    );
+    background-size: 28px 28px;
+    animation: hazardScroll 2s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.card.liberating .image-wrapper::before { top: 0; }
+.card.liberating .image-wrapper::after  { bottom: 0; }
+
+@keyframes hazardScroll {
+    from { background-position: 0 0; }
+    to   { background-position: 28px 0; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
