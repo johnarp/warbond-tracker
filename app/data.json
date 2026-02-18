@@ -93,6 +93,7 @@
         "title": "Dust Devils",
         "type": "Premium",
         "release": "2025/09/04",
+        "aliases": ["dune"],
         "cover": "./assets/warbonds/Dust_Devils_Premium_Warbond_Cover.png"
     },
     {
@@ -105,6 +106,7 @@
         "title": "Redacted Regiment",
         "type": "Premium",
         "release": "2026/01/22",
+        "aliases": ["stealth"],
         "cover": "./assets/warbonds/Redacted_Regiment_Premium_Warbond_Cover.png"
     },
     {
@@ -117,12 +119,14 @@
         "title": "Obedient Democracy Support Troopers",
         "type": "Legendary",
         "release": "2025/08/26",
+        "aliases": ["halo", "odst"],
         "cover": "./assets/warbonds/Halo_ODST_Legendary_Warbond_Cover.png"
     },
     {
         "title": "Righteous Revenants",
         "type": "Legendary",
         "release": "2025/12/18",
+        "aliases": ["killzone"],
         "cover": "./assets/warbonds/Righteous_Revenants_Legendary_Warbond_Cover.png"
     }
 ]

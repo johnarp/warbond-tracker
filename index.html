@@ -23,11 +23,11 @@
                         <input type="checkbox" id="toggleTitle">Show Title
                     </label>
 
-                    <label>Sort By:
+                    <label>Sort:
                         <select id="sortBy">
                             <option value="title-asc">Title (A-Z)</option>
                             <option value="title-desc">Title (Z-A)</option>
-                            <option value="type-asc">Type (Z-A)</option>
+                            <option value="type-asc">Type (A-Z)</option>
                             <option value="type-desc">Type (Z-A)</option>
                             <option value="release-desc">Newest First</option>
                             <option value="release-asc">Oldest First</option>
@@ -52,6 +52,14 @@
                         </select>
                     </label>
 
+                    <div id="search-wrapper">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" id="search" placeholder="Search..." autocomplete="off" spellcheck="false">
+                        <button id="search-clear" aria-label="Clear Search">&#x2715;</button>
+                    </div>
+
                     <button id="settingsCog" aria-label="Settings">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.69.07-1.08s-.03-.74-.07-1.08l2.32-1.82c.21-.16.27-.45.13-.68l-2.2-3.81c-.13-.23-.42-.31-.65-.23l-2.73 1.1c-.57-.44-1.18-.79-1.85-1.05l-.42-2.9C14.18 2.18 13.92 2 13.64 2H10.36c-.28 0-.54.18-.58.44l-.42 2.9c-.67.26-1.28.62-1.85 1.05l-2.73-1.1c-.23-.08-.52 0-.65.23L2.13 9.33c-.14.23-.08.52.13.68l2.32 1.82c-.04.34-.07.69-.07 1.08s.03.74.07 1.08L2.26 15.83c-.21.16-.27.45-.13.68l2.2 3.81c.13.23.42.31.65.23l2.73-1.1c.57.44 1.18.79 1.85 1.05l.42 2.9c.04.26.3.44.58.44h3.28c.28 0 .54-.18.58-.44l.42-2.9c.67-.26 1.28-.62 1.85-1.05l2.73 1.1c.23.08.52 0 .65-.23l2.2-3.81c.14-.23.08-.52-.13-.68l-2.32-1.82z"/>
@@ -62,20 +70,40 @@
                 <div id="settings-panel">
                     <!-- Themes -->
                     <div class="settings-section">
-                        <span class="settings-label">Appearance</span>
+                        <span class="settings-label">Armory</span>
                         <div class="settings-section-buttons" id="themeButtons">
-                            <button data-theme="low-light" class="active">Low-Light</button>
-                            <button data-theme="super-earth">Super Earth</button>
+                            <button data-theme="bile">Bile</button>
+                            <button data-theme="cyberstan">Cyberstan</button>
                             <button data-theme="meridia">Meridia</button>
+                            <button data-theme="redacted">[REDACTED]</button>
+                            <button data-theme="super-destroyer" class="active">Super Destroyer</button>
+                            <button data-theme="super-earth">Super Earth</button>
                         </div>
                     </div>
+                    <!-- Other Settings -->
+                    <!-- <div class="settings-section">
+                        <span class="settings-label">PAC</span>
+                        <div class="settings-section-buttons">
+                            <button>Export Progress</button>
+                            <button>Import Progress</button>
+                        </div>
+                    </div> -->
                     <!-- Clear -->
                     <div class="settings-section">
-                        <span class="settings-label">Danger Zone</span>
+                        <span class="settings-label">Enemy Artillery</span>
                         <div class="settings-section-buttons">
                             <button id="clearLiberation">Clear Liberation</button>
                             <button id="clearStorage">Clear Storage</button>
                         </div>
+                    </div>
+                    <!-- Information -->
+                    <div class="settings-section">
+                        <span class="settings-label">
+                            v0.4.0 // 2026-02-18 // 
+                            <a class="link" href="https://github.com/johnarp/warbond-tracker" target="_blank" rel="noopener noreferrer">Source</a> // 
+                            <a class="link" href="https://github.com/johnarp/warbond-tracker/releases" target="_blank" rel="noopener noreferrer">Changelog</a> // 
+                            <a class="link" href="https://github.com/johnarp/warbond-tracker/issues" target="_blank" rel="noopener noreferrer">Report Issue</a>
+                        </span>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ const liberation = document.getElementById("liberation");
 const percentage = document.getElementById("percentage");
 const clearLiberation = document.getElementById("clearLiberation");
 const clearStorage = document.getElementById("clearStorage");
+const searchInput = document.getElementById("search");
+const searchClear = document.getElementById("search-clear");
 
 let warbonds = [];
 let liberationStatus = JSON.parse(localStorage.getItem("liberationStatus")) || {};
@@ -43,6 +45,33 @@ function render() {
     else if (liberation.value === "liberating") {
         filtered = filtered.filter(w => liberationStatus[w.title] === "liberating")
     }
+
+    /* ------------------------
+       SEARCH
+    ------------------------ */
+
+    const query = searchInput.value.trim().toLowerCase();
+    if (query) {
+        filtered = filtered.filter(w => 
+            w.title.toLowerCase().includes(query) || 
+            (w.aliases || []).some(a => a.toLowerCase().includes(query))
+        );
+    }
+
+    let searchDebounce;
+    searchInput.addEventListener("input", () => {
+        searchClear.classList.toggle("visible", searchInput.value.length > 0);
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(render, 150);
+    });
+
+    searchClear.addEventListener("click", (e) => {
+        e.stopPropagation();
+        searchInput.value = "";
+        searchClear.classList.remove("visible");
+        searchInput.focus();
+        render();
+    });
 
     /* ------------------------
        SORT
@@ -211,12 +240,18 @@ function updatePercentage() {
         // after the + is just logic so that ACTIVE FRONTS only shows if its >0
         `${percentValue}% LIBERATED // ${liberatedCount} OF ${total} WARBONDS` + 
         (liberatingCount > 0 ? ` // ${liberatingCount} ACTIVE ${liberatingCount === 1 ? "FRONT" : "FRONTS"}` : ``);
+
+    document.title = `${percentValue}% Liberated // Warbond Tracker`;
 }
 
 /* ------------------------
    CLEAR LIBERATION ONLY
 ------------------------ */
 clearLiberation.addEventListener("click", () => {
+    const confirmed = confirm(
+        "Clear all liberation progress?.\nAre you sure?"
+    );
+    if (!confirmed) return;
     liberationStatus = {};
     localStorage.removeItem("liberationStatus");
     render();
@@ -234,12 +269,13 @@ clearStorage.addEventListener("click", () => {
 
     localStorage.clear();
     liberationStatus = {};
-    applyTheme("low-light");
+    applyTheme("super-destroyer");
     render();
 });
 
-
-
+/* ------------------------
+    SETTINGS
+------------------------ */
 
 const settingsCog = document.getElementById("settingsCog");
 const settingsPanel = document.getElementById("settings-panel");
@@ -252,15 +288,15 @@ settingsCog.addEventListener("click", () => {
     controlsBar.classList.toggle("panel-open", isOpen);
 });
 
-
 /* ------------------------
    THEMES
 ------------------------ */
-const savedTheme = localStorage.getItem("theme") || "low-light";
+
+const savedTheme = localStorage.getItem("theme") || "super-destroyer";
 applyTheme(savedTheme);
 
 function applyTheme(theme) {
-    if (theme === "low-light") {
+    if (theme === "super-destroyer") {
         document.documentElement.removeAttribute("data-theme");
     } else {
         document.documentElement.setAttribute("data-theme", theme);
@@ -278,6 +314,12 @@ document.getElementById("themeButtons").addEventListener("click", (e) => {
         applyTheme(e.target.dataset.theme);
     }
 });
+
+/* ------------------------
+   SEARCH
+------------------------ */
+
+
 
 /* ------------------------
    LISTENERS

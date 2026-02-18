@@ -4,8 +4,7 @@
 
 Track your Helldivers 2 Warbond completion.
 
-![Screenshot](./assets/README.png)
-
+<img src="./assets/README.png" width="98%" align="top">
 <img src="./assets/README_2.png" width="49%" align="top">
 <img src="./assets/README_3.png" width="49%" align="top">
 
@@ -22,7 +21,7 @@ Check it out [here](https://johnarp.github.io/warbond-tracker)
 </details>
 
 <details>
-<summary><strong>Open in Your Browser</strong></summary>
+<summary><strong>Open in Your Browser (w/ Python)</strong></summary>
 <br>
 
 1. Clone the repository

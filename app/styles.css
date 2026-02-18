@@ -12,20 +12,20 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 20px rgba(255, 231, 16, 0.2);
 
-    --glow-sm: 0 0 10px rgba(255, 231, 16, 0.2);
-    --glow-md: 0 0 20px rgba(255, 231, 16, 0.3);
-    --glow-lg: 0 0 30px rgba(255, 231, 16, 0.5);
+    --glow-sm:       0 0 10px rgba(255, 231, 16, 0.2);
+    --glow-md:       0 0 20px rgba(255, 231, 16, 0.3);
+    --glow-lg:       0 0 30px rgba(255, 231, 16, 0.5);
     --glow-inset-sm: inset 0 0 20px rgba(255, 231, 16, 0.05);
     --glow-inset-lg: inset 0 0 30px rgba(255, 231, 16, 0.1);
-    --glow-stamp: 0 0 16px rgba(255, 231, 16, 0.25);
-    --glow-stamp-inset: inset 0 0 16px rgba(255, 231, 16, 0.05);
-    --glow-text: 0 0 12px rgba(255, 231, 16, 0.6);
-    --glow-header: 0 0 10px rgba(255, 231, 16, 0.3);
-    --glow-focus: 0 0 0 3px rgba(255, 231, 16, 0.1);
+    --glow-text:     0 0 12px rgba(255, 231, 16, 0.6);
+    --glow-header:   0 0 10px rgba(255, 231, 16, 0.3);
+    --glow-focus:    0 0 0 3px rgba(255, 231, 16, 0.1);
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SUPER EARTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root[data-theme="super-earth"] {
     --color-background: #162840;
     --color-surface: #3a587f;
@@ -38,20 +38,114 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.0);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 20px rgba(240, 192, 32, 0.2);
 
-    --glow-sm: 0 0 10px rgba(240, 192, 32, 0.2);
-    --glow-md: 0 0 20px rgba(240, 192, 32, 0.3);
-    --glow-lg: 0 0 30px rgba(240, 192, 32, 0.4);
+    --glow-sm:       0 0 10px rgba(240, 192, 32, 0.2);
+    --glow-md:       0 0 20px rgba(240, 192, 32, 0.3);
+    --glow-lg:       0 0 30px rgba(240, 192, 32, 0.4);
     --glow-inset-sm: inset 0 0 20px rgba(240, 192, 32, 0.05);
     --glow-inset-lg: inset 0 0 30px rgba(240, 192, 32, 0.08);
-    --glow-stamp: 0 0 16px rgba(240, 192, 32, 0.25);
-    --glow-stamp-inset: inset 0 0 16px rgba(240, 192, 32, 0.05);
-    --glow-text: 0 0 12px rgba(240, 192, 32, 0.5);
-    --glow-header: 0 0 10px rgba(240, 192, 32, 0.3);
-    --glow-focus: 0 0 0 3px rgba(240, 192, 32, 0.15);
+    --glow-text:     0 0 12px rgba(240, 192, 32, 0.5);
+    --glow-header:   0 0 10px rgba(240, 192, 32, 0.3);
+    --glow-focus:    0 0 0 3px rgba(240, 192, 32, 0.15);
 }
 
+[data-theme="super-earth"] body {
+    background: url('../assets/State_Flag_of_Super_Earth.webp') center center / cover fixed;
+}
+
+[data-theme="super-earth"] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 40, 64, 0.55);
+    pointer-events: none;
+    z-index: 0;
+}
+
+[data-theme="super-earth"] body > * {
+    position: relative;
+    z-index: 1;
+}
+
+[data-theme="super-earth"] #controls,
+[data-theme="super-earth"] #settings-panel {
+    backdrop-filter: blur(16px);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CYBERSTAN — Industrial red. Automaton warning lights.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root[data-theme="cyberstan"] {
+    --color-background: #080404;
+    --color-surface: #1a0a0a;
+    --color-helldivers: #e82020;
+    --color-helldivers-dark: #b01515;
+    --color-text: #f0d8d8;
+    --color-text-secondary: #996666;
+    --color-border: rgba(200, 40, 40, 0.3);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+    --glow-sm:       0 0 10px rgba(220, 30, 30, 0.35);
+    --glow-md:       0 0 20px rgba(220, 30, 30, 0.5);
+    --glow-lg:       0 0 40px rgba(220, 30, 30, 0.7);
+    --glow-inset-sm: inset 0 0 20px rgba(220, 30, 30, 0.06);
+    --glow-inset-lg: inset 0 0 30px rgba(220, 30, 30, 0.12);
+    --glow-text:     0 0 12px rgba(255, 60, 60, 0.9);
+    --glow-header:   0 0 14px rgba(220, 30, 30, 0.6);
+    --glow-focus:    0 0 0 3px rgba(220, 30, 30, 0.2);
+}
+
+[data-theme="cyberstan"] body {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(220, 30, 30, 0.015) 2px,
+            rgba(220, 30, 30, 0.015) 4px
+        ),
+        var(--color-background);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BILE — Toxic acid green. Bug bile. Bioluminescent horror.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root[data-theme="bile"] {
+    --color-background: #030801;
+    --color-surface: #0a1405;
+    --color-helldivers: #7dff00;
+    --color-helldivers-dark: #5acc00;
+    --color-text: #d8f0c8;
+    --color-text-secondary: #5a8840;
+    --color-border: rgba(100, 200, 20, 0.25);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+    --glow-sm:       0 0 10px rgba(100, 220, 0, 0.3);
+    --glow-md:       0 0 20px rgba(100, 220, 0, 0.45);
+    --glow-lg:       0 0 40px rgba(100, 220, 0, 0.65);
+    --glow-inset-sm: inset 0 0 20px rgba(100, 220, 0, 0.05);
+    --glow-inset-lg: inset 0 0 30px rgba(100, 220, 0, 0.1);
+    --glow-text:     0 0 14px rgba(130, 255, 0, 0.95);
+    --glow-header:   0 0 14px rgba(100, 220, 0, 0.55);
+    --glow-focus:    0 0 0 3px rgba(100, 220, 0, 0.2);
+}
+
+[data-theme="bile"] body {
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(40, 80, 0, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(20, 60, 0, 0.14) 0%, transparent 55%),
+        var(--color-background);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MERIDIA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root[data-theme="meridia"] {
     --color-background: #000000;
     --color-surface: rgba(15, 5, 30, 0.80);
@@ -64,18 +158,15 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.7);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.8);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.9);
-    --shadow-glow: 0 0 20px rgba(120, 60, 220, 0.4);
 
-    --glow-sm: 0 0 10px rgba(120, 60, 220, 0.4);
-    --glow-md: 0 0 20px rgba(120, 60, 220, 0.5);
-    --glow-lg: 0 0 40px rgba(120, 60, 220, 0.7);
+    --glow-sm:       0 0 10px rgba(120, 60, 220, 0.4);
+    --glow-md:       0 0 20px rgba(120, 60, 220, 0.5);
+    --glow-lg:       0 0 40px rgba(120, 60, 220, 0.7);
     --glow-inset-sm: inset 0 0 20px rgba(120, 60, 220, 0.08);
     --glow-inset-lg: inset 0 0 30px rgba(120, 60, 220, 0.15);
-    --glow-stamp: 0 0 16px rgba(120, 60, 220, 0.5);
-    --glow-stamp-inset: inset 0 0 16px rgba(120, 60, 220, 0.1);
-    --glow-text: 0 0 12px rgba(150, 80, 255, 0.9);
-    --glow-header: 0 0 15px rgba(150, 80, 255, 0.6);
-    --glow-focus: 0 0 0 3px rgba(120, 60, 220, 0.25);
+    --glow-text:     0 0 12px rgba(150, 80, 255, 0.9);
+    --glow-header:   0 0 15px rgba(150, 80, 255, 0.6);
+    --glow-focus:    0 0 0 3px rgba(120, 60, 220, 0.25);
 }
 
 [data-theme="meridia"] body {
@@ -96,7 +187,8 @@
     z-index: 1;
 }
 
-[data-theme="meridia"] .card {
+[data-theme="meridia"] .card,
+[data-theme="cyberstan"] .card {
     backdrop-filter: blur(4px);
 }
 
@@ -105,18 +197,51 @@
     backdrop-filter: blur(16px);
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   REDACTED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root[data-theme="redacted"] {
+    --color-background: #0d0d0d;
+    --color-surface: #161616;
+    --color-helldivers: #aaaaaa;
+    --color-helldivers-dark: #777777;
+    --color-text: #cccccc;
+    --color-text-secondary: #555555;
+    --color-border: rgba(160, 160, 160, 0.12);
 
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
 
+    --glow-sm:       0 0 10px rgba(160, 160, 160, 0.1);
+    --glow-md:       0 0 20px rgba(160, 160, 160, 0.15);
+    --glow-lg:       0 0 40px rgba(160, 160, 160, 0.2);
+    --glow-inset-sm: inset 0 0 20px rgba(160, 160, 160, 0.02);
+    --glow-inset-lg: inset 0 0 30px rgba(160, 160, 160, 0.04);
+    --glow-text:     0 0 12px rgba(180, 180, 180, 0.4);
+    --glow-header:   0 0 10px rgba(160, 160, 160, 0.15);
+    --glow-focus:    0 0 0 3px rgba(160, 160, 160, 0.08);
+}
 
+[data-theme="redacted"] img, [data-theme="redacted"] .card.liberating img {
+    filter: grayscale(100%);
+}
 
+[data-theme="redacted"] .card.liberated img {
+    filter: grayscale(100%) brightness(0.4);
+}
 
+[data-theme="redacted"] .card.liberated:hover img {
+    filter: grayscale(100%) brightness(0.5);
+}
 
+[data-theme="redacted"] .card:not(.liberated):hover img {
+    filter: grayscale(100%) brightness(1.1);
+}
 
-
-
-
-
-
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLLBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -136,33 +261,14 @@
     cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 * {
     box-sizing: border-box;
 }
 
 body {
-    /* background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%); */
     background: var(--color-background);
     color: var(--color-text);
     font-family: "Chakra Petch", sans-serif;
@@ -185,6 +291,7 @@ header h1 {
     letter-spacing: 3px;
     text-shadow: var(--glow-header), 0 2px 4px rgba(0, 0, 0, 0.8);
 }
+
 button {
     background: linear-gradient(135deg, var(--color-helldivers) 0%, var(--color-helldivers-dark) 100%);
     border: none;
@@ -203,7 +310,7 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md), var(--shadow-glow);
+    box-shadow: var(--shadow-md), var(--glow-md);
     filter: brightness(1.1);
 }
 
@@ -219,6 +326,14 @@ button:active {
     letter-spacing: 1px;
 }
 
+.link {
+    color: var(--color-helldivers);
+    text-decoration: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTROLS BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #controls-wrapper {
     max-width: 1200px;
     margin: 0 auto 2rem;
@@ -254,16 +369,6 @@ button:active {
     color: var(--color-text-secondary);
 }
 
-/* moved settings into the dropdown */
-/* #settings {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin: 3rem auto 2rem;
-    flex-wrap: wrap;
-} */
-
 #settingsCog {
     background: transparent;
     border: 2px solid var(--color-border);
@@ -289,10 +394,11 @@ button:active {
 #settingsCog.open {
     border-color: var(--color-helldivers);
     color: var(--color-helldivers);
-    transform: none;
 }
 
-/* SETTINGS PANEL */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SETTINGS PANEL — vertical stacked sections
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #settings-panel {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -303,23 +409,29 @@ button:active {
     max-height: 0;
     opacity: 0;
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    flex-direction: column;
+    gap: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.25s ease,
-                padding 0.35s ease;
+                padding 0.4s ease;
 }
 
 #settings-panel.open {
-    max-height: 160px;
+    max-height: 500px;
     opacity: 1;
-    padding: 1.25rem 1.5rem;
+    padding: 0.5rem 1.5rem 1.25rem;
 }
 
 .settings-section {
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-section:last-child {
+    border-bottom: none;
 }
 
 .settings-label {
@@ -328,11 +440,13 @@ button:active {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--color-text-secondary);
+    min-width: 7rem;
+    flex-shrink: 0;
 }
 
 .settings-section-buttons {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
 }
 
@@ -341,8 +455,8 @@ button:active {
     background: transparent;
     border: 2px solid var(--color-border);
     color: var(--color-text-secondary);
-    font-size: 0.85rem;
-    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
     box-shadow: none;
 }
 
@@ -358,15 +472,13 @@ button:active {
 .settings-section-buttons button.active {
     border-color: var(--color-helldivers);
     color: var(--color-helldivers);
-    background: rgba(255, 231, 16, 0.08);
-    box-shadow: 0 0 10px rgba(255, 231, 16, 0.15);
+    background: transparent;
+    box-shadow: var(--glow-sm);
 }
 
-.settings-divider {
-    flex: 1;
-}
-
-
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FORM ELEMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 input[type="checkbox"] {
     cursor: pointer;
     width: 18px;
@@ -397,6 +509,9 @@ select:focus {
     box-shadow: var(--glow-focus);
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GRID & CARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .title {
     color: var(--color-helldivers);
     font-weight: 700;
@@ -405,8 +520,6 @@ select:focus {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-
-    /* fix */
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -472,12 +585,13 @@ select:focus {
     filter: brightness(1.1);
 }
 
-/* LIBERATING STATE - Glowing animated border */
+/* LIBERATING STATE */
 .card.liberating {
     border-color: var(--color-helldivers);
     animation: liberatingPulse 2s ease-in-out infinite;
     box-shadow: var(--shadow-sm), var(--glow-md), var(--glow-inset-sm);
 }
+
 @keyframes liberatingPulse {
     0%, 100% {
         box-shadow: var(--shadow-sm), var(--glow-md), var(--glow-inset-sm);
@@ -493,16 +607,9 @@ select:focus {
     filter: brightness(0.9) saturate(1.2);
 }
 
-footer {
-    display: flex;
-    font-size: 0.8rem;
-    justify-content: center;
-    margin-top: 3rem;
-    color: var(--color-text-secondary);
-    text-align: center;
-    padding: 1rem;
-}
-
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STAMP — full-width banner
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .image-wrapper {
     position: relative;
     overflow: hidden;
@@ -512,69 +619,39 @@ footer {
     display: block;
     width: 100%;
     transition: all 0.3s ease;
-    /* aspect-ratio: 1920 / 976;    OLD WARBOND RATIO */
     aspect-ratio: 2048 / 1024;
 }
-
-/* .stamp {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-20deg);
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--color-helldivers);
-    border: 5px double var(--color-helldivers);
-    padding: 0.5rem 1.5rem;
-    text-align: center;
-    pointer-events: none;
-    opacity: 0;
-    letter-spacing: 3px;
-    text-shadow: 
-        0 0 10px rgba(255, 231, 16, 0.5),
-        0 2px 4px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    mix-blend-mode: normal;
-    filter: none;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(4px);
-}
-
-.card.liberated .stamp {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(-20deg) scale(1.05);
-} */
 
 .stamp {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-helldivers);
-    border: 2px solid var(--color-helldivers);
-    padding: 0.4rem 1.25rem;
+    border-top: 2px solid var(--color-helldivers);
+    border-bottom: 2px solid var(--color-helldivers);
+    padding: 0.5rem 1.25rem;
     text-align: center;
     pointer-events: none;
     opacity: 0;
     letter-spacing: 4px;
     text-shadow: var(--glow-text);
-    box-shadow: var(--glow-stamp), var(--glow-stamp-inset);
+    box-shadow: var(--glow-sm), var(--glow-inset-sm);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(6px);
-    width: 80%;
 }
 
 .card.liberated .stamp {
     opacity: 1;
-    transform: translate(-50%, -50%);
 }
 
-/* ------------------------
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    STATUS MENU
------------------------- */
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .status-menu {
     background: var(--color-surface);
     border: 3px solid var(--color-helldivers);
@@ -601,9 +678,7 @@ footer {
 }
 
 .status-option {
-    /* background: linear-gradient(135deg, #2a2a2a 0%, #222 100%); */
     background: transparent;
-    /* color: var(--color-text); */
     color: var(--color-text-secondary);
     border: 2px solid var(--color-border);
     padding: 0.75rem 1.5rem;
@@ -635,12 +710,106 @@ footer {
     box-shadow: var(--shadow-sm), var(--glow-md);
 }
 
-/* Mobile optimizations */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SEARCH — search bar
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+#search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#search-wrapper .search-icon {
+    position: absolute;
+    left: 0.65rem;
+    color: var(--color-text-secondary);
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+#search-wrapper:focus-within .search-icon {
+    color: var(--color-helldivers);
+}
+
+#search {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+    padding: 0.5rem 2rem 0.5rem 2.2rem;
+    border-radius: 6px;
+    width: 220px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, width 0.2s ease;
+}
+
+#search::placeholder {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+#search:hover { border-color: var(--color-helldivers); }
+
+#search:focus {
+    outline: none;
+    border-color: var(--color-helldivers);
+    box-shadow: var(--glow-focus);
+    /* width: 280px;    removed cause messing with cog and clear button */
+}
+
+#search-clear {
+    position: absolute;
+    right: 0.4rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 0;
+    box-shadow: none;
+    width: 20px;
+    height: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+#search-clear:hover {
+    color: var(--color-helldivers);
+    transform: none;
+    box-shadow: none;
+    filter: none;
+}
+
+#search-clear.visible { display: flex; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer {
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: center;
+    margin-top: 3rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    padding: 1rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media (max-width: 768px) {
     body {
         padding: 1rem 0.5rem;
     }
-    
+
     header h1 {
         font-size: 2rem;
         letter-spacing: 2px;
@@ -649,27 +818,23 @@ footer {
     #percentage {
         font-size: 0.95rem;
     }
-    
+
     #controls {
         gap: 1rem;
         padding: 1rem;
         font-size: 0.85rem;
     }
-    
-    #settings {
-        gap: 0.75rem;
-    }
-    
+
     button {
         font-size: 0.9rem;
         padding: 0.6rem 1.2rem;
     }
-    
+
     select {
         font-size: 0.85rem;
         padding: 0.4rem 0.6rem;
     }
-    
+
     #grid {
         gap: 1rem;
         padding: 0 0.5rem;
@@ -678,12 +843,10 @@ footer {
     .card {
         border-radius: 8px;
     }
-    
+
     .stamp {
-        font-size: 1.5rem;
-        border-width: 4px;
-        padding: 0.4rem 1rem;
-        letter-spacing: 2px;
+        font-size: 1rem;
+        letter-spacing: 3px;
     }
 
     .status-menu {
@@ -702,22 +865,14 @@ footer {
         font-size: 1rem;
     }
 
-    #settings-panel {
+    .settings-section {
         flex-direction: column;
-        gap: 1.25rem;
+        align-items: flex-start;
+        gap: 0.6rem;
     }
 
-    #settings-panel.open {
-        max-height: 400px;
-    }
-
-    .settings-section-buttons {
-        flex-direction: column;
-    }
-
-    .settings-section-buttons button {
-        width: 100%;
-        text-align: center;
+    .settings-label {
+        min-width: unset;
     }
 }
 
@@ -732,7 +887,7 @@ footer {
         align-items: stretch;
         padding: 0.75rem;
     }
-    
+
     #controls label {
         display: flex;
         justify-content: space-between;
