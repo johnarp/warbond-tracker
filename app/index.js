@@ -234,9 +234,50 @@ clearStorage.addEventListener("click", () => {
 
     localStorage.clear();
     liberationStatus = {};
+    applyTheme("low-light");
     render();
 });
 
+
+
+
+const settingsCog = document.getElementById("settingsCog");
+const settingsPanel = document.getElementById("settings-panel");
+
+const controlsBar = document.getElementById("controls")
+
+settingsCog.addEventListener("click", () => {
+    const isOpen = settingsPanel.classList.toggle("open");
+    settingsCog.classList.toggle("open", isOpen);
+    controlsBar.classList.toggle("panel-open", isOpen);
+});
+
+
+/* ------------------------
+   THEMES
+------------------------ */
+const savedTheme = localStorage.getItem("theme") || "low-light";
+applyTheme(savedTheme);
+
+function applyTheme(theme) {
+    if (theme === "low-light") {
+        document.documentElement.removeAttribute("data-theme");
+    } else {
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+
+    document.querySelectorAll("#themeButtons button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+    });
+
+    localStorage.setItem("theme", theme);
+}
+
+document.getElementById("themeButtons").addEventListener("click", (e) => {
+    if (e.target.matches("button")) {
+        applyTheme(e.target.dataset.theme);
+    }
+});
 
 /* ------------------------
    LISTENERS
