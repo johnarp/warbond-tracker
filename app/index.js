@@ -134,7 +134,7 @@ function render() {
         title.classList.add("title");
 
         if (!toggleTitle.checked) {
-            title.style.display = "none";
+            title.classList.add("hidden");
         }
 
         // card.addEventListener("click", () => {
@@ -325,6 +325,10 @@ document.getElementById("themeButtons").addEventListener("click", (e) => {
    LISTENERS
 ------------------------ */
 sortSelect.addEventListener("change", render);
-toggleTitle.addEventListener("change", render);
+toggleTitle.addEventListener("change", () => {
+    document.querySelectorAll(".title").forEach(t => {
+        t.classList.toggle("hidden", !toggleTitle.checked);
+    });
+});
 typeFilter.addEventListener("change", render);
 liberation.addEventListener("change", render);

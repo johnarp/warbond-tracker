@@ -201,26 +201,26 @@
    REDACTED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root[data-theme="redacted"] {
-    --color-background: #0d0d0d;
-    --color-surface: #161616;
-    --color-helldivers: #aaaaaa;
-    --color-helldivers-dark: #777777;
-    --color-text: #cccccc;
-    --color-text-secondary: #555555;
-    --color-border: rgba(160, 160, 160, 0.12);
+    --color-background: #080808;
+    --color-surface: #141414;
+    --color-helldivers: #dddddd;
+    --color-helldivers-dark: #999999;
+    --color-text: #c8c8c8;
+    --color-text-secondary: #484848;
+    --color-border: rgba(160, 160, 160, 0.15);
 
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.7);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.9);
 
-    --glow-sm:       0 0 10px rgba(160, 160, 160, 0.1);
-    --glow-md:       0 0 20px rgba(160, 160, 160, 0.15);
-    --glow-lg:       0 0 40px rgba(160, 160, 160, 0.2);
-    --glow-inset-sm: inset 0 0 20px rgba(160, 160, 160, 0.02);
-    --glow-inset-lg: inset 0 0 30px rgba(160, 160, 160, 0.04);
-    --glow-text:     0 0 12px rgba(180, 180, 180, 0.4);
-    --glow-header:   0 0 10px rgba(160, 160, 160, 0.15);
-    --glow-focus:    0 0 0 3px rgba(160, 160, 160, 0.08);
+    --glow-sm:       0 0 8px  rgba(200, 200, 200, 0.15);
+    --glow-md:       0 0 18px rgba(200, 200, 200, 0.22);
+    --glow-lg:       0 0 35px rgba(200, 200, 200, 0.32);
+    --glow-inset-sm: inset 0 0 20px rgba(200, 200, 200, 0.03);
+    --glow-inset-lg: inset 0 0 30px rgba(200, 200, 200, 0.07);
+    --glow-text:     0 0 10px rgba(220, 220, 220, 0.5);
+    --glow-header:   0 0 10px rgba(200, 200, 200, 0.25);
+    --glow-focus:    0 0 0 3px rgba(180, 180, 180, 0.1);
 }
 
 [data-theme="redacted"] img, [data-theme="redacted"] .card.liberating img {
@@ -228,15 +228,98 @@
 }
 
 [data-theme="redacted"] .card.liberated img {
-    filter: grayscale(100%) brightness(0.4);
+    filter: grayscale(100%) brightness(0.08);
 }
 
 [data-theme="redacted"] .card.liberated:hover img {
-    filter: grayscale(100%) brightness(0.5);
+    filter: grayscale(100%) brightness(0.12);
 }
 
 [data-theme="redacted"] .card:not(.liberated):hover img {
     filter: grayscale(100%) brightness(1.1);
+}
+
+/* black bar */
+[data-theme="redacted"] .card.liberated .stamp {
+    background: #000000;
+    color: transparent;
+    border-color: #000000;
+    box-shadow: 0 0 0 6px #000000;
+    text-shadow: none;
+    padding: 1.1rem 0;
+    letter-spacing: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ERATA PRIME — Dry desert. Spice dust. Dune horizon.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root[data-theme="erata-prime"] {
+    --color-background: #0e0a04;
+    --color-surface: #1e1508;
+    --color-helldivers: #c8922a;
+    --color-helldivers-dark: #a06e18;
+    --color-text: #e8d9b8;
+    --color-text-secondary: #8a7050;
+    --color-border: rgba(160, 110, 40, 0.3);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+    --glow-sm:       0 0 10px rgba(180, 130, 40, 0.3);
+    --glow-md:       0 0 20px rgba(180, 130, 40, 0.45);
+    --glow-lg:       0 0 40px rgba(180, 130, 40, 0.65);
+    --glow-inset-sm: inset 0 0 20px rgba(180, 130, 40, 0.05);
+    --glow-inset-lg: inset 0 0 30px rgba(180, 130, 40, 0.12);
+    --glow-text:     0 0 14px rgba(210, 160, 60, 0.85);
+    --glow-header:   0 0 14px rgba(180, 130, 40, 0.5);
+    --glow-focus:    0 0 0 3px rgba(180, 130, 40, 0.2);
+}
+
+/* Layered sand dunes via radial gradients + a fine grain texture overlay */
+[data-theme="erata-prime"] body {
+    background:
+        /* grain/noise texture — tiny repeating dots give it that dry gritty feel */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"),
+        /* distant haze at the top */
+        radial-gradient(ellipse at 50% 0%,   rgba(90, 58, 12, 0.5)  0%, transparent 60%),
+        /* warm spice-orange horizon glow */
+        radial-gradient(ellipse at 50% 100%, rgba(120, 70, 10, 0.6)  0%, transparent 55%),
+        /* subtle dune ridge left */
+        radial-gradient(ellipse at 15% 70%,  rgba(60, 38, 6, 0.4)  0%, transparent 45%),
+        /* subtle dune ridge right */
+        radial-gradient(ellipse at 85% 60%,  rgba(50, 30, 4, 0.35) 0%, transparent 45%),
+        var(--color-background);
+}
+
+/* Heat-shimmer scanlines — very subtle, horizontal, spaced far apart */
+[data-theme="erata-prime"] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 6px,
+        rgba(200, 140, 20, 0.012) 6px,
+        rgba(200, 140, 20, 0.012) 7px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+[data-theme="erata-prime"] body > * {
+    position: relative;
+    z-index: 1;
+}
+
+[data-theme="erata-prime"] #controls,
+[data-theme="erata-prime"] #settings-panel {
+    backdrop-filter: blur(14px);
+}
+
+[data-theme="erata-prime"] .card {
+    backdrop-filter: blur(3px);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -512,6 +595,8 @@ select:focus {
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    GRID & CARDS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* REPLACE the existing .title and .title.hidden rules */
+
 .title {
     color: var(--color-helldivers);
     font-weight: 700;
@@ -525,6 +610,16 @@ select:focus {
     align-items: center;
     justify-content: center;
     padding: 0 0.75rem;
+    overflow: hidden;
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                padding 0.35s ease;
+}
+
+.title.hidden {
+    height: 0;
+    opacity: 0;
+    padding: 0;
 }
 
 #grid {
@@ -544,25 +639,8 @@ select:focus {
     box-shadow: var(--shadow-sm);
     border: 2px solid var(--color-border);
     position: relative;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    padding: 2px;
-    background: linear-gradient(135deg, transparent, transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.card:hover::before {
-    background: linear-gradient(135deg, var(--color-helldivers), transparent);
-    opacity: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -613,7 +691,7 @@ select:focus {
     position: absolute;
     left: 0;
     right: 0;
-    height: 5px;
+    height: 3px;
     background: repeating-linear-gradient(
         -45deg,
         var(--color-helldivers) 0px,
