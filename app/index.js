@@ -339,7 +339,51 @@ document.getElementById("themeButtons").addEventListener("click", (e) => {
    SEARCH
 ------------------------ */
 
+/* ------------------------
+   IMPORT / EXPORT
+------------------------ */
+document.getElementById("exportData").addEventListener("click", () => {
+    const data = {
+        liberationStatus,
+        theme: localStorage.getItem("theme") || "super-destroyer"
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "warbond-tracker.json";
+    a.click();
+    URL.revokeObjectURL(url);
+});
 
+const importFile = document.getElementById("importFile");
+
+document.getElementById("importData").addEventListener("click", () => {
+    importFile.click();
+});
+
+importFile.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        try {
+            const data = JSON.parse(ev.target.result);
+            if (data.liberationStatus) {
+                liberationStatus = data.liberationStatus;
+                localStorage.setItem("liberationStatus", JSON.stringify(liberationStatus));
+            }
+            if (data.theme) {
+                applyTheme(data.theme);
+            }
+            render();
+        } catch {
+            alert("Invalid file. Make sure it's a Warbond Tracker export.");
+        }
+    };
+    reader.readAsText(file);
+    importFile.value = "";
+});
 
 /* ------------------------
    LISTENERS
