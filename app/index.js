@@ -52,10 +52,11 @@ function render() {
 
     const query = searchInput.value.trim().toLowerCase();
     if (query) {
-        filtered = filtered.filter(w => 
-            w.title.toLowerCase().includes(query) || 
-            (w.aliases || []).some(a => a.toLowerCase().includes(query))
-        );
+        filtered = filtered.filter(w => {
+            const titleMatch = w.title.toLowerCase().includes(query);
+            const aliasMatch = (w.aliases || []).some(a => a.toLowerCase() === query);
+            return titleMatch || aliasMatch;
+        });
     }
 
     let searchDebounce;
@@ -161,11 +162,18 @@ function render() {
    STATUS MENU
 ------------------------ */
 
+function closeStatusMenu(menu) {
+    menu.style.transform = '';  // let the keyframe take over
+    menu.style.animation = 'menuFadeOut 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+    menu.addEventListener('animationend', () => menu.remove(), { once: true });
+}
+
 function showStatusMenu(event, itemTitle, cardElement) {
     // remove any existing menus
     const existingMenu = document.querySelector('.status-menu');
     if (existingMenu) {
-        existingMenu.remove();
+        closeStatusMenu(existingMenu);
+        return;
     }
 
     const menu = document.createElement("div");
@@ -198,7 +206,7 @@ function showStatusMenu(event, itemTitle, cardElement) {
             }
 
             localStorage.setItem("liberationStatus", JSON.stringify(liberationStatus));
-            menu.remove();
+            closeStatusMenu(menu);
             render();
         });
         menu.appendChild(button);
@@ -217,7 +225,7 @@ function showStatusMenu(event, itemTitle, cardElement) {
     setTimeout(() => {
         document.addEventListener("click", function closeMenu(e) {
             if (!menu.contains(e.target)) {
-                menu.remove();
+                closeStatusMenu(menu);
                 document.removeEventListener("click", closeMenu);
             }
         });
@@ -307,6 +315,18 @@ function applyTheme(theme) {
     });
 
     localStorage.setItem("theme", theme);
+
+    const themeColors = {
+        "super-destroyer": "#ffe710",
+        "super-earth":     "#f0c020",
+        "cyberstan":       "#e82020",
+        "bile":            "#7dff00",
+        "meridia":         "#9966ff",
+        "redacted":        "#dddddd",
+        "erata-prime":     "#c8922a",
+    };
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute("content", themeColors[theme] || "#ffe710");
 }
 
 document.getElementById("themeButtons").addEventListener("click", (e) => {
