@@ -500,7 +500,7 @@ button:active {
 }
 
 #settings-panel.open {
-    max-height: 500px;
+    max-height: 800px;
     opacity: 1;
     padding: 0.5rem 1.5rem 1.25rem;
 }
@@ -683,34 +683,6 @@ select:focus {
 
 .card.liberating img {
     filter: brightness(0.9) saturate(1.2);
-}
-
-.card.liberating .image-wrapper::before,
-.card.liberating .image-wrapper::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: repeating-linear-gradient(
-        -45deg,
-        var(--color-helldivers) 0px,
-        var(--color-helldivers) 10px,
-        rgba(0, 0, 0, 0.8)     10px,
-        rgba(0, 0, 0, 0.8)     20px
-    );
-    background-size: 28px 28px;
-    animation: hazardScroll 2s linear infinite;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.card.liberating .image-wrapper::before { top: 0; }
-.card.liberating .image-wrapper::after  { bottom: 0; }
-
-@keyframes hazardScroll {
-    from { background-position: 0 0; }
-    to   { background-position: 28px 0; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
