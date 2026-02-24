@@ -1,0 +1,41 @@
+<div id="percentage-bar">
+    <span id="percentage"></span>
+</div>
+<div id="controls">
+    <label>Show Title<input type="checkbox" id="toggleTitle"></label>
+    <label>Sort:
+        <select id="sortBy">
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+            <option value="type-asc">Type (A-Z)</option>
+            <option value="type-desc">Type (Z-A)</option>
+            <option value="release-desc">Newest First</option>
+            <option value="release-asc">Oldest First</option>
+        </select>
+    </label>
+    <label>Type:
+        <select id="typeFilter">
+            <option value="all">All</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+            <option value="legendary">Legendary</option>
+        </select>
+    </label>
+    <label>Liberation:
+        <select id="liberation">
+            <option value="all">All</option>
+            <option value="liberated">Liberated</option>
+            <option value="liberating">Liberating</option>
+            <option value="unliberated">Unliberated</option>
+        </select>
+    </label>
+    <div id="search-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="search" placeholder="Search..." autocomplete="off" spellcheck="false">
+        <button id="search-clear" aria-label="Clear Search">&#x2715;</button>
+    </div>
+</div>
+<div id="warbonds-grid"></div>
+<script src="./app/warbonds.js"></script>

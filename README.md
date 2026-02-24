@@ -1,14 +1,16 @@
 <div align="center">
 
+![Banner](./assets/readme_banner.png)
+
 # Warbond Tracker
 
-Track your Helldivers 2 Warbond completion.
-
-<img src="./assets/app/README.png" width="100%" align="top">
-<img src="./assets/app/README_2.png" width="49.56%" align="top">
-<img src="./assets/app/README_3.png" width="49.56%" align="top">
+Track your **Helldivers 2** Warbond completion.
 
 </div>
+
+## 🪟 Preview
+
+![Preview](./assets/readme_preview.png)
 
 ## 📋 Installation
 
@@ -21,7 +23,7 @@ Check it out [here](https://johnarp.github.io/warbond-tracker)
 </details>
 
 <details>
-<summary><strong>Open in Your Browser (w/ Python)</strong></summary>
+<summary><strong>Open in Your Browser (with Python)</strong></summary>
 <br>
 
 1. Clone the repository

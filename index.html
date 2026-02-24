@@ -1,135 +1,29 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="theme-color" content="#ffe710">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Warbond Tracker</title>
         <link rel="stylesheet" href="./app/styles.css">
-        <link rel="icon" href="./assets/app/icon.png" type="image/png">
+        <link rel="icon" href="./assets/icon.png" type="image/png">
     </head>
-
     <body>
         <header>
-            <h1>Warbond Tracker</h1>
-            <div id="percentage"></div>
+            <h1>Acquisition Centre</h1>
+            <nav>
+                <ul>
+                    <li><a data-view="views/warbonds.html">Warbonds</a></li>
+                    <li><a data-view="views/styles.html">Styles</a></li>
+                    <li><a data-view="views/settings.html">Settings</a></li>
+                </ul>
+            </nav>
         </header>
-
         <main>
-            <div id="controls-wrapper">
-                <div id="controls">
-                    <label>
-                        Show Title<input type="checkbox" id="toggleTitle">
-                    </label>
-
-                    <span class="ctrl-divider"></span>
-
-                    <label>Sort:
-                        <select id="sortBy">
-                            <option value="title-asc">Title (A-Z)</option>
-                            <option value="title-desc">Title (Z-A)</option>
-                            <option value="type-asc">Type (A-Z)</option>
-                            <option value="type-desc">Type (Z-A)</option>
-                            <option value="release-desc">Newest First</option>
-                            <option value="release-asc">Oldest First</option>
-                        </select>
-                    </label>
-
-                    <span class="ctrl-divider"></span>
-
-                    <label>Type:
-                        <select id="typeFilter">
-                            <option value="all">All</option>
-                            <option value="standard">Standard</option>
-                            <option value="premium">Premium</option>
-                            <option value="legendary">Legendary</option>
-                        </select>
-                    </label>
-
-                    <span class="ctrl-divider"></span>
-
-                    <label>Liberation:
-                        <select id="liberation">
-                            <option value="all">All</option>
-                            <option value="liberated">Liberated</option>
-                            <option value="liberating">Liberating</option>
-                            <option value="unliberated">Unliberated</option>
-                        </select>
-                    </label>
-
-                    <span class="ctrl-divider"></span>
-
-                    <div id="search-wrapper">
-                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        </svg>
-                        <input type="text" id="search" placeholder="Search..." autocomplete="off" spellcheck="false">
-                        <button id="search-clear" aria-label="Clear Search">&#x2715;</button>
-                    </div>
-
-                    <button id="settingsCog" aria-label="Settings">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.69.07-1.08s-.03-.74-.07-1.08l2.32-1.82c.21-.16.27-.45.13-.68l-2.2-3.81c-.13-.23-.42-.31-.65-.23l-2.73 1.1c-.57-.44-1.18-.79-1.85-1.05l-.42-2.9C14.18 2.18 13.92 2 13.64 2H10.36c-.28 0-.54.18-.58.44l-.42 2.9c-.67.26-1.28.62-1.85 1.05l-2.73-1.1c-.23-.08-.52 0-.65.23L2.13 9.33c-.14.23-.08.52.13.68l2.32 1.82c-.04.34-.07.69-.07 1.08s.03.74.07 1.08L2.26 15.83c-.21.16-.27.45-.13.68l2.2 3.81c.13.23.42.31.65.23l2.73-1.1c.57.44 1.18.79 1.85 1.05l.42 2.9c.04.26.3.44.58.44h3.28c.28 0 .54-.18.58-.44l.42-2.9c.67-.26 1.28-.62 1.85-1.05l2.73 1.1c.23.08.52 0 .65-.23l2.2-3.81c.14-.23.08-.52-.13-.68l-2.32-1.82z"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <div id="settings-panel">
-                    <!-- Themes -->
-                    <div class="settings-section">
-                        <span class="settings-label">Armory</span>
-                        <div class="settings-section-buttons" id="themeButtons">
-                            <button data-theme="bile">Bile</button>
-                            <button data-theme="cyberstan">Cyberstan</button>
-                            <button data-theme="erata-prime">Erata Prime</button>
-                            <button data-theme="meridia">Meridia</button>
-                            <button data-theme="redacted">[REDACTED]</button>
-                            <button data-theme="super-destroyer" class="active">Super Destroyer</button>
-                            <button data-theme="super-earth">Super Earth</button>
-                        </div>
-                    </div>
-                    <!-- Import/Export -->
-                    <div class="settings-section">
-                        <span class="settings-label">Wall of Martyrs</span>
-                        <div class="settings-section-buttons">
-                            <button id="importData">Import</button>
-                            <button id="exportData">Export</button>
-                            <input type="file" id="importFile" accept=".json" style="display:none">
-                        </div>
-                    </div>
-                    <!-- Clear -->
-                    <div class="settings-section">
-                        <span class="settings-label">Enemy Artillery</span>
-                        <div class="settings-section-buttons">
-                            <button id="clearLiberation">Clear Liberation</button>
-                            <button id="clearStorage">Clear Storage</button>
-                        </div>
-                    </div>
-                    <!-- Information -->
-                    <div class="settings-section">
-                        <span class="settings-label">
-                            v0.4.5 // 2026-02-20 // 
-                            <a class="link" href="https://github.com/johnarp/warbond-tracker" target="_blank" rel="noopener noreferrer">Source Code</a> // 
-                            <a class="link" href="https://github.com/johnarp/warbond-tracker/releases" target="_blank" rel="noopener noreferrer">Patch Notes</a> // 
-                            <a class="link" href="https://github.com/johnarp/warbond-tracker/issues" target="_blank" rel="noopener noreferrer">Report Issue</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="grid"></div>
+            <div id="content"></div>
         </main>
-
-        <script src="./app/index.js"></script>
+        <footer>
+            <span>Warbond Tracker is not affiliated with Arrowhead Game Studios or Sony. Trademarks belong to their respective owners.</span>
+        </footer>
+        <script src="./app/views.js"></script>
     </body>
-
-    <footer>
-        <span>Warbond Tracker is not affiliated with Arrowhead Game Studios or Sony. Trademarks belong to their respective owners.</span>
-        <!-- <a href="https://github.com/johnarp/warbond-tracker" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="var(--color-helldivers)" viewBox="0 0 16 16">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-            </svg>
-        </a> -->
-    </footer>
 </html>
