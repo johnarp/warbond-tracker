@@ -20,7 +20,7 @@ const searchClear = document.getElementById("search-clear");
 // JSON
 // --------------------------------------------------
 
-fetch("/app/warbonds.json")
+fetch("./app/warbonds.json")
     .then(r => r.json())
     .then(data => {
         warbonds = data;

@@ -8,9 +8,9 @@
 }
 
 [data-theme="red"] {
-    --bg:      #1e0a0a;
+    --bg:      #101010;
     --primary: #e82020;
-    --text:    #f0d0d0;
+    --text:    #f3f3f3;
 }
 
 /* --------------------------------------------------
@@ -74,7 +74,7 @@ body {
     color: var(--text);
     font-family: "Chakra Petch", sans-serif;
     margin: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     min-height: 100vh;
 }
 
@@ -277,13 +277,21 @@ select:focus { outline: none; border-color: var(--primary); }
 .image-wrapper img {
     aspect-ratio: 2048 / 1024;
     display: block;
-    transition: filter 0.2s;
+    transition: filter 0s;
     width: 100%;
 }
 
-.card.liberated img    { filter: brightness(0.4) grayscale(100%); }
-.card:hover img        { filter: brightness(1.1); }
-.card.liberated:hover img { filter: brightness(0.5) grayscale(100%); }
+.card.liberated img { 
+    filter: brightness(0.5) grayscale(100%); 
+}
+
+.card:hover img {
+    filter: brightness(1.1);
+}
+
+.card.liberated:hover img {
+    filter: brightness(0.5) grayscale(100%);
+}
 
 /* --------------------------------------------------
    STAMP
