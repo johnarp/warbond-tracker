@@ -1,3 +1,17 @@
+// apply theme every load, not just when visit styles.html
+window.applyTheme = function(theme) {
+    if (theme === "default") {
+        document.documentElement.removeAttribute("data-theme");
+    } else {
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+    localStorage.setItem("theme", theme);
+    document.querySelectorAll(".theme-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+    });
+}
+applyTheme(localStorage.getItem("theme") || "default");
+
 // index.html div thats filled by a view
 const content = document.getElementById("content");
 // index.html nav bar links
