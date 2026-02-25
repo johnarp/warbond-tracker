@@ -7,10 +7,49 @@
     --text:    #f3f3f3;
 }
 
-[data-theme="red"] {
-    --bg:      #101010;
-    --primary: #e82020;
+[data-theme="classic-yellow"] {
+    --bg:      #15151e;
+    --primary: #fbea05;
     --text:    #f3f3f3;
+}
+
+[data-theme="deep-red"] {
+    --bg:      #000000;
+    --primary: #fb2323;
+    --text:    #f3f3f3;
+}
+
+[data-theme="deep-blue"] {
+    --bg:      #000000;
+    --primary: #238ffb;
+    --text:    #f3f3f3;
+}
+
+[data-theme="meridian-black-hole"] {
+    --bg: #000000;
+    --bg-image: url("../assets/styles/Meridian_Black_Hole.webp");
+    --primary: #aa4fff;
+    --text:    #f3f3f3;
+}
+
+[data-theme="redacted"] {
+    --bg: #000000;
+    --primary: #6b6b6b;
+    --text: #bcbcbc;
+}
+
+[data-theme="redacted"] .stamp {
+    border: transparent;
+    color: transparent;
+    height: 7rem;
+}
+
+[data-theme="redacted"] .card.liberated img {
+    filter: brightness(0.15) grayscale(100%);
+}
+
+[data-theme="redacted"] .theme-btn.active {
+    color: transparent;
 }
 
 /* --------------------------------------------------
@@ -70,12 +109,18 @@
 * { box-sizing: border-box; }
 
 body {
-    background-color: var(--bg);
+    background: var(--bg);
+    background-image: var(--bg-image, none);
     color: var(--text);
     font-family: "Chakra Petch", sans-serif;
     margin: 0;
     padding: 1.5rem;
     min-height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 { 
@@ -91,7 +136,6 @@ ul {
     padding: 0;
     margin: 0;
 }
-
 
 /* --------------------------------------------------
    BUTTONS
@@ -388,4 +432,20 @@ footer {
 .settings-link {
     color: var(--primary);
     text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.settings-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.settings-buttons {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
 }

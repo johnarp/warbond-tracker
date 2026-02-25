@@ -1,6 +1,6 @@
 // apply theme every load, not just when visit styles.html
 window.applyTheme = function(theme) {
-    if (theme === "default") {
+    if (theme === "classic-yellow") {
         document.documentElement.removeAttribute("data-theme");
     } else {
         document.documentElement.setAttribute("data-theme", theme);
@@ -10,7 +10,7 @@ window.applyTheme = function(theme) {
         btn.classList.toggle("active", btn.dataset.theme === theme);
     });
 }
-applyTheme(localStorage.getItem("theme") || "default");
+applyTheme(localStorage.getItem("theme") || "classic-yellow");
 
 // index.html div thats filled by a view
 const content = document.getElementById("content");
