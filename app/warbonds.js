@@ -25,6 +25,8 @@ fetch("./app/warbonds.json")
     .then(data => {
         warbonds = data;
         render();
+        // auto focus search bar
+        document.getElementById('search')?.focus();
     });
 
 // --------------------------------------------------
@@ -107,10 +109,6 @@ function render() {
 
     updatePercentage();
 }
-
-
-// auto focus search bar
-document.getElementById('search')?.focus();
 
 // --------------------------------------------------
 // STATUS
