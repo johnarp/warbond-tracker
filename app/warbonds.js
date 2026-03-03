@@ -108,6 +108,10 @@ function render() {
     updatePercentage();
 }
 
+
+// auto focus search bar
+document.getElementById('search')?.focus();
+
 // --------------------------------------------------
 // STATUS
 // --------------------------------------------------

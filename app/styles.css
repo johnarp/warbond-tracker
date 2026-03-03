@@ -2,40 +2,64 @@
    COLORS
 -------------------------------------------------- */
 :root {
-    --bg:      #15151e;
-    --primary: #fbea05;
-    --text:    #f3f3f3;
+    --color-background: #15151e;
+    --color-primary: #fbea05;
+    --color-text:    #f3f3f3;
+
+    --color-background-secondary: #282838;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="classic-yellow"] {
-    --bg:      #15151e;
-    --primary: #fbea05;
-    --text:    #f3f3f3;
+    --color-background: #15151e;
+    --color-primary: #fbea05;
+    --color-text:    #f3f3f3;
+
+    --color-background-secondary: #282838;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="deep-red"] {
-    --bg:      #000000;
-    --primary: #fb2323;
-    --text:    #f3f3f3;
+    --color-background:#000000;
+    --color-primary: #fb2323;
+    --color-text:    #f3f3f3;
+
+    --color-background-secondary: #101010;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="deep-blue"] {
-    --bg:      #000000;
-    --primary: #238ffb;
-    --text:    #f3f3f3;
+    --color-background: #000000;
+    --color-primary: #238ffb;
+    --color-text:    #f3f3f3;
+
+    --color-background-secondary: #101010;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="meridian-black-hole"] {
-    --bg: #000000;
-    --bg-image: url("../assets/styles/Meridian_Black_Hole.webp");
-    --primary: #aa4fff;
-    --text:    #f3f3f3;
+    --color-background: #000000;
+    --color-background-image: url("../assets/styles/Meridian_Black_Hole.webp");
+    --color-primary: #aa4fff;
+    --color-text:    #f3f3f3;
+
+    --color-background-secondary: #0f0617;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="redacted"] {
-    --bg: #000000;
-    --primary: #6b6b6b;
-    --text: #bcbcbc;
+    --color-background: #000000;
+    --color-primary: #6b6b6b;
+    --color-text: #bcbcbc;
+
+    --color-background-secondary: #101010;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: #000000;
 }
 
 [data-theme="redacted"] .stamp {
@@ -48,7 +72,15 @@
     filter: brightness(0.15) grayscale(100%);
 }
 
+[data-theme="redacted"] .card.liberated:hover img {
+    filter: brightness(0.15) grayscale(100%);
+}
+
 [data-theme="redacted"] .theme-btn.active {
+    color: transparent;
+}
+
+[data-theme="redacted"] .card.liberated .title {
     color: transparent;
 }
 
@@ -61,16 +93,16 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg);
+    background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--text);
+    background: var(--color-text);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
+    background: var(--color-primary);
     cursor: pointer;
 }
 
@@ -109,9 +141,9 @@
 * { box-sizing: border-box; }
 
 body {
-    background: var(--bg);
-    background-image: var(--bg-image, none);
-    color: var(--text);
+    background: var(--color-background);
+    background-image: var(--color-background-image, none);
+    color: var(--color-text);
     font-family: "Chakra Petch", sans-serif;
     margin: 0;
     padding: 1.5rem;
@@ -127,6 +159,7 @@ h1 {
     margin: 0;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.1rem;
 }
 
 ul {
@@ -142,8 +175,8 @@ ul {
 -------------------------------------------------- */
 button {
     background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     cursor: pointer;
     font-family: inherit;
     font-size: 0.85rem;
@@ -154,8 +187,8 @@ button {
 }
 
 button:hover {
-    background: var(--primary);
-    color: var(--bg);
+    background: var(--color-primary);
+    color: var(--color-background);
 }
 
 button:active {
@@ -163,13 +196,13 @@ button:active {
 }
 
 .theme-btn.active {
-    background: var(--primary);
-    color: var(--bg);
+    background: var(--color-primary);
+    color: var(--color-background);
 }
 
 .status-option.active {
-    background: var(--primary);
-    color: var(--bg);
+    background: var(--color-primary);
+    color: var(--color-background);
 }
 
 /* --------------------------------------------------
@@ -180,17 +213,20 @@ nav {
 }
 
 nav a {
-    color: var(--text);
+    color: var(--color-text);
     cursor: pointer;
     font-weight: 600;
+    letter-spacing: 0.1rem;
     text-decoration: none;
     text-transform: uppercase;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.4rem 1rem;
 }
 
-nav a.active,
-nav a:hover {
-    color: var(--primary);
+nav a.active, nav a:hover {
+    color: var(--color-primary);
     opacity: 1;
+    border-color: var(--color-primary);
 }
 
 /* --------------------------------------------------
@@ -215,16 +251,16 @@ nav a:hover {
 }
 
 input[type="checkbox"] {
-    accent-color: var(--primary);
+    accent-color: var(--color-primary);
     cursor: pointer;
     height: 1rem;
     width: 1rem;
 }
 
 select {
-    background-color: var(--bg);
+    background-color: var(--color-background);
     border: 1px solid rgba(255,255,255,0.15);
-    color: var(--text);
+    color: var(--color-text);
     cursor: pointer;
     font-family: inherit;
     font-size: 0.9rem;
@@ -233,7 +269,10 @@ select {
     text-transform: uppercase;
 }
 
-select:focus { outline: none; border-color: var(--primary); }
+select:focus { 
+    outline: none; 
+    border-color: var(--color-primary); 
+}
 
 /* --------------------------------------------------
    SEARCH
@@ -252,15 +291,18 @@ select:focus { outline: none; border-color: var(--primary); }
 }
 
 #search {
-    background-color: var(--bg);
+    background-color: var(--color-background);
     border: 1px solid rgba(255,255,255,0.15);
-    color: var(--text);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 0.9rem;
     padding: 0.3rem 1.8rem 0.3rem 2rem;
 }
 
-#search:focus { outline: none; border-color: var(--primary); }
+#search:focus { 
+    outline: none; 
+    border-color: var(--color-primary); 
+}
 
 #search-clear {
     background: transparent;
@@ -273,8 +315,13 @@ select:focus { outline: none; border-color: var(--primary); }
     right: 0.4rem;
 }
 
-#search-clear.visible { display: block; }
-#search-clear:hover { color: var(--primary); }
+#search-clear.visible { 
+    display: block; 
+}
+
+#search-clear:hover { 
+    color: var(--color-primary); 
+}
 
 /* --------------------------------------------------
    PERCENTAGE
@@ -306,11 +353,11 @@ select:focus { outline: none; border-color: var(--primary); }
 }
 
 .card:hover { 
-    border-color: var(--primary); 
+    border-color: var(--color-primary); 
 }
 
 .card.liberating {
-    border-color: var(--primary);
+    border-color: var(--color-primary);
 }
 
 .image-wrapper {
@@ -341,10 +388,10 @@ select:focus { outline: none; border-color: var(--primary); }
    STAMP
 -------------------------------------------------- */
 .stamp {
-    background: var(--bg);
-    border-bottom: 2px solid var(--primary);
-    border-top: 2px solid var(--primary);
-    color: var(--primary);
+    background: var(--color-banner);
+    border-bottom: 2px solid var(--color-primary);
+    border-top: 2px solid var(--color-primary);
+    color: var(--color-primary);
     font-weight: 700;
     left: 0;
     letter-spacing: 4px;
@@ -359,13 +406,15 @@ select:focus { outline: none; border-color: var(--primary); }
     transform: translateY(-50%);
 }
 
-.card.liberated .stamp { opacity: 1; }
+.card.liberated .stamp { 
+    opacity: 1; 
+}
 
 /* --------------------------------------------------
    TITLE
 -------------------------------------------------- */
 .title {
-    color: var(--primary);
+    color: var(--color-primary);
     font-size: 1rem;
     font-weight: 700;
     height: 3rem;
@@ -375,29 +424,33 @@ select:focus { outline: none; border-color: var(--primary); }
     padding: 0.5rem;
     text-align: center;
     text-transform: uppercase;
+    background: var(--color-background-secondary);
 }
 
-.title.hidden { height: 0; opacity: 0; padding: 0; }
+.title.hidden {
+    height: 0; 
+    opacity: 0; 
+    padding: 0; 
+}
 
 /* --------------------------------------------------
    STATUS MENU
 -------------------------------------------------- */
 .status-menu {
-    background: var(--bg);
-    border: 2px solid var(--primary);
+    background: var(--color-background);
+    border: 2px solid var(--color-primary);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.75rem;
     position: fixed;
     z-index: 1000;
-    animation: menuFadeIn 0.15s ease forwards;
 }
 
 .status-option {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.15);
-    color: var(--text);
+    color: var(--color-text);
     cursor: pointer;
     font-family: inherit;
     font-size: 0.9rem;
@@ -407,19 +460,22 @@ select:focus { outline: none; border-color: var(--primary); }
     text-transform: uppercase;
 }
 
-.status-option:hover { border-color: var(--primary); color: var(--primary); }
+.status-option:hover {
+    background: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-primary); }
 
 .status-option.active {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: var(--bg);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
 }
 
 /* --------------------------------------------------
    FOOTER
 -------------------------------------------------- */
 footer {
-    color: rgba(255,255,255,0.3);
+    color: var(--color-text-secondary);
     font-size: 0.75rem;
     margin-top: 3rem;
     text-align: center;
@@ -430,7 +486,7 @@ footer {
 -------------------------------------------------- */
 
 .settings-link {
-    color: var(--primary);
+    color: var(--color-primary);
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -439,8 +495,8 @@ footer {
 
 .settings-label {
     font-size: 0.9rem;
-    font-weight: 500;
-    opacity: 0.6;
+    font-weight: 600;
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
