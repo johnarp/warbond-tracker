@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+[1.1.0]: https://github.com/johnarp/warbond-tracker/compare/v1.0.5...v1.0.0
 [1.0.5]: https://github.com/johnarp/warbond-tracker/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/johnarp/warbond-tracker/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/johnarp/warbond-tracker/compare/v1.0.2...v1.0.3
@@ -25,7 +26,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
 
-## [Unreleased]
+## [1.1.0] - 2026-03-06
+
+### Added
+
+- Announcement popup functionality
+- Image for general announcements not related to new Warbonds
+- Social preview image for the repository
+- "Automatons" and "Terminids" Styles
+- [NOTICE](NOTICE) and [README.md/Legal](README.md#️-legal) to clarify that [MIT LICENSE](LICENSE) covers only code, with copyrighted assets belonging to their respective owners.
+- CRT effect on Warbonds
+- Separator between title/nav and percentage/controls
+
+### Changed
+
+- Icon design and README images
+- Buttons are diagonal
+- Warbonds have brackets on their corners
+- "Classic Yellow" Style to "Helldivers", with more accurate colours
+- Percentage and controls styling improvement
+- `warbonds.html` select dropdowns to button toggles. `warbonds.js` also changed to accommodate
+- Liberating state design
+- Footer sticks to the bottom of the page
+- Warbond Title design
+- Improved README
+
+### Removed
+
+- Deep Red and Deep Blue Styles
+- All Super Styles (temporarily)
+
+## [1.0.5] - 2026-03-03
 
 ### Changed
 

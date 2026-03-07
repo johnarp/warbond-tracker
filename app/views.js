@@ -1,34 +1,33 @@
-// apply theme every load, not just when visit styles.html
+// Apply theme on every load, not just when visiting styles.html
 window.applyTheme = function(theme) {
-    if (theme === "classic-yellow") {
-        document.documentElement.removeAttribute("data-theme");
-    } else {
-        document.documentElement.setAttribute("data-theme", theme);
-    }
+    document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
     document.querySelectorAll(".theme-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.theme === theme);
     });
-}
-applyTheme(localStorage.getItem("theme") || "classic-yellow");
+};
+applyTheme(localStorage.getItem("theme") || "helldivers");
 
-// index.html div thats filled by a view
+// Load announcement popup globally (not tied to any view)
+const annScript = document.createElement("script");
+annScript.src = "./app/announcement.js";
+document.body.appendChild(annScript);
+
+// View container and nav links
 const content = document.getElementById("content");
-// index.html nav bar links
-const links = document.querySelectorAll("nav a");
+const links   = document.querySelectorAll("nav a");
 
 async function loadView(viewPath) {
     content.innerHTML = await (await fetch(viewPath)).text();
 
     // views/warbonds.html → app/warbonds.js
     const scriptName = viewPath.split("/").pop().replace(".html", ".js");
-    const scriptSrc = `app/${scriptName}`;
 
     const old = document.getElementById("view-script");
     if (old) old.remove();
 
     const script = document.createElement("script");
-    script.src = scriptSrc;
+    script.src = `app/${scriptName}`;
     script.id = "view-script";
     document.body.appendChild(script);
 }
@@ -36,12 +35,12 @@ async function loadView(viewPath) {
 links.forEach(link => {
     link.addEventListener("click", async (e) => {
         e.preventDefault();
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+        links.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
         loadView(link.dataset.view);
     });
 });
 
-// warbond default view
-document.querySelector('[data-view="views/warbonds.html"]').classList.add('active');
+// Default view
+document.querySelector('[data-view="views/warbonds.html"]').classList.add("active");
 loadView("views/warbonds.html");

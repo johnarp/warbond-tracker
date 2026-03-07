@@ -2,39 +2,53 @@
     <span id="percentage"></span>
 </div>
 <div id="controls">
-    <label>Show Title<input type="checkbox" id="toggleTitle"></label>
-    <label>Sort:
+    <div class="ctrl-group">
+        <span class="ctrl-label">Sort</span>
         <select id="sortBy">
+            <option value="release-desc">Newest First</option>
+            <option value="release-asc">Oldest First</option>
             <option value="title-asc">Title (A-Z)</option>
             <option value="title-desc">Title (Z-A)</option>
             <option value="type-asc">Type (A-Z)</option>
             <option value="type-desc">Type (Z-A)</option>
-            <option value="release-desc">Newest First</option>
-            <option value="release-asc">Oldest First</option>
         </select>
-    </label>
-    <label>Type:
-        <select id="typeFilter">
-            <option value="all">All</option>
-            <option value="standard">Standard</option>
-            <option value="premium">Premium</option>
-            <option value="legendary">Legendary</option>
-        </select>
-    </label>
-    <label>Liberation:
-        <select id="liberation">
-            <option value="all">All</option>
-            <option value="liberated">Liberated</option>
-            <option value="liberating">Liberating</option>
-            <option value="unliberated">Unliberated</option>
-        </select>
-    </label>
-    <div id="search-wrapper">
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        <input type="text" id="search" placeholder="SEARCH..." autocomplete="off" spellcheck="false">
-        <button id="search-clear" aria-label="Clear Search">&#x2715;</button>
+    </div>
+
+    <div class="ctrl-group">
+        <span class="ctrl-label">Type</span>
+        <div class="filter-toggles" id="typeFilter">
+            <button class="filter-btn active" data-value="all">All</button>
+            <button class="filter-btn" data-value="standard">Standard</button>
+            <button class="filter-btn" data-value="premium">Premium</button>
+            <button class="filter-btn" data-value="legendary">Legendary</button>
+        </div>
+    </div>
+
+    <div class="ctrl-group">
+        <span class="ctrl-label">Status</span>
+        <div class="filter-toggles" id="liberation">
+            <button class="filter-btn active" data-value="all">All</button>
+            <button class="filter-btn" data-value="liberated">Liberated</button>
+            <button class="filter-btn" data-value="liberating">Liberating</button>
+            <button class="filter-btn" data-value="unliberated">Unliberated</button>
+        </div>
+    </div>
+
+    <div class="ctrl-group">
+        <label class="show-title-label">
+            Show Title
+            <input type="checkbox" id="toggleTitle">
+        </label>
+    </div>
+
+    <div class="ctrl-group ctrl-group-search">
+        <div id="search-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="search" placeholder="SEARCH..." autocomplete="off" spellcheck="false">
+            <button id="search-clear" aria-label="Clear Search">&#x2715;</button>
+        </div>
     </div>
 </div>
 <div id="warbonds-grid"></div>

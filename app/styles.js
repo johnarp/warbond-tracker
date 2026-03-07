@@ -1,6 +1,6 @@
 (() => {
 
-const savedTheme = localStorage.getItem("theme") || "classic-yellow";
+const savedTheme = localStorage.getItem("theme") || "helldivers";
 applyTheme(savedTheme);
 
 document.querySelectorAll(".theme-btn").forEach(btn => {

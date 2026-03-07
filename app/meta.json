@@ -1,8 +1,20 @@
 {
-    "version": "1.0.5",
-    "date": "2026-03-03",
+    "version": "1.1.0",
+    "date": "2026-03-06",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
-    "issues": "https://github.com/johnarp/warbond-tracker/issues"
+    "issues": "https://github.com/johnarp/warbond-tracker/issues",
+
+    "announcement": {
+        "id": "1.1.0",
+        "tag": "New Update",
+        "title": "v1.1.0",
+        "body": [
+            "You're looking at it.",
+            "Improved control design with better buttons and overall styling.",
+            "Super Styles temporarily removed."
+        ],
+        "image": "./assets/kevin-decatoire-helldivers-2-kevin-decatoire-05.jpg"
+    }
 }

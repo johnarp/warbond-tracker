@@ -4,48 +4,52 @@
 
 # Warbond Tracker
 
-Track your **Helldivers 2** Warbond completion.
+**Track your Helldivers 2 Warbond completion.**
+
+[![Live Site](https://img.shields.io/badge/Live%20Site-GitHub%20Pages-ffe900?style=flat-square&labelColor=111111)](https://johnarp.github.io/warbond-tracker)
+[![License](https://img.shields.io/badge/License-MIT-white?style=flat-square&labelColor=111111)](LICENSE)
+[![Version](https://img.shields.io/github/v/release/johnarp/warbond-tracker?style=flat-square&color=ffe900&labelColor=111111)](https://github.com/johnarp/warbond-tracker/releases)
 
 </div>
 
-## 🪟 Preview
+## Preview
 
 ![Preview](./assets/readme_preview.png)
 
-## 📋 Installation
+## Features
 
-<details open>
-<summary><strong>GitHub Pages</strong></summary>
-<br>
+- Mark Warbonds as **Liberated**, **Liberating**, or **Unliberated**
+- Filter by type (Standard, Premium, Legendary) and Liberation status
+- Sort by release date or title
+- Search by name or alias
+- Multiple colour themes
+- Import / export progress as JSON
+- No backend or accounts
 
-Check it out [here](https://johnarp.github.io/warbond-tracker)
+## Usage
 
-</details>
+The easiest way is the live site:
 
-<details>
-<summary><strong>Open in Your Browser (with Python)</strong></summary>
-<br>
+**[johnarp.github.io/warbond-tracker](https://johnarp.github.io/warbond-tracker)**
 
-1. Clone the repository
-    ```powershell
-    git clone https://github.com/johnarp/warbond-tracker.git
-    ```
-2. Run a local server
-    ```powershell
-    # Python 3
-    cd warbond-tracker
-    python -m http.server 3000
-    ```
-3. Open your browser and go to [http://localhost:3000](http://localhost:3000)
+Or, run it locally with any static server:
 
-</details>
+```
+git clone https://github.com/johnarp/warbond-tracker.git
+cd warbond-tracker
+python -m http.server 3000
+```
 
-## ✨ Version
+Then open [http://localhost:3000](http://localhost:3000)
 
-See [Releases](https://github.com/johnarp/warbond-tracker/releases) for the latest release.
+## Changelog
 
-See [CHANGELOG](CHANGELOG.md) for updates.
+See [CHANGELOG](CHANGELOG.md) or [Releases](https://github.com/johnarp/warbond-tracker/releases).
 
-## 📜 License
+## License
 
-[MIT License](LICENSE)
+Source code is licensed under the [MIT License](LICENSE)
+
+## Legal
+
+HELLDIVERS™ 2 assets, images, and related media included in this project are the property of Arrowhead Game Studios AB and/or Sony Interactive Entertainment LLC and are not covered by the [MIT License](LICENSE). This project is not affiliated with or endorsed by Arrowhead Game Studios or Sony Interactive Entertainment.

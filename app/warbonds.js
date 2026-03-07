@@ -7,12 +7,12 @@ let liberationStatus = JSON.parse(localStorage.getItem("liberationStatus")) || {
 // REFERENCES
 // --------------------------------------------------
 
-const grid = document.getElementById("warbonds-grid");
-const sortSelect = document.getElementById("sortBy");
+const grid        = document.getElementById("warbonds-grid");
+const sortSelect  = document.getElementById("sortBy");
 const toggleTitle = document.getElementById("toggleTitle");
-const typeFilter = document.getElementById("typeFilter");
-const liberation = document.getElementById("liberation");
-const percentage = document.getElementById("percentage");
+const typeFilter  = document.getElementById("typeFilter");
+const liberation  = document.getElementById("liberation");
+const percentage  = document.getElementById("percentage");
 const searchInput = document.getElementById("search");
 const searchClear = document.getElementById("search-clear");
 
@@ -25,9 +25,26 @@ fetch("./app/warbonds.json")
     .then(data => {
         warbonds = data;
         render();
-        // auto focus search bar
-        document.getElementById('search')?.focus();
+        document.getElementById("search")?.focus();
     });
+
+// --------------------------------------------------
+// FILTER HELPERS
+// --------------------------------------------------
+
+function activeValue(container) {
+    return container.querySelector(".filter-btn.active")?.dataset.value ?? "all";
+}
+
+function initToggles(container) {
+    container.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            container.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            render();
+        });
+    });
+}
 
 // --------------------------------------------------
 // RENDER
@@ -38,20 +55,20 @@ function render() {
     let filtered = [...warbonds];
 
     // FILTER: Type
-    if (typeFilter.value !== "all") {
-        filtered = filtered.filter(w => 
-            w.type.toLowerCase() === typeFilter.value
-        );
+    const typeVal = activeValue(typeFilter);
+    if (typeVal !== "all") {
+        filtered = filtered.filter(w => w.type.toLowerCase() === typeVal);
     }
 
     // FILTER: Liberation
-    const lib = liberation.value;
-    if (lib === "liberated") {
+    const libVal = activeValue(liberation);
+    if (libVal === "liberated") {
         filtered = filtered.filter(w => liberationStatus[w.title] === "liberated");
-    } else if (lib === "liberating") {
+    } else if (libVal === "liberating") {
         filtered = filtered.filter(w => liberationStatus[w.title] === "liberating");
-    } else if (lib === "unliberated") {
-        filtered = filtered.filter(w => !liberationStatus[w.title] || liberationStatus[w.title] === "unliberated"
+    } else if (libVal === "unliberated") {
+        filtered = filtered.filter(w =>
+            !liberationStatus[w.title] || liberationStatus[w.title] === "unliberated"
         );
     }
 
@@ -74,7 +91,7 @@ function render() {
         return direction === "asc" ? result : -result;
     });
 
-    // RENDER
+    // RENDER CARDS
     filtered.forEach(item => {
         const status = liberationStatus[item.title];
 
@@ -95,15 +112,15 @@ function render() {
         stamp.classList.add("stamp");
         stamp.textContent = "LIBERATED";
 
-        imageWrapper.append(img, stamp);
-
+        // Title lives inside imageWrapper — overlaid at bottom via CSS
         const title = document.createElement("h3");
         title.textContent = item.title;
         title.classList.add("title");
         if (!toggleTitle.checked) title.classList.add("hidden");
 
+        imageWrapper.append(img, stamp, title);
         card.addEventListener("click", e => showStatusMenu(e, item.title, card));
-        card.append(imageWrapper, title);
+        card.appendChild(imageWrapper);
         grid.appendChild(card);
     });
 
@@ -111,7 +128,7 @@ function render() {
 }
 
 // --------------------------------------------------
-// STATUS
+// STATUS MENU
 // --------------------------------------------------
 
 function closeStatusMenu(menu) {
@@ -154,7 +171,6 @@ function showStatusMenu(event, itemTitle, cardElement) {
         menu.appendChild(btn);
     });
 
-    // Position centered on card
     const rect = cardElement.getBoundingClientRect();
     Object.assign(menu.style, {
         position:  "fixed",
@@ -165,7 +181,6 @@ function showStatusMenu(event, itemTitle, cardElement) {
 
     document.body.appendChild(menu);
 
-    // Dismiss on outside click — deferred so the opening click doesn't instantly close it
     setTimeout(() => {
         document.addEventListener("click", function dismiss(e) {
             if (!menu.contains(e.target)) {
@@ -181,14 +196,14 @@ function showStatusMenu(event, itemTitle, cardElement) {
 // --------------------------------------------------
 
 function updatePercentage() {
-    const total          = warbonds.length;
-    const liberatedCount = Object.values(liberationStatus).filter(s => s === "liberated").length;
-    const liberatingCount= Object.values(liberationStatus).filter(s => s === "liberating").length;
-    const pct            = total === 0 ? 0 : Math.round((liberatedCount / total) * 100);
+    const total           = warbonds.length;
+    const liberatedCount  = Object.values(liberationStatus).filter(s => s === "liberated").length;
+    const liberatingCount = Object.values(liberationStatus).filter(s => s === "liberating").length;
+    const pct             = total === 0 ? 0 : Math.round((liberatedCount / total) * 100);
 
     percentage.textContent =
-        `${pct}% LIBERATED // ${liberatedCount} OF ${total} WARBONDS` +
-        (liberatingCount > 0 ? ` // ${liberatingCount} ACTIVE ${liberatingCount === 1 ? "FRONT" : "FRONTS"}` : "");
+        `${pct}% Liberated // ${liberatedCount} of ${total} Warbonds` +
+        (liberatingCount > 0 ? ` // ${liberatingCount} Active ${liberatingCount === 1 ? "Front" : "Fronts"}` : "");
 
     document.title = `${pct}% Liberated // Warbond Tracker`;
 }
@@ -197,9 +212,10 @@ function updatePercentage() {
 // LISTENERS
 // --------------------------------------------------
 
+initToggles(typeFilter);
+initToggles(liberation);
+
 sortSelect.addEventListener("change", render);
-typeFilter.addEventListener("change", render);
-liberation.addEventListener("change", render);
 
 toggleTitle.addEventListener("change", () => {
     document.querySelectorAll(".title").forEach(t =>
