@@ -16,6 +16,7 @@
         "title": "Cutting Edge",
         "type": "Premium",
         "release": "2024/03/14",
+        "aliases": ["arc"],
         "cover": "./assets/warbonds/Cutting_Edge_Premium_Warbond_Cover.png"
     },
     {

@@ -1,29 +1,55 @@
 <div id="settings">
 
     <div class="settings-section">
-        <span class="settings-label">WALL OF MARTYRS</span>
-        <div class="settings-buttons">
-            <button id="importData">IMPORT</button>
-            <button id="exportData">EXPORT</button>
-            <input type="file" id="importFile" accept=".json" hidden>
+        <div class="settings-section-header">Display</div>
+        <div class="settings-section-body">
+            <label class="inline-label">
+                <input type="checkbox" id="toggleCrt" checked>
+                CRT Effect
+            </label>
         </div>
     </div>
 
     <div class="settings-section">
-        <span class="settings-label"><br>ENEMY ARTILLERY</span>
-        <div class="settings-buttons">
-            <button id="clearLiberation">CLEAR LIBERATION</button>
-            <button id="clearStorage">CLEAR ALL DATA</button>
+        <div class="settings-section-header">Wall of Martyrs</div>
+        <div class="settings-section-body">
+            <div class="settings-buttons">
+                <button id="importData">Import</button>
+                <button id="exportData">Export</button>
+                <input type="file" id="importFile" accept=".json" hidden>
+            </div>
         </div>
     </div>
 
     <div class="settings-section">
-        <br>
-        <span id="meta-version" class="settings-label">—</span>
-        <div class="settings-buttons">
-            <a id="meta-github" class="settings-link" href="#" target="_blank">SOURCE CODE</a> //
-            <a id="meta-changelog" class="settings-link" href="#" target="_blank">PATCH NOTES</a> //
-            <a id="meta-issues" class="settings-link" href="#" target="_blank">REPORT ISSUE</a>
+        <div class="settings-section-header">Enemy Artillery</div>
+        <div class="settings-section-body">
+            <div class="settings-buttons">
+                <button id="clearLiberation">Clear Liberation</button>
+                <button id="clearStorage">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <div class="settings-section-header">Intel</div>
+        <div class="settings-section-body">
+            <div class="settings-buttons">
+                <button id="viewAliases">View Aliases</button>
+                <button id="viewProfile">View Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-section">
+        <div class="settings-section-header">About</div>
+        <div class="settings-section-body">
+            <span id="meta-version" class="settings-label">—</span>
+            <div class="settings-buttons">
+                <a id="meta-github" class="settings-link" href="#" target="_blank">SOURCE CODE</a> //
+                <a id="meta-changelog" class="settings-link" href="#" target="_blank">PATCH NOTES</a> //
+                <a id="meta-issues" class="settings-link" href="#" target="_blank">REPORT ISSUE</a>
+            </div>
         </div>
     </div>
 

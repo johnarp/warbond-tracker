@@ -217,11 +217,33 @@ initToggles(liberation);
 
 sortSelect.addEventListener("change", render);
 
+// Restore showTitle from localStorage
+toggleTitle.checked = localStorage.getItem("showTitle") === "true";
+
 toggleTitle.addEventListener("change", () => {
+    localStorage.setItem("showTitle", toggleTitle.checked);
     document.querySelectorAll(".title").forEach(t =>
         t.classList.toggle("hidden", !toggleTitle.checked)
     );
 });
+
+// Card size
+const sizeGroup = document.getElementById("cardSize");
+function applyCardSize(size) {
+    grid.classList.remove("grid-small", "grid-medium", "grid-large");
+    grid.classList.add(`grid-${size}`);
+    localStorage.setItem("cardSize", size);
+}
+const savedSize = localStorage.getItem("cardSize") || "medium";
+sizeGroup.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.value === savedSize);
+    btn.addEventListener("click", () => {
+        sizeGroup.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyCardSize(btn.dataset.value);
+    });
+});
+applyCardSize(savedSize);
 
 let searchDebounce;
 searchInput.addEventListener("input", () => {

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+[1.2.0]: https://github.com/johnarp/warbond-tracker/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/johnarp/warbond-tracker/compare/v1.0.5...v1.0.0
 [1.0.5]: https://github.com/johnarp/warbond-tracker/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/johnarp/warbond-tracker/compare/v1.0.3...v1.0.4
@@ -25,6 +26,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.2]: https://github.com/johnarp/warbond-tracker/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
+
+## [1.2.0] - 2026-03-07
+
+### Added
+
+- Warbond size control
+- CRT toggle
+- Mobile browser navigation colour changing has returned
+- View Aliases and View Profile in settings
+- A single alias for Cutting Edge
+- Super Earth and Meridian Black Hole Super Styles
+- OLED Styles
+
+### Changed
+
+- Import/export JSON also includes title preference, warbond size, crt, and seen announcements
+- Titles remain enabled when switching pages
+- Improved Styles and Settings organization
+- Better looking checkmark
+
+### Fixed
+
+- Warbonds now stay the same width when there aren't enough other Warbonds to fill a row
 
 ## [1.1.0] - 2026-03-06
 

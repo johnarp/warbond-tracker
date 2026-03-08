@@ -17,5 +17,9 @@
     "Viper Commandos": "liberated",
     "Truth Enforcers": "liberated"
   },
-  "theme": "helldivers"
+  "theme": "illuminate",
+  "showTitle": "false",
+  "cardSize": "large",
+  "crt": "1",
+  "announcement_seen": "1.1.0"
 }

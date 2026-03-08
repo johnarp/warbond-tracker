@@ -11,6 +11,9 @@
     --notch: 6px;
 }
 
+/* STYLES */
+/* Factions */
+
 [data-theme="helldivers"] {
     --color-background: #111111;
     --color-primary: #ffe900;
@@ -47,6 +50,71 @@
     --color-banner: rgba(0, 0, 0, 0.82);
 }
 
+/* OLED */
+
+[data-theme="oled-helldivers"] {
+    --color-background: #000000;
+    --color-primary: #ffe900;
+    --color-text:    #ffffff;
+    --color-background-secondary: #0a0a0a;
+    --color-text-secondary: #888888;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="oled-terminids"] {
+    --color-background: #000000;
+    --color-primary: #ffb900;
+    --color-text:    #ffffff;
+    --color-background-secondary: #0a0a0a;
+    --color-text-secondary: #888888;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="oled-automatons"] {
+    --color-background: #000000;
+    --color-primary: #ff7171;
+    --color-text:    #ffffff;
+    --color-background-secondary: #0a0a0a;
+    --color-text-secondary: #888888;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="oled-illuminate"] {
+    --color-background: #000000;
+    --color-primary: #cd8ae9;
+    --color-text:    #ffffff;
+    --color-background-secondary: #0a0a0a;
+    --color-text-secondary: #888888;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
+/* SUPER STYLES */
+/* Galaxy */
+
+[data-theme="super-earth"] {
+    --color-background: #02040f;
+    --color-primary: #4da6ff;
+    --color-text:    #cce0ff;
+    --color-background-secondary: #050a18;
+    --color-text-secondary: #5580aa;
+    --color-banner: rgba(0, 0, 0, 0.88);
+    --color-background-image:
+        linear-gradient(rgba(2, 4, 15, 0.72), rgba(2, 4, 15, 0.72)),
+        url('../assets/styles/kevin-decatoire-helldivers-2-kevin-decatoire-06.jpg');
+}
+
+[data-theme="meridian-black-hole"] {
+    --color-background: #02040f;
+    --color-primary: #cd8ae9;
+    --color-text:    #decee5;
+    --color-background-secondary: #050a18;
+    --color-text-secondary: #623f70;
+    --color-banner: rgba(0, 0, 0, 0.88);
+    --color-background-image:
+        linear-gradient(rgba(11, 2, 15, 0.72), rgba(10, 2, 15, 0.72)),
+        url('../assets/styles/Meridian_Black_Hole.webp');
+}
+
 /* --------------------------------------------------
    SCROLLBAR
 -------------------------------------------------- */
@@ -54,6 +122,9 @@
 ::-webkit-scrollbar-track { background: var(--color-background); }
 ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); cursor: pointer; }
+html {
+    scrollbar-gutter: stable;
+}
 
 /* --------------------------------------------------
    FONT
@@ -304,10 +375,33 @@ label.show-title-label {
 }
 
 input[type="checkbox"] {
-    accent-color: var(--color-primary);
+    appearance: none;
+    -webkit-appearance: none;
     cursor: pointer;
     width: 1rem;
     height: 1rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    position: relative;
+    transition: background 0.1s, border-color 0.1s;
+}
+
+input[type="checkbox"]:checked {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.28rem;
+    height: 0.5rem;
+    border-right: 2px solid var(--color-background);
+    border-bottom: 2px solid var(--color-background);
+    transform: translate(-60%, -65%) rotate(38deg);
 }
 
 /* --------------------------------------------------
@@ -387,8 +481,13 @@ input[type="checkbox"] {
 #warbonds-grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    /* auto-fill keeps empty column tracks so lone cards don't stretch full-width */
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min, 22rem)), 1fr));
 }
+
+#warbonds-grid.grid-small  { --card-min: 15rem; }
+#warbonds-grid.grid-medium { --card-min: 22rem; }
+#warbonds-grid.grid-large  { --card-min: 30rem; }
 
 .card {
     cursor: pointer;
@@ -454,6 +553,9 @@ input[type="checkbox"] {
 
 /* Scanline fades on hover — contrast between idle and active */
 .card:hover .image-wrapper::after { opacity: 0; }
+
+/* CRT disabled globally (set by user in Settings) */
+.no-crt .image-wrapper::after { display: none; }
 
 .card.liberated img       { filter: brightness(0.4) grayscale(100%); }
 .card:hover img           { filter: brightness(1.08); }
@@ -619,7 +721,14 @@ input[type="checkbox"] {
     line-height: 1.6;
     color: var(--color-text-secondary);
     margin: 0 0 1.25rem;
-    white-space: pre-line;
+}
+
+#announcement-text p {
+    margin: 0 0 0.35rem;
+}
+
+#announcement-text p:last-child {
+    margin-bottom: 0;
 }
 
 #announcement-close { width: 100%; }
@@ -640,12 +749,78 @@ footer {
 -------------------------------------------------- */
 #settings, #styles { max-width: 640px; }
 
-.settings-section {
-    border-left: 2px solid rgba(255,255,255,0.08);
-    padding-left: 1rem;
-    margin-bottom: 2rem;
+/*
+   Top-level category (e.g. "Styles", "Super Styles").
+   Visually heavier than the panels inside.
+*/
+.style-category {
+    margin-bottom: 1.75rem;
 }
 
+.style-category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+}
+
+.style-category-header h2 {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.style-category-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-primary);
+    opacity: 0.25;
+}
+
+.style-category-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Visual panel — same notched border language as the rest of the UI */
+.settings-section {
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    clip-path: polygon(
+        8px 0, 100% 0,
+        100% calc(100% - 8px), calc(100% - 8px) 100%,
+        0 100%, 0 8px
+    );
+    overflow: hidden;
+}
+
+/* Section title bar — same treatment as announcement-tag */
+.settings-section-header {
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 0.45rem 1rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+/* Section body */
+.settings-section-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* settings-label kept for the version string */
 .settings-label {
     display: block;
     font-size: 0.72rem;
@@ -653,7 +828,7 @@ footer {
     color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.4rem;
 }
 
 .settings-buttons {
@@ -672,6 +847,137 @@ footer {
 }
 
 .settings-link:hover { text-decoration: underline; }
+
+/* Inline label (CRT toggle etc.) */
+label.inline-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+/* --------------------------------------------------
+   GENERIC MODAL
+   Used by settings modals (aliases, profile, etc.)
+   Announcement keeps its own #announcement-* IDs.
+-------------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.78);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.modal-panel {
+    background: var(--color-background);
+    border: 1px solid var(--color-primary);
+    clip-path: polygon(
+        12px 0, 100% 0,
+        100% calc(100% - 12px), calc(100% - 12px) 100%,
+        0 100%, 0 12px
+    );
+    max-width: 540px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.modal-tag {
+    background: var(--color-primary);
+    color: var(--color-background);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 0.35rem 1rem;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 1rem;
+}
+
+.modal-close {
+    width: 100%;
+    margin-top: 1rem;
+    flex-shrink: 0;
+}
+
+/* Aliases table */
+.aliases-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.aliases-table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.aliases-table td {
+    padding: 0.45rem 0.5rem;
+    vertical-align: top;
+}
+
+.aliases-table td:first-child {
+    color: var(--color-text);
+    font-weight: 600;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+}
+
+.aliases-table td:last-child {
+    color: var(--color-text-secondary);
+}
+
+/* Profile view */
+.profile-section {
+    margin-bottom: 1.25rem;
+}
+
+.profile-section-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 0.2rem 0;
+    gap: 1rem;
+}
+
+.profile-row span:first-child { color: var(--color-text-secondary); }
+.profile-row span:last-child  { color: var(--color-text); font-weight: 600; }
 
 /* --------------------------------------------------
    MOBILE
