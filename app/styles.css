@@ -115,6 +115,20 @@
         url('../assets/styles/Meridian_Black_Hole.webp');
 }
 
+/* Updates */
+
+[data-theme="machinery-of-oppression"] {
+    --color-background: #02040f;
+    --color-primary: #e46938;
+    --color-text:    #e5d3ce;
+    --color-background-secondary: #180d05;
+    --color-text-secondary: #884b32;
+    --color-banner: rgba(0, 0, 0, 0.88);
+    --color-background-image:
+        linear-gradient(rgba(15, 6, 2, 0.72), rgba(15, 5, 2, 0.72)),
+        url('../assets/styles/Machinery_of_Oppression_Cover.png');
+}
+
 /* --------------------------------------------------
    SCROLLBAR
 -------------------------------------------------- */
@@ -316,11 +330,16 @@ nav a:not(.active):hover {
 
 /* --------------------------------------------------
    SELECT (Sort)
+   color-scheme: dark tells the browser to render
+   the native dropdown with dark OS styling.
+   The explicit background/color covers Chromium and
+   Firefox; color-scheme covers Safari on macOS.
 -------------------------------------------------- */
 select {
-    background: transparent;
+    background: var(--color-background-secondary);
     border: 1px solid rgba(255,255,255,0.15);
     color: var(--color-text);
+    color-scheme: dark;
     cursor: pointer;
     font-family: inherit;
     font-size: 0.8rem;
@@ -333,6 +352,13 @@ select {
 select:focus {
     outline: none;
     border-color: var(--color-primary);
+}
+
+/* Style individual options for Chromium/Firefox;
+   color-scheme handles Safari's native picker. */
+select option {
+    background: var(--color-background-secondary);
+    color: var(--color-text);
 }
 
 /* --------------------------------------------------
@@ -456,7 +482,11 @@ input[type="checkbox"]:checked::after {
 
 #search-clear.visible { display: block; }
 
-#search-clear:hover { background: transparent; color: var(--color-primary); }
+/* Override base button hover — clear button stays transparent */
+#search-clear:hover {
+    background: transparent;
+    color: var(--color-primary);
+}
 
 /* --------------------------------------------------
    PERCENTAGE BAR
@@ -551,7 +581,7 @@ input[type="checkbox"]:checked::after {
     transition: opacity 0.15s;
 }
 
-/* Scanline fades on hover — contrast between idle and active */
+/* Scanline fades on hover */
 .card:hover .image-wrapper::after { opacity: 0; }
 
 /* CRT disabled globally (set by user in Settings) */
@@ -559,6 +589,7 @@ input[type="checkbox"]:checked::after {
 
 .card.liberated img       { filter: brightness(0.4) grayscale(100%); }
 .card:hover img           { filter: brightness(1.08); }
+/* Prevent hover from brightening a liberated card */
 .card.liberated:hover img { filter: brightness(0.4) grayscale(100%); }
 
 /* --------------------------------------------------
@@ -587,8 +618,7 @@ input[type="checkbox"]:checked::after {
 
 /* --------------------------------------------------
    TITLE
-   Overlaid on image at bottom — gradient fade, no
-   separate background colour needed.
+   Overlaid on image at bottom — gradient fade.
 -------------------------------------------------- */
 .title {
     position: absolute;
@@ -723,13 +753,8 @@ input[type="checkbox"]:checked::after {
     margin: 0 0 1.25rem;
 }
 
-#announcement-text p {
-    margin: 0 0 0.35rem;
-}
-
-#announcement-text p:last-child {
-    margin-bottom: 0;
-}
+#announcement-text p { margin: 0 0 0.35rem; }
+#announcement-text p:last-child { margin-bottom: 0; }
 
 #announcement-close { width: 100%; }
 
@@ -749,10 +774,7 @@ footer {
 -------------------------------------------------- */
 #settings, #styles { max-width: 640px; }
 
-/*
-   Top-level category (e.g. "Styles", "Super Styles").
-   Visually heavier than the panels inside.
-*/
+/* Top-level category (e.g. "Styles", "Super Styles") */
 .style-category {
     margin-bottom: 1.75rem;
 }
@@ -788,7 +810,7 @@ footer {
     gap: 0.75rem;
 }
 
-/* Visual panel — same notched border language as the rest of the UI */
+/* Visual panel — notched border */
 .settings-section {
     margin-bottom: 1rem;
     border: 1px solid rgba(255,255,255,0.1);
@@ -800,7 +822,7 @@ footer {
     overflow: hidden;
 }
 
-/* Section title bar — same treatment as announcement-tag */
+/* Section title bar */
 .settings-section-header {
     background: rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -812,7 +834,6 @@ footer {
     color: var(--color-text-secondary);
 }
 
-/* Section body */
 .settings-section-body {
     padding: 1rem;
     display: flex;
@@ -820,7 +841,7 @@ footer {
     gap: 0.6rem;
 }
 
-/* settings-label kept for the version string */
+/* Version string label */
 .settings-label {
     display: block;
     font-size: 0.72rem;
@@ -864,7 +885,7 @@ label.inline-label {
 /* --------------------------------------------------
    GENERIC MODAL
    Used by settings modals (aliases, profile, etc.)
-   Announcement keeps its own #announcement-* IDs.
+   The announcement keeps its own #announcement-* IDs.
 -------------------------------------------------- */
 .modal-overlay {
     position: fixed;

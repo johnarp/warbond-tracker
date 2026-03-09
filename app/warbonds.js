@@ -6,7 +6,6 @@ let liberationStatus = JSON.parse(localStorage.getItem("liberationStatus")) || {
 // --------------------------------------------------
 // REFERENCES
 // --------------------------------------------------
-
 const grid        = document.getElementById("warbonds-grid");
 const sortSelect  = document.getElementById("sortBy");
 const toggleTitle = document.getElementById("toggleTitle");
@@ -17,25 +16,26 @@ const searchInput = document.getElementById("search");
 const searchClear = document.getElementById("search-clear");
 
 // --------------------------------------------------
-// JSON
+// DATA
 // --------------------------------------------------
-
 fetch("./app/warbonds.json")
     .then(r => r.json())
     .then(data => {
         warbonds = data;
         render();
-        document.getElementById("search")?.focus();
+        searchInput?.focus();
     });
 
 // --------------------------------------------------
 // FILTER HELPERS
 // --------------------------------------------------
 
+// Returns the currently active filter value from a toggle group.
 function activeValue(container) {
     return container.querySelector(".filter-btn.active")?.dataset.value ?? "all";
 }
 
+// Wires up click handlers for a filter toggle group.
 function initToggles(container) {
     container.querySelectorAll(".filter-btn").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -47,20 +47,54 @@ function initToggles(container) {
 }
 
 // --------------------------------------------------
+// CARD CREATION
+// Extracted from render() to keep render() readable
+// and to make each card's construction easy to follow.
+// --------------------------------------------------
+function createCard(item) {
+    const status = liberationStatus[item.title];
+
+    const card = document.createElement("div");
+    card.className = `card${status ? ` ${status}` : ""}`;
+
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "image-wrapper";
+
+    const img = document.createElement("img");
+    img.src     = item.cover;
+    img.alt     = item.title;
+    img.loading = "lazy";
+
+    const stamp = document.createElement("div");
+    stamp.className   = "stamp";
+    stamp.textContent = "LIBERATED";
+
+    // Title is overlaid on the image at bottom via CSS
+    const title = document.createElement("h3");
+    title.className   = `title${toggleTitle.checked ? "" : " hidden"}`;
+    title.textContent = item.title;
+
+    imageWrapper.append(img, stamp, title);
+    card.appendChild(imageWrapper);
+    card.addEventListener("click", e => showStatusMenu(e, item.title, card));
+
+    return card;
+}
+
+// --------------------------------------------------
 // RENDER
 // --------------------------------------------------
-
 function render() {
     grid.innerHTML = "";
     let filtered = [...warbonds];
 
-    // FILTER: Type
+    // Filter: Type
     const typeVal = activeValue(typeFilter);
     if (typeVal !== "all") {
         filtered = filtered.filter(w => w.type.toLowerCase() === typeVal);
     }
 
-    // FILTER: Liberation
+    // Filter: Liberation status
     const libVal = activeValue(liberation);
     if (libVal === "liberated") {
         filtered = filtered.filter(w => liberationStatus[w.title] === "liberated");
@@ -72,17 +106,16 @@ function render() {
         );
     }
 
-    // FILTER: Search
+    // Filter: Search
     const query = searchInput.value.trim().toLowerCase();
     if (query) {
-        filtered = filtered.filter(w => {
-            const titleMatch = w.title.toLowerCase().includes(query);
-            const aliasMatch = (w.aliases || []).some(a => a.toLowerCase().includes(query));
-            return titleMatch || aliasMatch;
-        });
+        filtered = filtered.filter(w =>
+            w.title.toLowerCase().includes(query) ||
+            (w.aliases || []).some(a => a.toLowerCase().includes(query))
+        );
     }
 
-    // SORT
+    // Sort
     const [field, direction] = sortSelect.value.split("-");
     filtered.sort((a, b) => {
         const result = field === "release"
@@ -91,38 +124,10 @@ function render() {
         return direction === "asc" ? result : -result;
     });
 
-    // RENDER CARDS
-    filtered.forEach(item => {
-        const status = liberationStatus[item.title];
-
-        const card = document.createElement("div");
-        card.classList.add("card");
-        if (status === "liberated")  card.classList.add("liberated");
-        if (status === "liberating") card.classList.add("liberating");
-
-        const imageWrapper = document.createElement("div");
-        imageWrapper.classList.add("image-wrapper");
-
-        const img = document.createElement("img");
-        img.src = item.cover;
-        img.alt = item.title;
-        img.loading = "lazy";
-
-        const stamp = document.createElement("div");
-        stamp.classList.add("stamp");
-        stamp.textContent = "LIBERATED";
-
-        // Title lives inside imageWrapper — overlaid at bottom via CSS
-        const title = document.createElement("h3");
-        title.textContent = item.title;
-        title.classList.add("title");
-        if (!toggleTitle.checked) title.classList.add("hidden");
-
-        imageWrapper.append(img, stamp, title);
-        card.addEventListener("click", e => showStatusMenu(e, item.title, card));
-        card.appendChild(imageWrapper);
-        grid.appendChild(card);
-    });
+    // Build and append cards
+    const fragment = document.createDocumentFragment();
+    filtered.forEach(item => fragment.appendChild(createCard(item)));
+    grid.appendChild(fragment);
 
     updatePercentage();
 }
@@ -130,19 +135,19 @@ function render() {
 // --------------------------------------------------
 // STATUS MENU
 // --------------------------------------------------
-
 function closeStatusMenu(menu) {
     menu.remove();
 }
 
 function showStatusMenu(event, itemTitle, cardElement) {
+    // If a menu is already open, close it and return
     const existing = document.querySelector(".status-menu");
     if (existing) { closeStatusMenu(existing); return; }
 
-    const menu = document.createElement("div");
-    menu.classList.add("status-menu");
-
     const currentStatus = liberationStatus[itemTitle] || "unliberated";
+
+    const menu = document.createElement("div");
+    menu.className = "status-menu";
 
     const options = [
         { value: "unliberated", label: "Unliberated" },
@@ -153,8 +158,7 @@ function showStatusMenu(event, itemTitle, cardElement) {
     options.forEach(({ value, label }) => {
         const btn = document.createElement("button");
         btn.textContent = label;
-        btn.classList.add("status-option");
-        if (currentStatus === value) btn.classList.add("active");
+        btn.className   = `status-option${currentStatus === value ? " active" : ""}`;
 
         btn.addEventListener("click", e => {
             e.stopPropagation();
@@ -171,16 +175,13 @@ function showStatusMenu(event, itemTitle, cardElement) {
         menu.appendChild(btn);
     });
 
+    // Center the menu over the card
     const rect = cardElement.getBoundingClientRect();
-    Object.assign(menu.style, {
-        position:  "fixed",
-        left:      `${rect.left + rect.width  / 2}px`,
-        top:       `${rect.top  + rect.height / 2}px`,
-        transform: "translate(-50%, -50%)",
-    });
+    menu.style.cssText = `position:fixed; left:${rect.left + rect.width / 2}px; top:${rect.top + rect.height / 2}px; transform:translate(-50%,-50%)`;
 
     document.body.appendChild(menu);
 
+    // Close when clicking outside
     setTimeout(() => {
         document.addEventListener("click", function dismiss(e) {
             if (!menu.contains(e.target)) {
@@ -192,9 +193,8 @@ function showStatusMenu(event, itemTitle, cardElement) {
 }
 
 // --------------------------------------------------
-// PERCENTAGE
+// PERCENTAGE BAR
 // --------------------------------------------------
-
 function updatePercentage() {
     const total           = warbonds.length;
     const liberatedCount  = Object.values(liberationStatus).filter(s => s === "liberated").length;
@@ -209,9 +209,35 @@ function updatePercentage() {
 }
 
 // --------------------------------------------------
+// CARD SIZE
+// Separated into two functions: applyCardSize (DOM only,
+// used on restore) and saveCardSize (DOM + localStorage,
+// used on user interaction) to avoid writing localStorage
+// on every page load.
+// --------------------------------------------------
+function applyCardSize(size) {
+    grid.classList.remove("grid-small", "grid-medium", "grid-large");
+    grid.classList.add(`grid-${size}`);
+}
+
+const sizeGroup = document.getElementById("cardSize");
+const savedSize = localStorage.getItem("cardSize") || "medium";
+
+sizeGroup.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.value === savedSize);
+    btn.addEventListener("click", () => {
+        sizeGroup.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyCardSize(btn.dataset.value);
+        localStorage.setItem("cardSize", btn.dataset.value);
+    });
+});
+
+applyCardSize(savedSize);
+
+// --------------------------------------------------
 // LISTENERS
 // --------------------------------------------------
-
 initToggles(typeFilter);
 initToggles(liberation);
 
@@ -226,24 +252,6 @@ toggleTitle.addEventListener("change", () => {
         t.classList.toggle("hidden", !toggleTitle.checked)
     );
 });
-
-// Card size
-const sizeGroup = document.getElementById("cardSize");
-function applyCardSize(size) {
-    grid.classList.remove("grid-small", "grid-medium", "grid-large");
-    grid.classList.add(`grid-${size}`);
-    localStorage.setItem("cardSize", size);
-}
-const savedSize = localStorage.getItem("cardSize") || "medium";
-sizeGroup.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.value === savedSize);
-    btn.addEventListener("click", () => {
-        sizeGroup.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        applyCardSize(btn.dataset.value);
-    });
-});
-applyCardSize(savedSize);
 
 let searchDebounce;
 searchInput.addEventListener("input", () => {
