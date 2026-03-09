@@ -1,32 +1,95 @@
-const THEME_COLORS = {
-    helldivers:            '#ffe900',
-    terminids:             '#ffb900',
-    automatons:            '#ff7171',
-    illuminate:            '#cd8ae9',
-    'oled-helldivers':     '#ffe900',
-    'oled-terminids':      '#ffb900',
-    'oled-automatons':     '#ff7171',
-    'oled-illuminate':     '#cd8ae9',
-    'super-earth':         '#4da6ff',
-    'meridian-black-hole': '#cd8ae9',
-};
-
-// Apply theme on every load, not just when visiting styles.html
+// Apply theme on every load, not just when visiting styles.html.
+// Theme colour for the mobile nav bar is read directly from the CSS variable
+// so there's no parallel THEME_COLORS map to maintain alongside styles.css.
 window.applyTheme = function(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
     document.querySelectorAll(".theme-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.theme === theme);
     });
-    // Update mobile browser nav bar color
+    // Read --color-primary from the applied theme rather than a hard-coded map
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) metaTheme.content = THEME_COLORS[theme] ?? '#ffe900';
+    if (metaTheme) {
+        const color = getComputedStyle(document.documentElement)
+            .getPropertyValue("--color-primary").trim();
+        metaTheme.content = color || "#ffe900";
+    }
 };
 
 // CRT scanline toggle — global so settings.js can call it
 window.setCrt = function(enabled) {
     document.documentElement.classList.toggle("no-crt", !enabled);
     localStorage.setItem("crt", enabled ? "1" : "0");
+};
+
+// --------------------------------------------------
+// SHARED MODAL
+// Used by announcement.js, settings.js, and any
+// future feature that needs a consistent modal.
+//
+// Options:
+//   tag        {string}   - small label bar at the top
+//   title      {string}   - optional heading inside the body
+//   content    {Element}  - DOM node to insert as the body content
+//   image      {string}   - optional image URL shown below the tag bar
+//   closeLabel {string}   - close button text (default "Close")
+//   onClose    {Function} - optional callback fired before the modal is removed
+// --------------------------------------------------
+window.showModal = function({ tag, title, content, image, closeLabel = "Close", onClose } = {}) {
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+
+    const panel = document.createElement("div");
+    panel.className = "modal-panel";
+
+    // Tag bar
+    const tagEl = document.createElement("div");
+    tagEl.className   = "modal-tag";
+    tagEl.textContent = tag;
+    panel.appendChild(tagEl);
+
+    // Optional image (used by announcements)
+    if (image) {
+        const img = document.createElement("img");
+        img.className = "modal-img";
+        img.src = image;
+        img.alt = title || "";
+        panel.appendChild(img);
+    }
+
+    // Body
+    const body = document.createElement("div");
+    body.className = "modal-body";
+
+    if (title) {
+        const titleEl = document.createElement("h2");
+        titleEl.className   = "modal-title";
+        titleEl.textContent = title;
+        body.appendChild(titleEl);
+    }
+
+    if (content) body.appendChild(content);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className   = "modal-close";
+    closeBtn.textContent = closeLabel;
+
+    function dismiss() {
+        if (onClose) onClose();
+        overlay.remove();
+    }
+
+    closeBtn.addEventListener("click", dismiss);
+    body.appendChild(closeBtn);
+
+    panel.appendChild(body);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // Click backdrop to dismiss
+    overlay.addEventListener("click", e => { if (e.target === overlay) dismiss(); });
+
+    return overlay;
 };
 
 applyTheme(localStorage.getItem("theme") || "helldivers");

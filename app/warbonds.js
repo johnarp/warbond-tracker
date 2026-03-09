@@ -69,10 +69,12 @@ function createCard(item) {
     stamp.className   = "stamp";
     stamp.textContent = "LIBERATED";
 
-    // Title is overlaid on the image at bottom via CSS
+    // Title overlaid on the image at bottom via CSS.
+    // Use the short title if available and Short Titles is enabled.
+    const showShort = localStorage.getItem("showShortTitle") === "true";
     const title = document.createElement("h3");
     title.className   = `title${toggleTitle.checked ? "" : " hidden"}`;
-    title.textContent = item.title;
+    title.textContent = (showShort && item.short) ? item.short : item.title;
 
     imageWrapper.append(img, stamp, title);
     card.appendChild(imageWrapper);
@@ -266,6 +268,29 @@ searchClear.addEventListener("click", e => {
     searchClear.classList.remove("visible");
     searchInput.focus();
     render();
+});
+
+// --------------------------------------------------
+// KEYBOARD SHORTCUT — press / to focus the search bar
+// Ignores the keypress if a modifier key is held
+// (keeping Ctrl free for the future stratagem input).
+// Self-removes once the search element leaves the DOM.
+// --------------------------------------------------
+document.addEventListener("keydown", function focusSearch(e) {
+    if (e.key !== "/") return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+    // Remove self if this view is no longer active
+    if (!document.getElementById("search")) {
+        document.removeEventListener("keydown", focusSearch);
+        return;
+    }
+
+    const active = document.activeElement;
+    if (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT") return;
+
+    e.preventDefault();
+    searchInput.focus();
 });
 
 })();

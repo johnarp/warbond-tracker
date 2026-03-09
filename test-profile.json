@@ -10,16 +10,18 @@
     "Masters of Ceremony": "liberated",
     "Obedient Democracy Support Troopers": "liberated",
     "Polar Patriots": "liberated",
-    "Redacted Regiment": "liberating",
+    "Redacted Regiment": "liberated",
     "Servants of Freedom": "liberated",
     "Steeled Veterans": "liberated",
     "Urban Legends": "liberated",
     "Viper Commandos": "liberated",
-    "Truth Enforcers": "liberated"
+    "Truth Enforcers": "liberated",
+    "Siege Breakers": "liberating"
   },
-  "theme": "illuminate",
+  "theme": "super-earth",
   "showTitle": "false",
   "cardSize": "large",
-  "crt": "1",
-  "announcement_seen": "1.1.0"
+  "crt": "0",
+  "announcement_seen": "1.2.0",
+  "showShortTitle": "true"
 }

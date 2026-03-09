@@ -28,6 +28,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
 
+## [1.2.2] - 2026-03-09
+
+### Added
+
+- Short titles with toggle in Settings
+- Slash to focus search bar
+- ODST, Redacted Regiment, and Siege Breakers Super Styles
+- Red Style
+- Unliberated count in Show Profile
+
+### Changed
+
+- Improved Open Graph tags
+- Gave Machinery of Oppression Super Style its mobile navigation color
+- Pop-up modal is shared between announcements and show aliases/profile
+
+### Removed
+
+- Hardcoded color map in `views.js`, uses CSS variable instead
+
 ## [1.2.1] - 2026-03-09
 
 ### Added

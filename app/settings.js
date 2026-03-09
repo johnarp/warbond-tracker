@@ -24,10 +24,23 @@ crtToggle.addEventListener("change", () => {
 });
 
 // --------------------------------------------------
+// DISPLAY — Short Titles toggle
+// --------------------------------------------------
+
+const shortTitleToggle = document.getElementById("toggleShortTitle");
+shortTitleToggle.checked = localStorage.getItem("showShortTitle") === "true";
+shortTitleToggle.addEventListener("change", () => {
+    localStorage.setItem("showShortTitle", String(shortTitleToggle.checked));
+});
+
+// --------------------------------------------------
 // WALL OF MARTYRS — export / import everything
 // --------------------------------------------------
 
-const ALL_KEYS = ["liberationStatus", "theme", "showTitle", "cardSize", "crt", "announcement_seen"];
+const ALL_KEYS = [
+    "liberationStatus", "theme", "showTitle", "cardSize",
+    "crt", "announcement_seen", "showShortTitle",
+];
 
 document.getElementById("exportData").addEventListener("click", () => {
     const data = {};
@@ -60,9 +73,13 @@ importFile.addEventListener("change", e => {
                 localStorage.setItem("liberationStatus", JSON.stringify(data.liberationStatus));
             }
             if (data.theme && window.applyTheme)    applyTheme(data.theme);
-            if (data.showTitle  != null)             localStorage.setItem("showTitle",  data.showTitle);
-            if (data.cardSize   != null)             localStorage.setItem("cardSize",   data.cardSize);
-            if (data.crt        != null) {
+            if (data.showTitle      != null)         localStorage.setItem("showTitle",      data.showTitle);
+            if (data.cardSize       != null)         localStorage.setItem("cardSize",        data.cardSize);
+            if (data.showShortTitle != null) {
+                localStorage.setItem("showShortTitle", data.showShortTitle);
+                shortTitleToggle.checked = data.showShortTitle === "true";
+            }
+            if (data.crt != null) {
                 localStorage.setItem("crt", data.crt);
                 if (window.setCrt) setCrt(data.crt !== "0");
                 crtToggle.checked = data.crt !== "0";
@@ -94,47 +111,8 @@ document.getElementById("clearStorage").addEventListener("click", () => {
     if (window.applyTheme) applyTheme("helldivers");
     if (window.setCrt)     setCrt(true);
     crtToggle.checked = true;
+    shortTitleToggle.checked = false;
 });
-
-// --------------------------------------------------
-// GENERIC MODAL HELPER
-// --------------------------------------------------
-
-function showModal({ tag, title, content }) {
-    const overlay = document.createElement("div");
-    overlay.className = "modal-overlay";
-
-    const panel = document.createElement("div");
-    panel.className = "modal-panel";
-
-    const tagEl = document.createElement("div");
-    tagEl.className = "modal-tag";
-    tagEl.textContent = tag;
-
-    const body = document.createElement("div");
-    body.className = "modal-body";
-
-    if (title) {
-        const titleEl = document.createElement("h2");
-        titleEl.className = "modal-title";
-        titleEl.textContent = title;
-        body.appendChild(titleEl);
-    }
-
-    body.appendChild(content);
-
-    const closeBtn = document.createElement("button");
-    closeBtn.className = "modal-close";
-    closeBtn.textContent = "Close";
-    closeBtn.addEventListener("click", () => overlay.remove());
-    body.appendChild(closeBtn);
-
-    panel.append(tagEl, body);
-    overlay.appendChild(panel);
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
-}
 
 // --------------------------------------------------
 // INTEL — View Aliases
@@ -153,27 +131,37 @@ document.getElementById("viewAliases").addEventListener("click", async () => {
     table.className = "aliases-table";
 
     warbonds.forEach(w => {
-        const tr    = document.createElement("tr");
-        const tdName = document.createElement("td");
+        const tr         = document.createElement("tr");
+        const tdName     = document.createElement("td");
         tdName.textContent = w.title;
-        const tdAliases = document.createElement("td");
+        const tdAliases  = document.createElement("td");
         tdAliases.textContent = (w.aliases || []).join(", ") || "—";
         tr.append(tdName, tdAliases);
         table.appendChild(tr);
     });
 
-    showModal({ tag: "Intel", title: "Warbond Aliases", content: table });
+    window.showModal({ tag: "Intel", title: "Warbond Aliases", content: table });
 });
 
 // --------------------------------------------------
 // INTEL — View Profile
 // --------------------------------------------------
 
-document.getElementById("viewProfile").addEventListener("click", () => {
+document.getElementById("viewProfile").addEventListener("click", async () => {
+    // Fetch total warbond count to calculate unliberated
+    let totalWarbonds = 0;
+    try {
+        const data = await fetch("./app/warbonds.json").then(r => r.json());
+        totalWarbonds = data.length;
+    } catch { /* unliberated will show as — */ }
+
     const liberation = JSON.parse(localStorage.getItem("liberationStatus") || "{}");
     const values     = Object.values(liberation);
     const liberated  = values.filter(s => s === "liberated").length;
     const liberating = values.filter(s => s === "liberating").length;
+    const unliberated = totalWarbonds
+        ? totalWarbonds - liberated - liberating
+        : "—";
 
     const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : "—";
 
@@ -181,7 +169,7 @@ document.getElementById("viewProfile").addEventListener("click", () => {
         const wrap = document.createElement("div");
         wrap.className = "profile-section";
         const h = document.createElement("div");
-        h.className = "profile-section-title";
+        h.className   = "profile-section-title";
         h.textContent = heading;
         wrap.appendChild(h);
         rows.forEach(([label, value]) => {
@@ -197,20 +185,22 @@ document.getElementById("viewProfile").addEventListener("click", () => {
 
     const container = document.createElement("div");
     container.appendChild(section("Liberation", [
-        ["Liberated",  liberated],
-        ["Liberating", liberating],
+        ["Liberated",   liberated],
+        ["Liberating",  liberating],
+        ["Unliberated", unliberated],
     ]));
     container.appendChild(section("Settings", [
-        ["Theme",      cap(localStorage.getItem("theme") || "helldivers")],
-        ["Show Title", localStorage.getItem("showTitle") === "true" ? "On" : "Off"],
-        ["Card Size",  cap(localStorage.getItem("cardSize") || "medium")],
-        ["CRT Effect", localStorage.getItem("crt") !== "0" ? "On" : "Off"],
+        ["Theme",        cap(localStorage.getItem("theme") || "helldivers")],
+        ["Show Title",   localStorage.getItem("showTitle")      === "true" ? "On" : "Off"],
+        ["Short Titles", localStorage.getItem("showShortTitle") === "true" ? "On" : "Off"],
+        ["Card Size",    cap(localStorage.getItem("cardSize") || "medium")],
+        ["CRT Effect",   localStorage.getItem("crt") !== "0" ? "On" : "Off"],
     ]));
     container.appendChild(section("Announcements", [
         ["Last Seen", localStorage.getItem("announcement_seen") || "—"],
     ]));
 
-    showModal({ tag: "Intel", title: "Profile", content: container });
+    window.showModal({ tag: "Intel", title: "Profile", content: container });
 });
 
 })();
