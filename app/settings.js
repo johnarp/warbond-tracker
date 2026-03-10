@@ -24,6 +24,16 @@ crtToggle.addEventListener("change", () => {
 });
 
 // --------------------------------------------------
+// DISPLAY — OLED toggle
+// --------------------------------------------------
+
+const oledToggle = document.getElementById("toggleOled");
+oledToggle.checked = localStorage.getItem("oled") === "1";
+oledToggle.addEventListener("change", () => {
+    if (window.setOled) setOled(oledToggle.checked);
+});
+
+// --------------------------------------------------
 // DISPLAY — Short Titles toggle
 // --------------------------------------------------
 
@@ -39,7 +49,7 @@ shortTitleToggle.addEventListener("change", () => {
 
 const ALL_KEYS = [
     "liberationStatus", "theme", "showTitle", "cardSize",
-    "crt", "announcement_seen", "showShortTitle",
+    "crt", "oled", "announcement_seen", "showShortTitle",
 ];
 
 document.getElementById("exportData").addEventListener("click", () => {
@@ -84,12 +94,17 @@ importFile.addEventListener("change", e => {
                 if (window.setCrt) setCrt(data.crt !== "0");
                 crtToggle.checked = data.crt !== "0";
             }
+            if (data.oled != null) {
+                localStorage.setItem("oled", data.oled);
+                if (window.setOled) setOled(data.oled === "1");
+                oledToggle.checked = data.oled === "1";
+            }
             if (data.announcement_seen != null) {
                 localStorage.setItem("announcement_seen", data.announcement_seen);
             }
-            alert("Import successful.");
+            window.showNotice({ tag: "Wall of Martyrs", message: "Import successful." });
         } catch {
-            alert("Invalid file.");
+            window.showNotice({ tag: "Wall of Martyrs", message: "Invalid file.", label: "Dismiss" });
         }
     };
     reader.readAsText(file);
@@ -101,17 +116,29 @@ importFile.addEventListener("change", e => {
 // --------------------------------------------------
 
 document.getElementById("clearLiberation").addEventListener("click", () => {
-    if (!confirm("Clear all liberation progress?\nAre you sure?")) return;
-    localStorage.removeItem("liberationStatus");
+    window.showConfirm({
+        tag:          "Enemy Artillery",
+        message:      "Clear all liberation progress? This cannot be undone.",
+        confirmLabel: "Clear",
+        onConfirm:    () => localStorage.removeItem("liberationStatus"),
+    });
 });
 
 document.getElementById("clearStorage").addEventListener("click", () => {
-    if (!confirm("Wipe ALL saved data?\nAre you sure?")) return;
-    localStorage.clear();
-    if (window.applyTheme) applyTheme("helldivers");
-    if (window.setCrt)     setCrt(true);
-    crtToggle.checked = true;
-    shortTitleToggle.checked = false;
+    window.showConfirm({
+        tag:          "Enemy Artillery",
+        message:      "Wipe ALL saved data? This cannot be undone.",
+        confirmLabel: "Wipe",
+        onConfirm: () => {
+            localStorage.clear();
+            if (window.applyTheme) applyTheme("helldivers");
+            if (window.setCrt)     setCrt(true);
+            if (window.setOled)    setOled(false);
+            crtToggle.checked        = true;
+            oledToggle.checked       = false;
+            shortTitleToggle.checked = false;
+        },
+    });
 });
 
 // --------------------------------------------------
@@ -194,7 +221,8 @@ document.getElementById("viewProfile").addEventListener("click", async () => {
         ["Show Title",   localStorage.getItem("showTitle")      === "true" ? "On" : "Off"],
         ["Short Titles", localStorage.getItem("showShortTitle") === "true" ? "On" : "Off"],
         ["Card Size",    cap(localStorage.getItem("cardSize") || "medium")],
-        ["CRT Effect",   localStorage.getItem("crt") !== "0" ? "On" : "Off"],
+        ["CRT Effect",   localStorage.getItem("crt")  !== "0" ? "On" : "Off"],
+        ["OLED",         localStorage.getItem("oled") === "1" ? "On" : "Off"],
     ]));
     container.appendChild(section("Announcements", [
         ["Last Seen", localStorage.getItem("announcement_seen") || "—"],

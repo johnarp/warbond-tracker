@@ -4,16 +4,58 @@ let warbonds = [];
 let liberationStatus = JSON.parse(localStorage.getItem("liberationStatus")) || {};
 
 // --------------------------------------------------
+// CONTROL STATE
+// typeActive and libActive are Sets — empty means "all".
+// sortValue and sizeValue are always a single string.
+// --------------------------------------------------
+let sortValue  = localStorage.getItem("sort")     || "release-desc";
+let sizeValue  = localStorage.getItem("cardSize") || "medium";
+let typeActive = new Set();
+let libActive  = new Set();
+
+// --------------------------------------------------
 // REFERENCES
 // --------------------------------------------------
 const grid        = document.getElementById("warbonds-grid");
-const sortSelect  = document.getElementById("sortBy");
 const toggleTitle = document.getElementById("toggleTitle");
-const typeFilter  = document.getElementById("typeFilter");
-const liberation  = document.getElementById("liberation");
 const percentage  = document.getElementById("percentage");
 const searchInput = document.getElementById("search");
 const searchClear = document.getElementById("search-clear");
+
+const sortBtn = document.getElementById("sortBtn");
+const typeBtn = document.getElementById("typeBtn");
+const libBtn  = document.getElementById("libBtn");
+const sizeBtn = document.getElementById("sizeBtn");
+
+// --------------------------------------------------
+// POPUP OPTIONS
+// --------------------------------------------------
+const SORT_OPTIONS = [
+    { value: "release-desc", label: "Newest First" },
+    { value: "release-asc",  label: "Oldest First" },
+    { value: "title-asc",    label: "Title (A-Z)"  },
+    { value: "title-desc",   label: "Title (Z-A)"  },
+    { value: "type-asc",     label: "Type (A-Z)"   },
+    { value: "type-desc",    label: "Type (Z-A)"   },
+];
+
+const TYPE_OPTIONS = [
+    { value: "standard",  label: "Standard"  },
+    { value: "premium",   label: "Premium"   },
+    { value: "legendary", label: "Legendary" },
+];
+
+const LIB_OPTIONS = [
+    { value: "liberated",   label: "Liberated"   },
+    { value: "liberating",  label: "Liberating"  },
+    { value: "unliberated", label: "Unliberated" },
+];
+
+const SIZE_OPTIONS = [
+    { value: "small",  label: "Small"  },
+    { value: "medium", label: "Medium" },
+    { value: "large",  label: "Large"  },
+];
 
 // --------------------------------------------------
 // DATA
@@ -22,34 +64,156 @@ fetch("./app/warbonds.json")
     .then(r => r.json())
     .then(data => {
         warbonds = data;
+        applyCardSize(sizeValue);
         render();
         searchInput?.focus();
     });
 
 // --------------------------------------------------
-// FILTER HELPERS
+// GENERIC CONTROL POPUP
+// Shared by Sort, Type, Status, and Size buttons.
+//
+// Single-select (multiSelect: false):
+//   Closes automatically after the user picks an option.
+//
+// Multi-select (multiSelect: true):
+//   Stays open so the user can toggle multiple options.
+//   Closes only when clicking outside.
+//
+// Clicking the same anchor button while its popup is
+// already open will toggle (close) the popup.
+//
+// Positions itself below the anchor, flips above if
+// it would overflow the bottom of the viewport.
+// --------------------------------------------------
+function showControlPopup({ anchor, options, multiSelect, isActive, onPick }) {
+    // Close any open control popup; if it belongs to this anchor, just toggle closed
+    const existing = document.querySelector(".status-menu[data-ctrl]");
+    if (existing) {
+        const wasThis = existing.dataset.ctrl === anchor.id;
+        existing.remove();
+        if (wasThis) return;
+    }
+
+    const menu = document.createElement("div");
+    menu.className    = "status-menu";
+    menu.dataset.ctrl = anchor.id; // distinguishes this from the card status menu
+
+    options.forEach(({ value, label }) => {
+        const btn = document.createElement("button");
+        btn.textContent = label;
+        btn.className   = `status-option${isActive(value) ? " active" : ""}`;
+
+        btn.addEventListener("click", e => {
+            e.stopPropagation();
+            onPick(value);
+            if (multiSelect) {
+                // Reflect toggled state in place — keep the popup open
+                btn.className = `status-option${isActive(value) ? " active" : ""}`;
+            } else {
+                menu.remove();
+            }
+        });
+
+        menu.appendChild(btn);
+    });
+
+    // Append first so we can measure real dimensions for positioning
+    document.body.appendChild(menu);
+
+    const ar = anchor.getBoundingClientRect();
+    const mr = menu.getBoundingClientRect();
+    let left = ar.left + ar.width / 2 - mr.width / 2;
+    let top  = ar.bottom + 6;
+
+    // Flip above the anchor if the popup would overflow the bottom of the viewport
+    if (top + mr.height > window.innerHeight - 8) {
+        top = ar.top - mr.height - 6;
+    }
+
+    // Clamp horizontally so the popup stays inside the viewport
+    left = Math.max(8, Math.min(left, window.innerWidth - mr.width - 8));
+
+    menu.style.left = `${left}px`;
+    menu.style.top  = `${top}px`;
+
+    // Close when clicking outside
+    setTimeout(() => {
+        document.addEventListener("click", function dismiss(e) {
+            if (!menu.contains(e.target)) {
+                menu.remove();
+                document.removeEventListener("click", dismiss);
+            }
+        });
+    }, 0);
+}
+
+// --------------------------------------------------
+// CONTROL BUTTON WIRING
 // --------------------------------------------------
 
-// Returns the currently active filter value from a toggle group.
-function activeValue(container) {
-    return container.querySelector(".filter-btn.active")?.dataset.value ?? "all";
-}
-
-// Wires up click handlers for a filter toggle group.
-function initToggles(container) {
-    container.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            container.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
+// Sort — single-select, persisted
+sortBtn.addEventListener("click", () => {
+    showControlPopup({
+        anchor:      sortBtn,
+        options:     SORT_OPTIONS,
+        multiSelect: false,
+        isActive:    v => v === sortValue,
+        onPick: v => {
+            sortValue = v;
+            localStorage.setItem("sort", v);
             render();
-        });
+        },
     });
-}
+});
+
+// Type — multi-select; button highlights when any filter is active
+typeBtn.addEventListener("click", () => {
+    showControlPopup({
+        anchor:      typeBtn,
+        options:     TYPE_OPTIONS,
+        multiSelect: true,
+        isActive:    v => typeActive.has(v),
+        onPick: v => {
+            typeActive.has(v) ? typeActive.delete(v) : typeActive.add(v);
+            typeBtn.classList.toggle("active", typeActive.size > 0);
+            render();
+        },
+    });
+});
+
+// Status — multi-select; button highlights when any filter is active
+libBtn.addEventListener("click", () => {
+    showControlPopup({
+        anchor:      libBtn,
+        options:     LIB_OPTIONS,
+        multiSelect: true,
+        isActive:    v => libActive.has(v),
+        onPick: v => {
+            libActive.has(v) ? libActive.delete(v) : libActive.add(v);
+            libBtn.classList.toggle("active", libActive.size > 0);
+            render();
+        },
+    });
+});
+
+// Size — single-select, persisted
+sizeBtn.addEventListener("click", () => {
+    showControlPopup({
+        anchor:      sizeBtn,
+        options:     SIZE_OPTIONS,
+        multiSelect: false,
+        isActive:    v => v === sizeValue,
+        onPick: v => {
+            sizeValue = v;
+            applyCardSize(v);
+            localStorage.setItem("cardSize", v);
+        },
+    });
+});
 
 // --------------------------------------------------
 // CARD CREATION
-// Extracted from render() to keep render() readable
-// and to make each card's construction easy to follow.
 // --------------------------------------------------
 function createCard(item) {
     const status = liberationStatus[item.title];
@@ -69,8 +233,7 @@ function createCard(item) {
     stamp.className   = "stamp";
     stamp.textContent = "LIBERATED";
 
-    // Title overlaid on the image at bottom via CSS.
-    // Use the short title if available and Short Titles is enabled.
+    // Use short title if available and Short Titles is enabled in Settings
     const showShort = localStorage.getItem("showShortTitle") === "true";
     const title = document.createElement("h3");
     title.className   = `title${toggleTitle.checked ? "" : " hidden"}`;
@@ -90,22 +253,17 @@ function render() {
     grid.innerHTML = "";
     let filtered = [...warbonds];
 
-    // Filter: Type
-    const typeVal = activeValue(typeFilter);
-    if (typeVal !== "all") {
-        filtered = filtered.filter(w => w.type.toLowerCase() === typeVal);
+    // Filter: Type — OR logic, empty Set = show all
+    if (typeActive.size > 0) {
+        filtered = filtered.filter(w => typeActive.has(w.type.toLowerCase()));
     }
 
-    // Filter: Liberation status
-    const libVal = activeValue(liberation);
-    if (libVal === "liberated") {
-        filtered = filtered.filter(w => liberationStatus[w.title] === "liberated");
-    } else if (libVal === "liberating") {
-        filtered = filtered.filter(w => liberationStatus[w.title] === "liberating");
-    } else if (libVal === "unliberated") {
-        filtered = filtered.filter(w =>
-            !liberationStatus[w.title] || liberationStatus[w.title] === "unliberated"
-        );
+    // Filter: Liberation — OR logic, empty Set = show all
+    if (libActive.size > 0) {
+        filtered = filtered.filter(w => {
+            const s = liberationStatus[w.title] || "unliberated";
+            return libActive.has(s);
+        });
     }
 
     // Filter: Search
@@ -118,7 +276,7 @@ function render() {
     }
 
     // Sort
-    const [field, direction] = sortSelect.value.split("-");
+    const [field, direction] = sortValue.split("-");
     filtered.sort((a, b) => {
         const result = field === "release"
             ? new Date(a[field]) - new Date(b[field])
@@ -126,7 +284,6 @@ function render() {
         return direction === "asc" ? result : -result;
     });
 
-    // Build and append cards
     const fragment = document.createDocumentFragment();
     filtered.forEach(item => fragment.appendChild(createCard(item)));
     grid.appendChild(fragment);
@@ -135,21 +292,19 @@ function render() {
 }
 
 // --------------------------------------------------
-// STATUS MENU
+// CARD STATUS MENU
+// Separate from the control popup — positions itself
+// centered over the card rather than below a button.
 // --------------------------------------------------
-function closeStatusMenu(menu) {
-    menu.remove();
-}
-
 function showStatusMenu(event, itemTitle, cardElement) {
-    // If a menu is already open, close it and return
+    // Close any open popup (control or card) on first click; require a second click to open
     const existing = document.querySelector(".status-menu");
-    if (existing) { closeStatusMenu(existing); return; }
+    if (existing) { existing.remove(); return; }
 
     const currentStatus = liberationStatus[itemTitle] || "unliberated";
 
     const menu = document.createElement("div");
-    menu.className = "status-menu";
+    menu.className = "status-menu"; // no data-ctrl — identifies this as a card menu
 
     const options = [
         { value: "unliberated", label: "Unliberated" },
@@ -170,24 +325,23 @@ function showStatusMenu(event, itemTitle, cardElement) {
                 liberationStatus[itemTitle] = value;
             }
             localStorage.setItem("liberationStatus", JSON.stringify(liberationStatus));
-            closeStatusMenu(menu);
+            menu.remove();
             render();
         });
 
         menu.appendChild(btn);
     });
 
-    // Center the menu over the card
+    // Centered over the card
     const rect = cardElement.getBoundingClientRect();
     menu.style.cssText = `position:fixed; left:${rect.left + rect.width / 2}px; top:${rect.top + rect.height / 2}px; transform:translate(-50%,-50%)`;
 
     document.body.appendChild(menu);
 
-    // Close when clicking outside
     setTimeout(() => {
         document.addEventListener("click", function dismiss(e) {
             if (!menu.contains(e.target)) {
-                closeStatusMenu(menu);
+                menu.remove();
                 document.removeEventListener("click", dismiss);
             }
         });
@@ -207,45 +361,20 @@ function updatePercentage() {
         `${pct}% Liberated // ${liberatedCount} of ${total} Warbonds` +
         (liberatingCount > 0 ? ` // ${liberatingCount} Active ${liberatingCount === 1 ? "Front" : "Fronts"}` : "");
 
-    document.title = `${pct}% Liberated // Warbond Tracker`;
+    document.title = `${pct}% // Warbond Tracker`;
 }
 
 // --------------------------------------------------
 // CARD SIZE
-// Separated into two functions: applyCardSize (DOM only,
-// used on restore) and saveCardSize (DOM + localStorage,
-// used on user interaction) to avoid writing localStorage
-// on every page load.
 // --------------------------------------------------
 function applyCardSize(size) {
     grid.classList.remove("grid-small", "grid-medium", "grid-large");
     grid.classList.add(`grid-${size}`);
 }
 
-const sizeGroup = document.getElementById("cardSize");
-const savedSize = localStorage.getItem("cardSize") || "medium";
-
-sizeGroup.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.value === savedSize);
-    btn.addEventListener("click", () => {
-        sizeGroup.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        applyCardSize(btn.dataset.value);
-        localStorage.setItem("cardSize", btn.dataset.value);
-    });
-});
-
-applyCardSize(savedSize);
-
 // --------------------------------------------------
-// LISTENERS
+// SHOW TITLE
 // --------------------------------------------------
-initToggles(typeFilter);
-initToggles(liberation);
-
-sortSelect.addEventListener("change", render);
-
-// Restore showTitle from localStorage
 toggleTitle.checked = localStorage.getItem("showTitle") === "true";
 
 toggleTitle.addEventListener("change", () => {
@@ -255,6 +384,9 @@ toggleTitle.addEventListener("change", () => {
     );
 });
 
+// --------------------------------------------------
+// SEARCH
+// --------------------------------------------------
 let searchDebounce;
 searchInput.addEventListener("input", () => {
     searchClear.classList.toggle("visible", searchInput.value.length > 0);
@@ -271,24 +403,19 @@ searchClear.addEventListener("click", e => {
 });
 
 // --------------------------------------------------
-// KEYBOARD SHORTCUT — press / to focus the search bar
-// Ignores the keypress if a modifier key is held
-// (keeping Ctrl free for the future stratagem input).
-// Self-removes once the search element leaves the DOM.
+// KEYBOARD SHORTCUT — / to focus search
+// Ctrl is intentionally excluded for future stratagem input.
+// Self-removes if this view is unloaded.
 // --------------------------------------------------
 document.addEventListener("keydown", function focusSearch(e) {
     if (e.key !== "/") return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-
-    // Remove self if this view is no longer active
     if (!document.getElementById("search")) {
         document.removeEventListener("keydown", focusSearch);
         return;
     }
-
     const active = document.activeElement;
     if (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT") return;
-
     e.preventDefault();
     searchInput.focus();
 });

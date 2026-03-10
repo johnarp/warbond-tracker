@@ -100,6 +100,14 @@
         "cover": "./assets/warbonds/Control_Group_Premium_Warbond_Cover.png"
     },
     {
+        "title": "Obedient Democracy Support Troopers",
+        "short": "ODST",
+        "type": "Legendary",
+        "release": "2025/08/26",
+        "aliases": ["halo", "odst", "collab"],
+        "cover": "./assets/warbonds/Halo_ODST_Legendary_Warbond_Cover.png"
+    },
+    {
         "title": "Dust Devils",
         "type": "Premium",
         "release": "2025/09/04",
@@ -114,6 +122,13 @@
         "cover": "./assets/warbonds/Python_Commandos_Premium_Warbond_Cover.png"
     },
     {
+        "title": "Righteous Revenants",
+        "type": "Legendary",
+        "release": "2025/12/18",
+        "aliases": ["killzone", "collab"],
+        "cover": "./assets/warbonds/Righteous_Revenants_Legendary_Warbond_Cover.png"
+    },
+    {
         "title": "Redacted Regiment",
         "type": "Premium",
         "release": "2026/01/22",
@@ -125,20 +140,5 @@
         "type": "Premium",
         "release": "2026/02/03",
         "cover": "./assets/warbonds/Siege_Breakers_Premium_Warbond_Cover.png"
-    },
-    {
-        "title": "Obedient Democracy Support Troopers",
-        "short": "ODST",
-        "type": "Legendary",
-        "release": "2025/08/26",
-        "aliases": ["halo", "odst", "collab"],
-        "cover": "./assets/warbonds/Halo_ODST_Legendary_Warbond_Cover.png"
-    },
-    {
-        "title": "Righteous Revenants",
-        "type": "Legendary",
-        "release": "2025/12/18",
-        "aliases": ["killzone", "collab"],
-        "cover": "./assets/warbonds/Righteous_Revenants_Legendary_Warbond_Cover.png"
     }
 ]

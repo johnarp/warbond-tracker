@@ -2,6 +2,8 @@
 // Theme colour for the mobile nav bar is read directly from the CSS variable
 // so there's no parallel THEME_COLORS map to maintain alongside styles.css.
 window.applyTheme = function(theme) {
+    // Migrate legacy "oled-*" theme values saved before OLED became a global toggle
+    if (theme.startsWith("oled-")) theme = theme.slice(5);
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
     document.querySelectorAll(".theme-btn").forEach(btn => {
@@ -20,6 +22,13 @@ window.applyTheme = function(theme) {
 window.setCrt = function(enabled) {
     document.documentElement.classList.toggle("no-crt", !enabled);
     localStorage.setItem("crt", enabled ? "1" : "0");
+};
+
+// OLED toggle — overrides background colours to pure black on any theme.
+// Global so settings.js can call it.
+window.setOled = function(enabled) {
+    document.documentElement.classList.toggle("oled", enabled);
+    localStorage.setItem("oled", enabled ? "1" : "0");
 };
 
 // --------------------------------------------------
@@ -92,8 +101,82 @@ window.showModal = function({ tag, title, content, image, closeLabel = "Close", 
     return overlay;
 };
 
+// --------------------------------------------------
+// CONFIRM DIALOG
+// Replaces native confirm(). Shows a message with
+// Confirm and Cancel buttons. onConfirm fires only
+// if the user presses Confirm. Backdrop click = cancel.
+//
+// Options:
+//   tag       {string}   - tag bar label
+//   message   {string}   - body message text
+//   confirmLabel {string} - confirm button text (default "Confirm")
+//   onConfirm {Function} - callback fired on confirmation
+// --------------------------------------------------
+window.showConfirm = function({ tag = "Confirm", message, confirmLabel = "Confirm", onConfirm } = {}) {
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+
+    const panel = document.createElement("div");
+    panel.className = "modal-panel";
+
+    const tagEl = document.createElement("div");
+    tagEl.className   = "modal-tag";
+    tagEl.textContent = tag;
+    panel.appendChild(tagEl);
+
+    const body = document.createElement("div");
+    body.className = "modal-body";
+
+    const msg = document.createElement("p");
+    msg.className   = "modal-message";
+    msg.textContent = message;
+    body.appendChild(msg);
+
+    const btnRow = document.createElement("div");
+    btnRow.className = "modal-btn-row";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.className   = "modal-cancel";
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.addEventListener("click", () => overlay.remove());
+
+    const confirmBtn = document.createElement("button");
+    confirmBtn.className   = "modal-confirm";
+    confirmBtn.textContent = confirmLabel;
+    confirmBtn.addEventListener("click", () => {
+        overlay.remove();
+        if (onConfirm) onConfirm();
+    });
+
+    btnRow.append(cancelBtn, confirmBtn);
+    body.appendChild(btnRow);
+    panel.appendChild(body);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+};
+
+// --------------------------------------------------
+// NOTICE DIALOG
+// Replaces native alert(). A single-button info modal.
+//
+// Options:
+//   tag     {string} - tag bar label
+//   message {string} - body message text
+//   label   {string} - button text (default "OK")
+// --------------------------------------------------
+window.showNotice = function({ tag = "Notice", message, label = "OK" } = {}) {
+    const p = document.createElement("p");
+    p.className   = "modal-message";
+    p.textContent = message;
+    window.showModal({ tag, content: p, closeLabel: label });
+};
+
 applyTheme(localStorage.getItem("theme") || "helldivers");
-setCrt(localStorage.getItem("crt") !== "0"); // default: on
+setCrt(localStorage.getItem("crt")   !== "0"); // default: on
+setOled(localStorage.getItem("oled") === "1"); // default: off
 
 // --------------------------------------------------
 // SCRIPT LOADING

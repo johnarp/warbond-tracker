@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+[unreleased]: https://github.com/johnarp/warbond-tracker/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/johnarp/warbond-tracker/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/johnarp/warbond-tracker/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/johnarp/warbond-tracker/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/johnarp/warbond-tracker/compare/v1.0.5...v1.0.0
@@ -28,6 +30,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
 
+## [1.3.0] - 2026-03-10
+
+### Added
+
+- OLED toggle in Settings
+
+### Changed
+
+- Multi-select filters (eg. view both *Liberating* and *Unliberated*)
+- Control bar options are condensed into popups
+- Tab title from `#% Liberated // Warbond Tracker` to `#% // Warbond Tracker`
+- Clear Liberation and Clear All Data use the custom modal pop-up
+
+### Removed
+
+- Separate OLED themes
+
+### Fixed
+
+- Open Graph image size
+
 ## [1.2.2] - 2026-03-09
 
 ### Added
@@ -41,7 +64,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improved Open Graph tags
-- Gave Machinery of Oppression Super Style its mobile navigation color
 - Pop-up modal is shared between announcements and show aliases/profile
 
 ### Removed
