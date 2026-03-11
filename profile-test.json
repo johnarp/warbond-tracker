@@ -1,0 +1,29 @@
+{
+  "liberationStatus": {
+    "Siege Breakers": "liberating",
+    "Redacted Regiment": "liberated",
+    "Obedient Democracy Support Troopers": "liberated",
+    "Control Group": "liberated",
+    "Masters of Ceremony": "liberated",
+    "Borderline Justice": "liberated",
+    "Servants of Freedom": "liberated",
+    "Urban Legends": "liberated",
+    "Truth Enforcers": "liberated",
+    "Chemical Agents": "liberated",
+    "Freedom's Flame": "liberated",
+    "Viper Commandos": "liberated",
+    "Polar Patriots": "liberated",
+    "Democratic Detonation": "liberated",
+    "Cutting Edge": "liberated",
+    "Helldivers Mobilize!": "liberated",
+    "Steeled Veterans": "liberated"
+  },
+  "theme": "super-earth",
+  "showTitle": "false",
+  "cardSize": "medium",
+  "crt": "0",
+  "oled": "0",
+  "backdrop": "0",
+  "announcement_seen": "v1.3.0",
+  "showShortTitle": "true"
+}

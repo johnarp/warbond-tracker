@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[unreleased]: https://github.com/johnarp/warbond-tracker/compare/v1.2.2...HEAD
+[1.3.1]: https://github.com/johnarp/warbond-tracker/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/johnarp/warbond-tracker/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/johnarp/warbond-tracker/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/johnarp/warbond-tracker/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/johnarp/warbond-tracker/compare/v1.1.0...v1.2.0
@@ -29,6 +30,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.2]: https://github.com/johnarp/warbond-tracker/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
+
+## [1.3.1] - 2026-03-11
+
+### Added
+
+- Backdrop toggle that adds/strengths backgrounds to improve readability
+- `app/credits.json` with View Credits pop-up in Settings
+- Into the Unjust Super Style
+- Green Style
+
+### Changed
+
+- Improved colors of existing Styles
+- Updated README preview image
+- CRT effect is off by default
+- Super Style images are organized into separate folders
+
+### Removed
+
+- Both Redacted Regiment Super Styles
+- Credits from NOTICE
+
+### Fixed
+
+- Background image adjusting when browser address bar resizes viewport on mobile 
 
 ## [1.3.0] - 2026-03-10
 

@@ -1,13 +1,13 @@
 {
-    "version": "1.3.0",
-    "date": "2026-03-10",
+    "version": "1.3.1",
+    "date": "2026-03-11",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": "v1.3.0",
+        "id": null,
         "tag": "New Update",
         "title": "v1.3.0",
         "body": [

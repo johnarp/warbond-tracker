@@ -31,6 +31,14 @@ window.setOled = function(enabled) {
     localStorage.setItem("oled", enabled ? "1" : "0");
 };
 
+// BACKDROP toggle — adds dark backing and blur to UI elements that float
+// over background images, improving readability on Super Style themes.
+// Global so settings.js can call it.
+window.setBackdrop = function(enabled) {
+    document.documentElement.classList.toggle("backdrop", enabled);
+    localStorage.setItem("backdrop", enabled ? "1" : "0");
+};
+
 // --------------------------------------------------
 // SHARED MODAL
 // Used by announcement.js, settings.js, and any
@@ -175,8 +183,9 @@ window.showNotice = function({ tag = "Notice", message, label = "OK" } = {}) {
 };
 
 applyTheme(localStorage.getItem("theme") || "helldivers");
-setCrt(localStorage.getItem("crt")   !== "0"); // default: on
-setOled(localStorage.getItem("oled") === "1"); // default: off
+setCrt(localStorage.getItem("crt")         === "1"); // default: off
+setOled(localStorage.getItem("oled")       === "1"); // default: off
+setBackdrop(localStorage.getItem("backdrop") === "1"); // default: off
 
 // --------------------------------------------------
 // SCRIPT LOADING

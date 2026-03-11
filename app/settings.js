@@ -18,7 +18,7 @@ fetch("./app/meta.json")
 // --------------------------------------------------
 
 const crtToggle = document.getElementById("toggleCrt");
-crtToggle.checked = localStorage.getItem("crt") !== "0";
+crtToggle.checked = localStorage.getItem("crt") === "1";
 crtToggle.addEventListener("change", () => {
     if (window.setCrt) setCrt(crtToggle.checked);
 });
@@ -31,6 +31,16 @@ const oledToggle = document.getElementById("toggleOled");
 oledToggle.checked = localStorage.getItem("oled") === "1";
 oledToggle.addEventListener("change", () => {
     if (window.setOled) setOled(oledToggle.checked);
+});
+
+// --------------------------------------------------
+// DISPLAY — Backdrop toggle
+// --------------------------------------------------
+
+const backdropToggle = document.getElementById("toggleBackdrop");
+backdropToggle.checked = localStorage.getItem("backdrop") === "1";
+backdropToggle.addEventListener("change", () => {
+    if (window.setBackdrop) setBackdrop(backdropToggle.checked);
 });
 
 // --------------------------------------------------
@@ -49,7 +59,7 @@ shortTitleToggle.addEventListener("change", () => {
 
 const ALL_KEYS = [
     "liberationStatus", "theme", "showTitle", "cardSize",
-    "crt", "oled", "announcement_seen", "showShortTitle",
+    "crt", "oled", "backdrop", "announcement_seen", "showShortTitle",
 ];
 
 document.getElementById("exportData").addEventListener("click", () => {
@@ -99,6 +109,11 @@ importFile.addEventListener("change", e => {
                 if (window.setOled) setOled(data.oled === "1");
                 oledToggle.checked = data.oled === "1";
             }
+            if (data.backdrop != null) {
+                localStorage.setItem("backdrop", data.backdrop);
+                if (window.setBackdrop) setBackdrop(data.backdrop === "1");
+                backdropToggle.checked = data.backdrop === "1";
+            }
             if (data.announcement_seen != null) {
                 localStorage.setItem("announcement_seen", data.announcement_seen);
             }
@@ -131,11 +146,13 @@ document.getElementById("clearStorage").addEventListener("click", () => {
         confirmLabel: "Wipe",
         onConfirm: () => {
             localStorage.clear();
-            if (window.applyTheme) applyTheme("helldivers");
-            if (window.setCrt)     setCrt(true);
-            if (window.setOled)    setOled(false);
-            crtToggle.checked        = true;
+            if (window.applyTheme)   applyTheme("helldivers");
+            if (window.setCrt)       setCrt(false);
+            if (window.setOled)      setOled(false);
+            if (window.setBackdrop)  setBackdrop(false);
+            crtToggle.checked        = false;
             oledToggle.checked       = false;
+            backdropToggle.checked   = false;
             shortTitleToggle.checked = false;
         },
     });
@@ -221,14 +238,61 @@ document.getElementById("viewProfile").addEventListener("click", async () => {
         ["Show Title",   localStorage.getItem("showTitle")      === "true" ? "On" : "Off"],
         ["Short Titles", localStorage.getItem("showShortTitle") === "true" ? "On" : "Off"],
         ["Card Size",    cap(localStorage.getItem("cardSize") || "medium")],
-        ["CRT Effect",   localStorage.getItem("crt")  !== "0" ? "On" : "Off"],
-        ["OLED",         localStorage.getItem("oled") === "1" ? "On" : "Off"],
+        ["CRT Effect",   localStorage.getItem("crt")      !== "0" ? "On" : "Off"],
+        ["OLED",         localStorage.getItem("oled")     === "1" ? "On" : "Off"],
+        ["Backdrop",     localStorage.getItem("backdrop") === "1" ? "On" : "Off"],
     ]));
     container.appendChild(section("Announcements", [
         ["Last Seen", localStorage.getItem("announcement_seen") || "—"],
     ]));
 
     window.showModal({ tag: "Intel", title: "Profile", content: container });
+});
+
+// --------------------------------------------------
+// ABOUT — View Credits
+// --------------------------------------------------
+
+document.getElementById("viewCredits").addEventListener("click", async () => {
+    let credits;
+    try {
+        credits = await fetch("./app/credits.json").then(r => r.json());
+    } catch {
+        window.showNotice({ tag: "About", message: "Could not load credits." });
+        return;
+    }
+
+    const container = document.createElement("div");
+
+    credits.forEach(entry => {
+        const item = document.createElement("div");
+        item.className = "credits-entry";
+
+        const header = document.createElement("div");
+        header.className = "credits-header";
+
+        const title = document.createElement("a");
+        title.className  = "credits-title";
+        title.href       = entry.url;
+        title.target     = "_blank";
+        title.rel        = "noopener noreferrer";
+        title.textContent = entry.title;
+
+        const author = document.createElement("span");
+        author.className  = "credits-author";
+        author.textContent = entry.author;
+
+        header.append(title, author);
+
+        const uses = document.createElement("div");
+        uses.className  = "credits-uses";
+        uses.textContent = entry.uses.join(" · ");
+
+        item.append(header, uses);
+        container.appendChild(item);
+    });
+
+    window.showModal({ tag: "About", title: "Credits", content: container });
 });
 
 })();

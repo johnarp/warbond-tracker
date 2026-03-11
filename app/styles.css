@@ -70,6 +70,15 @@ html.oled {
     --color-banner: rgba(0, 0, 0, 0.9);
 }
 
+[data-theme="green"] {
+    --color-background: #111111;
+    --color-primary: #00ff00;
+    --color-text:    #ffffff;
+    --color-background-secondary: #1a1a1a;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
 /* SUPER STYLES */
 /* Galaxy */
 
@@ -78,88 +87,76 @@ html.oled {
     --color-primary: #4da6ff;
     --color-text:    #cce0ff;
     --color-background-secondary: #050a18;
-    --color-text-secondary: #5580aa;
+    --color-text-secondary: #6699bf;
     --color-banner: rgba(0, 0, 0, 0.88);
     --color-background-image:
         linear-gradient(rgba(2, 4, 15, 0.72), rgba(2, 4, 15, 0.72)),
-        url('../assets/styles/kevin-decatoire-helldivers-2-kevin-decatoire-06.jpg');
+        url('../assets/styles/the-galaxy/kevin-decatoire-helldivers-2-kevin-decatoire-06.jpg');
 }
 
 [data-theme="meridian-black-hole"] {
-    --color-background: #0a020f;
-    --color-primary: #cd8ae9;
-    --color-text:    #decee5;
-    --color-background-secondary: #050a18;
-    --color-text-secondary: #623f70;
-    --color-banner: rgba(0, 0, 0, 0.88);
+    --color-background: #06020f;
+    --color-primary: #9955e8;
+    --color-text:    #d4c0f0;
+    --color-background-secondary: #0d0418;
+    --color-text-secondary: #6e3fa8;
+    --color-banner: rgba(0, 0, 0, 0.90);
     --color-background-image:
-        linear-gradient(rgba(11, 2, 15, 0.72), rgba(10, 2, 15, 0.72)),
-        url('../assets/styles/Meridian_Black_Hole.webp');
+        linear-gradient(rgba(6, 2, 15, 0.72), rgba(6, 2, 15, 0.72)),
+        url('../assets/styles/the-galaxy/Meridian_Black_Hole.webp');
 }
 
 /* Updates */
 
+[data-theme="into-the-unjust"] {
+    --color-background: #060501;
+    --color-primary: #b8cc18;
+    --color-text:    #d4ddb0;
+    --color-background-secondary: #0e0c02;
+    --color-text-secondary: #6a7530;
+    --color-banner: rgba(0, 0, 0, 0.9);
+    --color-background-image:
+        linear-gradient(rgba(15, 4, 0, 0.72), rgba(15, 4, 0, 0.72)),
+        url('../assets/styles/updates/dkgq87o-cac46914-ba48-40f1-adac-9e8881bdb0bc.png');
+}
+
 [data-theme="machinery-of-oppression"] {
-    --color-background: #0f0702;
-    --color-primary: #e46938;
-    --color-text:    #e5d3ce;
-    --color-background-secondary: #180d05;
-    --color-text-secondary: #884b32;
+    --color-background: #0f0500;
+    --color-primary: #d94e26;
+    --color-text:    #ecd8ce;
+    --color-background-secondary: #1c0a02;
+    --color-text-secondary: #a85530;
     --color-banner: rgba(0, 0, 0, 0.88);
     --color-background-image:
-        linear-gradient(rgba(15, 6, 2, 0.72), rgba(15, 5, 2, 0.72)),
-        url('../assets/styles/Machinery_of_Oppression_Cover.png');
+        linear-gradient(rgba(15, 5, 0, 0.72), rgba(15, 5, 0, 0.72)),
+        url('../assets/styles/updates/Machinery_of_Oppression_Cover.png');
 }
 
 /* Warbonds */
 
 [data-theme="odst"] {
-    --color-background: #02040f;
-    --color-primary: #b3b5dc;
-    --color-text:    #ced5e5;
-    --color-background-secondary: #11141b;
-    --color-text-secondary: #6c6f85;
+    --color-background: #030609;
+    --color-primary: #7aaac8;
+    --color-text:    #b8ccd8;
+    --color-background-secondary: #0b1218;
+    --color-text-secondary: #4e6e82;
     --color-banner: rgba(0, 0, 0, 0.88);
     --color-background-image:
-        linear-gradient(rgba(2, 4, 15, 0.72), rgba(3, 2, 15, 0.72)),
-        url('../assets/styles/Halo_ODST_Legendary_Warbond_Cover_Art.png');
+        linear-gradient(rgba(3, 6, 12, 0.72), rgba(3, 6, 12, 0.72)),
+        url('../assets/styles/warbonds/Halo_ODST_Legendary_Warbond_Cover_Art.png');
 }
 
 /* Warbond Previews */
-[data-theme="redacted-regiment"] {
-    --color-background: #02040f;
-    --color-primary: #e9e9e9;
-    --color-text:    #e7e7e7;
-    --color-background-secondary: #181818;
-    --color-text-secondary: #838383;
-    --color-banner: rgba(0, 0, 0, 0.88);
-    --color-background-image:
-        linear-gradient(rgba(16, 16, 16, 0.72), rgba(16, 16, 16, 0.72)),
-        url('../assets/styles/Redacted_Regiment_Premium_Warbond_Marketing.webp');
-}
-
-[data-theme="redacted-regiment-2"] {
-    --color-background: #02040f;
-    --color-primary: #e9e9e9;
-    --color-text:    #e7e7e7;
-    --color-background-secondary: #181818;
-    --color-text-secondary: #838383;
-    --color-banner: rgba(0, 0, 0, 0.88);
-    --color-background-image:
-        linear-gradient(rgba(16, 16, 16, 0.72), rgba(16, 16, 16, 0.72)),
-        url('../assets/styles/Redacted_Regiment_Premium_Warbond_Marketing_2.png');
-}
-
 [data-theme="siege-breakers"] {
-    --color-background: #0f0802;
-    --color-primary: #e07c5b;
-    --color-text:    #d68a69;
-    --color-background-secondary: #1b100a;
-    --color-text-secondary: #8e6145;
+    --color-background: #0f0400;
+    --color-primary: #f07030;
+    --color-text:    #f0c8a8;
+    --color-background-secondary: #1e0a02;
+    --color-text-secondary: #a85e30;
     --color-banner: rgba(0, 0, 0, 0.88);
     --color-background-image:
-        linear-gradient(rgba(15, 6, 2, 0.72), rgba(15, 8, 2, 0.72)),
-        url('../assets/styles/Siege_Breakers_Premium_Warbond_Marketing.png');
+        linear-gradient(rgba(15, 4, 0, 0.72), rgba(15, 4, 0, 0.72)),
+        url('../assets/styles/warbond-previews/Siege_Breakers_Premium_Warbond_Marketing.png');
 }
 
 /* --------------------------------------------------
@@ -212,15 +209,20 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: var(--color-background);
-    background-image: var(--color-background-image, none);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     color: var(--color-text);
     font-family: "Chakra Petch", sans-serif;
     margin: 0;
     padding: 1.5rem;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--color-background-image, none);
+    background-size: cover;
+    background-position: center;
 }
 
 main { flex: 1; }
@@ -971,6 +973,84 @@ label.inline-label {
 
 .profile-row span:first-child { color: var(--color-text-secondary); }
 .profile-row span:last-child  { color: var(--color-text); font-weight: 600; }
+
+/* --------------------------------------------------
+   BACKDROP MODE
+   html.backdrop strengthens backgrounds on UI elements
+   that float over background images, improving text
+   and control readability on Super Style themes.
+   backdrop-filter only applies where clip-path is
+   absent — the two are incompatible in CSS.
+-------------------------------------------------- */
+html.backdrop {
+    --backdrop-bg: rgba(0, 0, 0, 0.55);
+}
+
+html.backdrop header {
+    background: var(--backdrop-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+html.backdrop #controls {
+    background: var(--backdrop-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+html.backdrop #percentage-bar {
+    background: var(--backdrop-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* clip-path present on sections — solid fill only, blur won't render */
+html.backdrop .settings-section {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+html.backdrop .settings-section-header {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* Credits modal */
+.credits-entry {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.credits-entry:last-child { border-bottom: none; }
+
+.credits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.credits-title {
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.credits-title:hover { text-decoration: underline; }
+
+.credits-author {
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.credits-uses {
+    color: var(--color-text-secondary);
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
 
 /* --------------------------------------------------
    MOBILE
