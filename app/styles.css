@@ -79,6 +79,15 @@ html.oled {
     --color-banner: rgba(0, 0, 0, 0.9);
 }
 
+[data-theme="blue"] {
+    --color-background: #111111;
+    --color-primary: #2f97ff;
+    --color-text:    #ffffff;
+    --color-background-secondary: #1a1a1a;
+    --color-text-secondary: #a0a0a0;
+    --color-banner: rgba(0, 0, 0, 0.9);
+}
+
 /* SUPER STYLES */
 /* Galaxy */
 
@@ -207,7 +216,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100svh;
     background: var(--color-background);
     color: var(--color-text);
     font-family: "Chakra Petch", sans-serif;
