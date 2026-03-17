@@ -140,5 +140,11 @@
         "type": "Premium",
         "release": "2026/02/03",
         "cover": "./assets/warbonds/Siege_Breakers_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Entrenched Division",
+        "type": "Premium",
+        "release": "2026/03/17",
+        "cover": "./assets/warbonds/Entrenched_Division_Premium_Warbond_Cover.png"
     }
 ]

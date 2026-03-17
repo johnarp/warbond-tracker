@@ -1,19 +1,18 @@
 {
-    "version": "1.3.2",
-    "date": "2026-03-12",
+    "version": "1.3.3",
+    "date": "2026-03-17",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": null,
-        "tag": "New Update",
-        "title": "v1.3.0",
+        "id": "1.3.3",
+        "tag": "New Warbond",
+        "title": "Entrenched Division",
         "body": [
-            "OLED toggle in Settings.",
-            "Improved control bar with multi-select options."
+            "New Warbond available now."
         ],
-        "image": "./assets/kevin-decatoire-helldivers-2-kevin-decatoire-05.jpg"
+        "image": "./assets/warbonds/Entrenched_Division_Premium_Warbond_Cover.png"
     }
 }
