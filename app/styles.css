@@ -155,6 +155,18 @@ html.oled {
         url('../assets/styles/warbonds/Halo_ODST_Legendary_Warbond_Cover_Art.png');
 }
 
+[data-theme="entrenched-division"] {
+    --color-background: #080604;
+    --color-primary: #c4872a;
+    --color-text:    #c8b888;
+    --color-background-secondary: #100c06;
+    --color-text-secondary: #93793f;
+    --color-banner: rgba(5, 4, 3, 0.88);
+    --color-background-image:
+        linear-gradient(rgba(8, 6, 4, 0.72), rgba(8, 6, 4, 0.72)),
+        url('../assets/styles/warbonds/Entrenched_Division_Premium_Warbond_Marketing_13.png');
+}
+
 /* Warbond Previews */
 [data-theme="siege-breakers"] {
     --color-background: #0f0400;
