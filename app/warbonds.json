@@ -145,6 +145,14 @@
         "title": "Entrenched Division",
         "type": "Premium",
         "release": "2026/03/17",
+        "aliases": ["ww1", "wwi", "world war 1", "world war i"],
         "cover": "./assets/warbonds/Entrenched_Division_Premium_Warbond_Cover.png"
+    },
+    {
+        "title": "Exo Experts",
+        "type": "Premium",
+        "release": "2026/04/28",
+        "aliases": ["mechs"],
+        "cover": "./assets/warbonds/Exo_Experts_Premium_Warbond_Cover.png"
     }
 ]

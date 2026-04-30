@@ -1,18 +1,18 @@
 {
-    "version": "1.3.4",
-    "date": "2026-03-18",
+    "version": "1.3.5",
+    "date": "2025-04-29",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": "1.3.3",
+        "id": "1.3.5",
         "tag": "New Warbond",
-        "title": "Entrenched Division",
+        "title": "Exo Experts",
         "body": [
             "New Warbond available now."
         ],
-        "image": "./assets/warbonds/Entrenched_Division_Premium_Warbond_Cover.png"
+        "image": "./assets/warbonds/Exo_Experts_Premium_Warbond_Cover.png"
     }
 }

@@ -4,11 +4,7 @@
 
 # Warbond Tracker
 
-**Track your Helldivers 2 Warbond completion.**
-
-[![Live Site](https://img.shields.io/badge/Live%20Site-GitHub%20Pages-ffe900?style=flat-square&labelColor=111111)](https://johnarp.github.io/warbond-tracker)
-[![License](https://img.shields.io/badge/License-MIT-white?style=flat-square&labelColor=111111)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/johnarp/warbond-tracker?style=flat-square&color=ffe900&labelColor=111111)](https://github.com/johnarp/warbond-tracker/releases)
+Track your Helldivers 2 Warbond completion.
 
 </div>
 
