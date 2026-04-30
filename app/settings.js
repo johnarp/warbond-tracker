@@ -55,20 +55,30 @@ shortTitleToggle.addEventListener("change", () => {
 
 // --------------------------------------------------
 // WALL OF MARTYRS — export / import everything
+// Keys that store JSON objects/arrays are listed in
+// JSON_KEYS so the exporter parses them (making the
+// file readable) and the importer re-stringifies them.
 // --------------------------------------------------
 
 const ALL_KEYS = [
-    "liberationStatus", "theme", "showTitle", "cardSize",
-    "crt", "oled", "backdrop", "announcement_seen", "showShortTitle",
+    "liberationStatus", "medalsSpent",
+    "theme", "showTitle", "showShortTitle", "showMedals",
+    "cardSize", "sort",
+    "typeFilter", "libFilter",
+    "crt", "oled", "backdrop",
+    "announcement_seen",
 ];
+
+// Keys whose localStorage values are JSON strings that
+// should be parsed for export and re-stringified on import.
+const JSON_KEYS = ["liberationStatus", "medalsSpent", "typeFilter", "libFilter"];
 
 document.getElementById("exportData").addEventListener("click", () => {
     const data = {};
     ALL_KEYS.forEach(k => {
         const v = localStorage.getItem(k);
         if (v !== null) {
-            // liberationStatus is JSON — parse it so the export is readable
-            data[k] = k === "liberationStatus" ? JSON.parse(v) : v;
+            data[k] = JSON_KEYS.includes(k) ? JSON.parse(v) : v;
         }
     });
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -89,34 +99,76 @@ importFile.addEventListener("change", e => {
     reader.onload = ev => {
         try {
             const data = JSON.parse(ev.target.result);
+
+            // — Liberation status —
             if (data.liberationStatus) {
                 localStorage.setItem("liberationStatus", JSON.stringify(data.liberationStatus));
             }
-            if (data.theme && window.applyTheme)    applyTheme(data.theme);
-            if (data.showTitle      != null)         localStorage.setItem("showTitle",      data.showTitle);
-            if (data.cardSize       != null)         localStorage.setItem("cardSize",        data.cardSize);
+
+            // — Medals spent —
+            if (data.medalsSpent != null) {
+                localStorage.setItem("medalsSpent", JSON.stringify(data.medalsSpent));
+            }
+
+            // — Theme —
+            if (data.theme && window.applyTheme) applyTheme(data.theme);
+
+            // — Show Title —
+            if (data.showTitle != null) localStorage.setItem("showTitle", data.showTitle);
+
+            // — Short Titles —
             if (data.showShortTitle != null) {
                 localStorage.setItem("showShortTitle", data.showShortTitle);
                 shortTitleToggle.checked = data.showShortTitle === "true";
             }
+
+            // — Show Medals —
+            if (data.showMedals != null) {
+                localStorage.setItem("showMedals", data.showMedals);
+            }
+
+            // — Card size —
+            if (data.cardSize != null) localStorage.setItem("cardSize", data.cardSize);
+
+            // — Sort —
+            if (data.sort != null) localStorage.setItem("sort", data.sort);
+
+            // — Type filter —
+            if (data.typeFilter != null) {
+                localStorage.setItem("typeFilter", JSON.stringify(data.typeFilter));
+            }
+
+            // — Lib filter —
+            if (data.libFilter != null) {
+                localStorage.setItem("libFilter", JSON.stringify(data.libFilter));
+            }
+
+            // — CRT —
             if (data.crt != null) {
                 localStorage.setItem("crt", data.crt);
                 if (window.setCrt) setCrt(data.crt !== "0");
                 crtToggle.checked = data.crt !== "0";
             }
+
+            // — OLED —
             if (data.oled != null) {
                 localStorage.setItem("oled", data.oled);
                 if (window.setOled) setOled(data.oled === "1");
                 oledToggle.checked = data.oled === "1";
             }
+
+            // — Backdrop —
             if (data.backdrop != null) {
                 localStorage.setItem("backdrop", data.backdrop);
                 if (window.setBackdrop) setBackdrop(data.backdrop === "1");
                 backdropToggle.checked = data.backdrop === "1";
             }
+
+            // — Announcement seen —
             if (data.announcement_seen != null) {
                 localStorage.setItem("announcement_seen", data.announcement_seen);
             }
+
             window.showNotice({ tag: "Wall of Martyrs", message: "Import successful." });
         } catch {
             window.showNotice({ tag: "Wall of Martyrs", message: "Invalid file.", label: "Dismiss" });
@@ -135,7 +187,10 @@ document.getElementById("clearLiberation").addEventListener("click", () => {
         tag:          "Enemy Artillery",
         message:      "Clear all liberation progress? This cannot be undone.",
         confirmLabel: "Clear",
-        onConfirm:    () => localStorage.removeItem("liberationStatus"),
+        onConfirm:    () => {
+            localStorage.removeItem("liberationStatus");
+            localStorage.removeItem("medalsSpent");
+        },
     });
 });
 
@@ -192,7 +247,6 @@ document.getElementById("viewAliases").addEventListener("click", async () => {
 // --------------------------------------------------
 
 document.getElementById("viewProfile").addEventListener("click", async () => {
-    // Fetch total warbond count to calculate unliberated
     let totalWarbonds = 0;
     try {
         const data = await fetch("./app/warbonds.json").then(r => r.json());
@@ -206,6 +260,9 @@ document.getElementById("viewProfile").addEventListener("click", async () => {
     const unliberated = totalWarbonds
         ? totalWarbonds - liberated - liberating
         : "—";
+
+    const medalsData  = JSON.parse(localStorage.getItem("medalsSpent") || "{}");
+    const medalsTotal = Object.values(medalsData).reduce((sum, v) => sum + v, 0);
 
     const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : "—";
 
@@ -233,10 +290,14 @@ document.getElementById("viewProfile").addEventListener("click", async () => {
         ["Liberating",  liberating],
         ["Unliberated", unliberated],
     ]));
+    container.appendChild(section("Medals", [
+        ["Total Spent", medalsTotal.toLocaleString()],
+    ]));
     container.appendChild(section("Settings", [
         ["Theme",        cap(localStorage.getItem("theme") || "helldivers")],
         ["Show Title",   localStorage.getItem("showTitle")      === "true" ? "On" : "Off"],
         ["Short Titles", localStorage.getItem("showShortTitle") === "true" ? "On" : "Off"],
+        ["Show Medals",  localStorage.getItem("showMedals")     === "true" ? "On" : "Off"],
         ["Card Size",    cap(localStorage.getItem("cardSize") || "medium")],
         ["CRT Effect",   localStorage.getItem("crt")      !== "0" ? "On" : "Off"],
         ["OLED",         localStorage.getItem("oled")     === "1" ? "On" : "Off"],

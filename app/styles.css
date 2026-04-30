@@ -1116,3 +1116,141 @@ html.backdrop .settings-section-header {
 @media (max-width: 400px) {
     #warbonds-grid { grid-template-columns: 1fr; }
 }
+/* --------------------------------------------------
+   MEDAL BADGE
+   Top-left overlay on each card image.
+   Only rendered when medals-aiu is defined on the item.
+   Hidden via .hidden when Show Medals is off.
+-------------------------------------------------- */
+.medal-badge {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(0, 0, 0, 0.72);
+    padding: 0.18rem 0.45rem 0.18rem 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-primary);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.medal-badge.hidden { opacity: 0; }
+
+.medal-icon {
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Override .image-wrapper img which sets width:100% and aspect-ratio on all imgs */
+.image-wrapper .medal-icon {
+    width: 1rem;
+    height: 1rem;
+    aspect-ratio: auto;
+    flex-shrink: 0;
+}
+
+/* Larger icon used in the warbond modal */
+.medal-icon-lg {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+/* --------------------------------------------------
+   WARBOND MODAL CONTENT
+   Layout for the status + medals sections shown
+   when clicking a card.
+-------------------------------------------------- */
+.warbond-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.warbond-modal-section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.6rem;
+    margin-top: 1.1rem;
+}
+
+.warbond-modal-content > .warbond-modal-section-label:first-child {
+    margin-top: 0;
+}
+
+.warbond-modal-status-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.warbond-modal-status-row .status-option {
+    flex: 1;
+    min-width: 0;
+    clip-path: polygon(
+        var(--notch) 0, 100% 0,
+        100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%,
+        0 100%, 0 var(--notch)
+    );
+}
+
+/* --------------------------------------------------
+   MEDALS INPUT ROW (inside warbond modal)
+-------------------------------------------------- */
+.warbond-modal-medals-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.medals-input {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.5rem;
+    width: 5.5rem;
+    text-align: center;
+    /* Remove browser spinners */
+    -moz-appearance: textfield;
+}
+
+.medals-input::-webkit-inner-spin-button,
+.medals-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.medals-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.medals-sep {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+}
+
+.medals-total {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+}

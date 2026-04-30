@@ -1,18 +1,19 @@
 {
-    "version": "1.3.5",
-    "date": "2025-04-29",
+    "version": "1.4.0",
+    "date": "2025-04-30",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": "1.3.5",
-        "tag": "New Warbond",
-        "title": "Exo Experts",
+        "id": "1.4.0",
+        "tag": "New Update",
+        "title": "v1.4.0",
         "body": [
-            "New Warbond available now."
+            "Medal tracking is now available.",
+            "Log medals spent per Warbond, sort by completion, and monitor your total from the Profile."
         ],
-        "image": "./assets/warbonds/Exo_Experts_Premium_Warbond_Cover.png"
+        "image": "./assets/kevin-decatoire-helldivers-2-kevin-decatoire-05.jpg"
     }
 }

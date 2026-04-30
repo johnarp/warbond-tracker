@@ -33,6 +33,15 @@
         ]
     },
     {
+        "title": "Medal Image",
+        "author":"The Helldivers Wiki",
+        "url": "https://helldivers.wiki.gg",
+        "uses": [
+            "Warbond medal counts",
+            "Warbond medal input"
+        ]
+    },
+    {
         "title": "Meridia (OLED) Appearance",
         "author": "The Helldivers Wiki",
         "url": "https://helldivers.wiki.gg",
