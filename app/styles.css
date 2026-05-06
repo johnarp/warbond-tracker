@@ -15,39 +15,19 @@
 /* Factions */
 
 [data-theme="helldivers"] {
-    --color-background: #111111;
     --color-primary: #ffe900;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
-    --color-banner: rgba(0, 0, 0, 0.82);
 }
 
 [data-theme="terminids"] {
-    --color-background: #111111;
     --color-primary: #ffb900;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
-    --color-banner: rgba(0, 0, 0, 0.82);
 }
 
 [data-theme="automatons"] {
-    --color-background: #111111;
     --color-primary: #ff7171;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
-    --color-banner: rgba(0, 0, 0, 0.82);
 }
 
 [data-theme="illuminate"] {
-    --color-background: #111111;
     --color-primary: #cd8ae9;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
-    --color-banner: rgba(0, 0, 0, 0.82);
 }
 
 /* OLED — global modifier class applied to <html>.
@@ -62,29 +42,17 @@ html.oled {
 
 /* Colors */
 [data-theme="red"] {
-    --color-background: #111111;
     --color-primary: #ff0000;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
     --color-banner: rgba(0, 0, 0, 0.9);
 }
 
 [data-theme="green"] {
-    --color-background: #111111;
     --color-primary: #00ff00;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
     --color-banner: rgba(0, 0, 0, 0.9);
 }
 
 [data-theme="blue"] {
-    --color-background: #111111;
     --color-primary: #2f97ff;
-    --color-text:    #ffffff;
-    --color-background-secondary: #1a1a1a;
-    --color-text-secondary: #a0a0a0;
     --color-banner: rgba(0, 0, 0, 0.9);
 }
 
@@ -611,6 +579,18 @@ input[type="checkbox"]:checked::after {
 .card:hover img           { filter: brightness(1.08); }
 /* Prevent hover from brightening a liberated card */
 .card.liberated:hover img { filter: brightness(0.4) grayscale(100%); }
+
+.no-results {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 2rem 0;
+    text-align: center;
+    width: 100%;
+    grid-column: 1 / -1;
+}
 
 /* --------------------------------------------------
    STAMP

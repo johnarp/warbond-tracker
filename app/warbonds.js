@@ -414,9 +414,16 @@ function render() {
         return direction === "asc" ? result : -result;
     });
 
-    const fragment = document.createDocumentFragment();
-    filtered.forEach(item => fragment.appendChild(createCard(item)));
-    grid.appendChild(fragment);
+    if (filtered.length === 0) {
+        const msg = document.createElement("div");
+        msg.className = "no-results";
+        msg.textContent = "Signal Lost...";
+        grid.appendChild(msg);
+    } else {
+        const fragment = document.createDocumentFragment();
+        filtered.forEach(item => fragment.appendChild(createCard(item)));
+        grid.appendChild(fragment);
+    }
 
     updatePercentage();
 }
