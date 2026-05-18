@@ -1084,18 +1084,15 @@ html.backdrop .settings-section-header {
 
     .filter-toggles { flex-wrap: wrap; }
 
-    #warbonds-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.6rem;
-    }
+    #warbonds-grid.grid-large  { grid-template-columns: 1fr 1fr; }
+    #warbonds-grid.grid-medium { grid-template-columns: 1fr 1fr 1fr; }
+    #warbonds-grid.grid-small  { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    #warbonds-grid { gap: 0.6rem; }
 
     .stamp { font-size: 0.8rem; letter-spacing: 4px; }
     .title { font-size: 0.7rem; }
 }
 
-@media (max-width: 400px) {
-    #warbonds-grid { grid-template-columns: 1fr; }
-}
 /* --------------------------------------------------
    MEDAL BADGE
    Top-left overlay on each card image.
@@ -1233,4 +1230,58 @@ html.backdrop .settings-section-header {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------
+   LIST VIEW MODE
+-------------------------------------------------- */
+/* --------------------------------------------------
+   LIST VIEW
+-------------------------------------------------- */
+#warbonds-grid.grid-list .card {
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+#warbonds-grid.grid-list.grid-small  .card { height: 44px; }
+#warbonds-grid.grid-list.grid-medium .card { height: 60px; }
+#warbonds-grid.grid-list.grid-large  .card { height: 80px; }
+
+#warbonds-grid.grid-list .image-wrapper img {
+    object-position: left top;
+    opacity: 0.35;
+}
+
+#warbonds-grid.grid-list .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 100%;
+    text-align: center;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 0.5rem;
+    background: none;
+}
+
+#warbonds-grid.grid-list .stamp {
+    display: none;
+}
+
+#warbonds-grid.grid-list .card.liberated::after {
+    content: "LIBERATED";
+    position: absolute;
+    top: 0.3rem;
+    right: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.72);
+    padding: 0.18rem 0.45rem;
+    pointer-events: none;
 }

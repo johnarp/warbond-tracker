@@ -12,6 +12,7 @@ let medalsSpent      = JSON.parse(localStorage.getItem("medalsSpent"))      || {
 // --------------------------------------------------
 let sortValue  = localStorage.getItem("sort")     || "release-desc";
 let sizeValue  = localStorage.getItem("cardSize") || "medium";
+let viewValue  = localStorage.getItem("view") || "grid";
 let typeActive = new Set(JSON.parse(localStorage.getItem("typeFilter") || "[]"));
 let libActive  = new Set(JSON.parse(localStorage.getItem("libFilter")  || "[]"));
 
@@ -29,6 +30,7 @@ const sortBtn = document.getElementById("sortBtn");
 const typeBtn = document.getElementById("typeBtn");
 const libBtn  = document.getElementById("libBtn");
 const sizeBtn = document.getElementById("sizeBtn");
+const viewBtn = document.getElementById("viewBtn");
 
 // Reflect persisted filter-active state on buttons immediately
 typeBtn.classList.toggle("active", typeActive.size > 0);
@@ -66,6 +68,11 @@ const SIZE_OPTIONS = [
     { value: "large",  label: "Large"  },
 ];
 
+const VIEW_OPTIONS = [
+    { value: "grid", label: "Grid" },
+    { value: "list", label: "Compact" },
+]
+
 // --------------------------------------------------
 // DATA
 // --------------------------------------------------
@@ -74,8 +81,9 @@ fetch("./app/warbonds.json")
     .then(data => {
         warbonds = data;
         applyCardSize(sizeValue);
+        applyView(viewValue);
         render();
-        searchInput?.focus();
+        if (!window.matchMedia("(pointer: coarse)").matches) searchInput?.focus();
     });
 
 // --------------------------------------------------
@@ -195,6 +203,20 @@ sizeBtn.addEventListener("click", () => {
             sizeValue = v;
             applyCardSize(v);
             localStorage.setItem("cardSize", v);
+        },
+    });
+});
+
+viewBtn.addEventListener("click", () => {
+    showControlPopup({
+        anchor:         viewBtn,
+        options:        VIEW_OPTIONS,
+        multiSelect:    false,
+        isActive:       v => v === viewValue,
+        onPick: v => {
+            viewValue = v;
+            applyView(v);
+            localStorage.setItem("view", v);
         },
     });
 });
@@ -417,7 +439,9 @@ function render() {
     if (filtered.length === 0) {
         const msg = document.createElement("div");
         msg.className = "no-results";
-        msg.textContent = "Signal Lost...";
+        msg.textContent = query === atob("MTc3NzExOTI1OA==")
+            ? atob("b2ggeW91IHN3ZWV0IHN1bW1lciBjaGlsZA==")
+            : "Signal Lost..."
         grid.appendChild(msg);
     } else {
         const fragment = document.createDocumentFragment();
@@ -450,6 +474,13 @@ function updatePercentage() {
 function applyCardSize(size) {
     grid.classList.remove("grid-small", "grid-medium", "grid-large");
     grid.classList.add(`grid-${size}`);
+}
+
+// --------------------------------------------------
+// CARD SIZE
+// --------------------------------------------------
+function applyView(view) {
+    grid.classList.toggle("grid-list", view === "list");
 }
 
 // --------------------------------------------------

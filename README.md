@@ -56,32 +56,41 @@ python -m http.server 3000
 
 Open [http://localhost:3000](http://localhost:3000) in a web browser.
 
-## ⚠️ Known Issues
-
-- Warbond size changing on mobile
-
 ## 🗺️ Roadmap
 
-- OLED changes mobile navigation color to the background color
-- Community Liberation tracking with live updates, displays global Liberation percentage and more
-    - Would use Vercel, Redis, and Pusher
-- Super Super Styles that fundamentally change the site
-- [REDACTED] Super Super Style with black bars covering lots of stuff
-- Add more to profiles, such as name, titles (eg. Space Chief Prime), avatars, and more
-- Improve Liberating effect
-- Improve Warbond title look
-- Custom sorting order
-- Pinning Warbonds
-- Dragging Warbonds
-- Selecting Warbonds with a special menu for applying operations to all selected
+### Features
+
+- Stratagem keyboard inputs
+    - eg. hold CTRL to open the menu, enter arrow sequences, etc.
+- Keyboard inputs
+    - eg. WASD to navigate Warbonds, [] to navigate tabs, etc.
+- Community Liberation tracking
+    - Live updates, displaying global Liberation and more
+    - Vercel, Redis, and Pusher
 - Sound effects
 - Music
-- Keyboard inputs, eg. WASD to navigate warbonds, [] to navigate tabs, etc.
-- Stratagem keyboard inputs, eg. hold CTRL to open the menu, enter arrow sequence
-- Different view layouts, eg. grid, list, embed mode (can fit on very small displays)
-- Undo/redo changes
+
+### Functionality
+
+- Different view modes
+    - eg. list, embed mode (fit on very small displays), etc.
+- Add more to Profiles
+    - eg. name, titles (eg. Space Chief Prime), etc.
+- Custom sort
+    - Drag Warbonds
+    - Pin Warbonds
+- Select Warbonds
+    - Adds special menu for applying operations to all selected
+- Undo/Redo changes
 - View changelog natively in the app
 - Random Warbond picker
+
+### Styling
+
+- Super Super Styles; fundamentally change the site
+    - [REDACTED] with black bars covering stuff
+- Improve Liberating effect
+- Improve Warbond title styling
 
 ## 📄 License
 

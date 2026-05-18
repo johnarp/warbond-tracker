@@ -29,6 +29,11 @@ window.setCrt = function(enabled) {
 window.setOled = function(enabled) {
     document.documentElement.classList.toggle("oled", enabled);
     localStorage.setItem("oled", enabled ? "1" : "0");
+
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+        metaTheme.content = enabled ? "#000000" : getComputedStyle(document.documentElement).getPropertyValue("--color-primary").trim() || "#ffe900";
+    }
 };
 
 // BACKDROP toggle — adds dark backing and blur to UI elements that float

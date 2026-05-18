@@ -63,7 +63,7 @@ shortTitleToggle.addEventListener("change", () => {
 const ALL_KEYS = [
     "liberationStatus", "medalsSpent",
     "theme", "showTitle", "showShortTitle", "showMedals",
-    "cardSize", "sort",
+    "cardSize", "sort", "view",
     "typeFilter", "libFilter",
     "crt", "oled", "backdrop",
     "announcement_seen",
@@ -129,6 +129,9 @@ importFile.addEventListener("change", e => {
 
             // — Card size —
             if (data.cardSize != null) localStorage.setItem("cardSize", data.cardSize);
+
+            // — View Mode —
+            if (data.view != null) localStorage.setItem("view", data.view);
 
             // — Sort —
             if (data.sort != null) localStorage.setItem("sort", data.sort);

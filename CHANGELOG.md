@@ -1,41 +1,54 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-[1.4.1]: https://github.com/johnarp/warbond-tracker/compare/v1.4.0...v1.4.1
-[1.4.0]: https://github.com/johnarp/warbond-tracker/compare/v1.3.5...v1.4.0
-[1.3.5]: https://github.com/johnarp/warbond-tracker/compare/v1.3.4...v1.3.5
-[1.3.4]: https://github.com/johnarp/warbond-tracker/compare/v1.3.3...v1.3.4
-[1.3.3]: https://github.com/johnarp/warbond-tracker/compare/v1.3.2...v1.3.3
-[1.3.2]: https://github.com/johnarp/warbond-tracker/compare/v1.3.1...v1.3.2
-[1.3.1]: https://github.com/johnarp/warbond-tracker/compare/v1.3.0...v1.3.1
-[1.3.0]: https://github.com/johnarp/warbond-tracker/compare/v1.2.2...v1.3.0
-[1.2.2]: https://github.com/johnarp/warbond-tracker/compare/v1.2.1...v1.2.2
-[1.2.1]: https://github.com/johnarp/warbond-tracker/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/johnarp/warbond-tracker/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/johnarp/warbond-tracker/compare/v1.0.5...v1.0.0
-[1.0.5]: https://github.com/johnarp/warbond-tracker/compare/v1.0.4...v1.0.5
-[1.0.4]: https://github.com/johnarp/warbond-tracker/compare/v1.0.3...v1.0.4
-[1.0.3]: https://github.com/johnarp/warbond-tracker/compare/v1.0.2...v1.0.3
-[1.0.2]: https://github.com/johnarp/warbond-tracker/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/johnarp/warbond-tracker/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/johnarp/warbond-tracker/compare/v0.4.5...v1.0.0
-[0.4.5]: https://github.com/johnarp/warbond-tracker/compare/v0.4.4...v0.4.5
-[0.4.4]: https://github.com/johnarp/warbond-tracker/compare/v0.4.3...v0.4.4
-[0.4.3]: https://github.com/johnarp/warbond-tracker/compare/v0.4.2...v0.4.3
-[0.4.2]: https://github.com/johnarp/warbond-tracker/compare/v0.4.1...v0.4.2
-[0.4.1]: https://github.com/johnarp/warbond-tracker/compare/v0.4.0...v0.4.1
-[0.4.0]: https://github.com/johnarp/warbond-tracker/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/johnarp/warbond-tracker/compare/v0.2.2...v0.3.0
-[0.2.2]: https://github.com/johnarp/warbond-tracker/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/johnarp/warbond-tracker/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/johnarp/warbond-tracker/compare/0.1.2...v0.2.0
-[0.1.2]: https://github.com/johnarp/warbond-tracker/compare/0.1.1...0.1.2
-[0.1.1]: https://github.com/johnarp/warbond-tracker/compare/0.1.0...0.1.1
+[1.5.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.5.0
+[1.4.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.4.1
+[1.4.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.4.0
+[1.3.5]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.5
+[1.3.4]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.4
+[1.3.3]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.3
+[1.3.2]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.2
+[1.3.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.1
+[1.3.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.3.0
+[1.2.2]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.2.2
+[1.2.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.2.1
+[1.2.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.2.0
+[1.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.1.0
+[1.0.5]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.5
+[1.0.4]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.4
+[1.0.3]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.3
+[1.0.2]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.2
+[1.0.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.1
+[1.0.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.0.0
+[0.4.5]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.5
+[0.4.4]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.4
+[0.4.3]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.3
+[0.4.2]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.2
+[0.4.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.1
+[0.4.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.4.0
+[0.3.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.3.0
+[0.2.2]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.2.2
+[0.2.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.2.1
+[0.2.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v0.2.0
+[0.1.2]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.2
+[0.1.1]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
+
+## [1.5.0] - 2026-05-17
+
+### Added
+
+- Compact view mode
+
+### Changed
+
+- When using OLED, mobile nav color changes to the background color
+- Search no longer focuses on mobile
+
+### Fixed
+
+- Warbond size changing on mobile
 
 ## [1.4.1] - 2026-05-06
 
