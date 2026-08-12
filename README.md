@@ -56,6 +56,10 @@ python -m http.server 3000
 
 Open [http://localhost:3000](http://localhost:3000) in a web browser.
 
+## ⚠️ Known Issues
+
+- Compact view mode does not work as intended on mobile
+
 ## 🗺️ Roadmap
 
 ### Features

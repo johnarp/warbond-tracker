@@ -223,5 +223,16 @@
         ],
         "cover": "./assets/warbonds/Exo_Experts_Premium_Warbond_Cover.png",
         "medals-aiu": 779
+    },
+    {
+        "title": "Castellan’s Creed",
+        "type": "Legendary",
+        "release": "2026/08/12",
+        "aliases": [
+            "warhammer",
+            "collab"
+        ],
+        "cover": "./assets/warbonds/Castellans_Creed_Legendary_Warbond_Cover.png",
+        "medals-aiu": 657
     }
 ]

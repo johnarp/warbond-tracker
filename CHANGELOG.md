@@ -2,6 +2,7 @@
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0)
 
+[1.5.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.5.1
 [1.5.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.5.0
 [1.4.1]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.4.1
 [1.4.0]: https://github.com/johnarp/warbond-tracker/releases/tag/v1.4.0
@@ -34,6 +35,16 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0)
 [0.1.2]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.2
 [0.1.1]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.1
 [0.1.0]: https://github.com/johnarp/warbond-tracker/releases/tag/0.1.0
+
+## [1.5.1] - 2026-08-12
+
+### Added
+
+- Castellan’s Creed Warbond
+
+### Changed
+
+- README preview images
 
 ## [1.5.0] - 2026-05-17
 

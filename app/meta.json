@@ -1,19 +1,18 @@
 {
-    "version": "1.4.1",
-    "date": "2026-05-06",
+    "version": "1.5.1",
+    "date": "2026-08-12",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": "1.4.0",
-        "tag": "New Update",
-        "title": "v1.4.0",
+        "id": "1.5.1",
+        "tag": "New Warbond",
+        "title": "New Warbond",
         "body": [
-            "Medal tracking is now available.",
-            "Log medals spent per Warbond, sort by completion, and monitor your total from the Profile."
+            "Castellan's Creed Warbond is now available."
         ],
-        "image": "./assets/kevin-decatoire-helldivers-2-kevin-decatoire-05.jpg"
+        "image": "./assets/warbonds/Castellans_Creed_Legendary_Warbond_Cover.png"
     }
 }
