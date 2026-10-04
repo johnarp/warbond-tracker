@@ -1,18 +1,18 @@
 {
-    "version": "1.5.1",
-    "date": "2026-08-12",
+    "version": "1.5.2",
+    "date": "2026-10-04",
 
     "github": "https://github.com/johnarp/warbond-tracker",
     "changelog": "https://github.com/johnarp/warbond-tracker/releases",
     "issues": "https://github.com/johnarp/warbond-tracker/issues",
 
     "announcement": {
-        "id": "1.5.1",
+        "id": "1.5.2",
         "tag": "New Warbond",
         "title": "New Warbond",
         "body": [
-            "Castellan's Creed Warbond is now available."
+            "Ironclad Democracy Warbond is now available."
         ],
-        "image": "./assets/warbonds/Castellans_Creed_Legendary_Warbond_Cover.png"
+        "image": "./assets/warbonds/Ironclad_Democracy_Premium_Warbond_Cover.png"
     }
 }

@@ -234,5 +234,12 @@
         ],
         "cover": "./assets/warbonds/Castellans_Creed_Legendary_Warbond_Cover.png",
         "medals-aiu": 657
+    },
+    {
+        "title": "Ironclad Democracy",
+        "type": "Premium",
+        "release": "2026/09/22",
+        "cover": "./assets/warbonds/Ironclad_Democracy_Premium_Warbond_Cover.png",
+        "medals-aiu": 803
     }
 ]
